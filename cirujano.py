@@ -1,7 +1,7 @@
 from persona import persona
 
 
-class cirujanos(persona):
+class cirujano(persona):
 
     def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones):
         

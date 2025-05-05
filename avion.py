@@ -15,6 +15,6 @@ class avion(vehiculo):
 
 
 
-     def calculo_de_trayecto(self, trayecto, velocidad, distancia, nivel_de_trafico):
-
-        trayecto=velocidad/distancia+nivel_de_trafico
+     def calculo_de_trayecto(self, trayecto, velocidad, distancia):
+        self.trayecto=trayecto
+        trayecto=velocidad/distancia

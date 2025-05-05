@@ -16,5 +16,5 @@ class auto(vehiculo):
 
     
     def calculo_de_trayecto(self, trayecto, velocidad, distancia, nivel_de_trafico):
-
+        self.trayecto=trayecto
         trayecto=velocidad/distancia+nivel_de_trafico

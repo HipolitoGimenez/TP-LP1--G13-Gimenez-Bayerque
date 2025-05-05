@@ -1,4 +1,4 @@
-class pacientes:
+class persona:
 
  def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud):
     
