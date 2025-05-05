@@ -8,10 +8,18 @@ class helicoptero(vehiculo):
         self.velocidad=velocidad
         self.distancia=distancia
 
-    def calculo_de_trayecto(self, trayecto, velocidad, distancia):
+    def __str__(self):
+        return f"helicoptero{self.velocidad}km/h"
+    
+        
+    def calculo_de_trayecto(self, velocidad, distancia, nivel_de_trafico):
 
-        trayecto=velocidad/distancia
-      
+        if distancia<=0 or self.velocidad<=0:
+            return "Error"
+        else:
+
+            trayecto=distancia/self.velocidad
+
 
 
 

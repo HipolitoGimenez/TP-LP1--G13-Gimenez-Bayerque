@@ -1,6 +1,6 @@
-from persona import persona
+'''from persona import persona
 from organo import organo
-from cirujano import cirujano
+from cirujano import cirujanos
 from centro_de_salud import centro_de_salud
 
 
@@ -17,5 +17,5 @@ class INCUCAI:
     
     def match_pacientes(self,per:tipo_de_sangre ):
 
-    def match_cirujanos(self, ):
+    def match_cirujanos(self):'''
         
