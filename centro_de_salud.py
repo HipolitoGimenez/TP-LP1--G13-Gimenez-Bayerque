@@ -1,5 +1,5 @@
-from organo import organo
-from vehiculo import vehiculo
+from typing import List
+from vehiculo import vehiculo,auto, helicoptero, avion
 from cirujano import cirujano
 
 
@@ -8,16 +8,16 @@ class centro_de_salud:
 
 
 
-    def __init__(self, nombre_institucion, direccion, partido, provincia, telefono,
-                  lista_cirujanos:list[cirujano], lista_vehiculos:list[vehiculo]):
-        
-        self.nombre_institucion=nombre_institucion
-        self.direccion=direccion
-        self.partido=partido
-        self.provincia=provincia
-        self.telefono=telefono
-        self.lista_cirujanos=lista_cirujanos
-        self.lista_vehiculos=lista_vehiculos
+    def __init__(self, nombre: str, direccion: str, partido: str, provincia: str, telefono: str):
+        self.nombre = nombre
+        self.direccion = direccion
+        self.partido = partido
+        self.provincia = provincia
+        self.telefono = telefono
+        self.cirujanos = []  # Lista de cirujanos en el centro
+        self.vehiculos = []  # Lista de vehículos disponibles en el centro
+        self.transplante_realizado=0#contador de transplantes realizados
+      
         
     
 
