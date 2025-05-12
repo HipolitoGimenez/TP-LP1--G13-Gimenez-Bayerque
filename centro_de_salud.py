@@ -25,7 +25,7 @@ class centro_de_salud:
 
 
     
-    def buscar_cirujano(self, cir : cirujano)
+    def buscar_cirujano(self, cir : cirujano):
         
 
 

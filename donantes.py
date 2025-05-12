@@ -8,16 +8,11 @@ class donante(persona):
 
         self.fecha_de_muerte=fecha_de_muerte
         self.lista_de_organos=[]
-        self.organo_necesario=organo_necesario
-        self.estado=estado
-        self.fecha_de_ingreso=fecha_de_ingreso
-        self.prioridad=prioridad
-        self.patologia=patologia
         self.fecha_hora_ablacion= fecha_hora_ablacion
 
 
     def __str__ (self):
-        return f"{super().__str__}, Organo: {self.organo_necesario}, estado: {self.estado}"
+        return f"{super().__str__}, Donante desde: {self.fecha_de_muerte}"
     
     '''def calculo_horas (self,datetime):
         self.fecha_hora_ablacion - self.fecha_de_muerte <'''

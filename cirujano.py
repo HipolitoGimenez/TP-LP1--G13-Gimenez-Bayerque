@@ -2,7 +2,12 @@ from persona import persona
 from organo import organo
 import random 
 
-ESPECIALIDADES={"cardiovascular":["corazon"], "pulmonar":["pulmones"],"plastico":["corneas","piel"], "traumatologo":["huesos"], "gastroenterologo":["intestino","riñon","higado","pancreas"]}
+ESPECIALIDADES={
+    "cardiovascular":["corazon"], 
+    "pulmonar":["pulmones"],
+    "plastico":["corneas","piel"],
+    "traumatologo":["huesos"], 
+    "gastroenterologo":["intestino","riñon","higado","pancreas"]}
 
 class cirujano(persona):
 
@@ -13,41 +18,25 @@ class cirujano(persona):
         self.disponibilidad = disponibilidad
         self.cantidad_operaciones = cantidad_operaciones
 
-        self.nombre=nombre
-        self.especialidad=especialidad
-        self.disponibilidad=True
-        self.cantidad_operaciones=cantidad_operaciones
-
+       
     def ocupado (self):
         self.disponibilidad=False
     def disponible (self):
         self.disponibilidad=True
    
     def operacion(self):
-        if self.disponibilidad==False:
-            print (f"Cirujano {self.nombre} ya opero hoy!")
+        if not self.disponibilidad:
+            print (f"Cirujano {self.nombre} ya opero hoy.")
             self.cantidad_operaciones=+1
     
     def calcular_exito(self,organo_tipo):
+        organos_de_su_especialidad = ESPECIALIDADES.get(self.especialidad.lower(), []) # busca en el diccionario el organo de especialidad del cirujano, Retorna ["corazon"] porque es lo que hay en el diccionario para esa especialidad.Y si no hay coincidencia Retorna una lista vacía [], así no se rompe el programa. Evita un KeyError.
 
-        if self.especialidad is None:
-            resultado=random.randint(1,10)
-            return resultado >5
-        else: 
-            organo_especialidad= ESPECIALIDADES
+        resultado = random.randint(1, 10)
+        if organo_tipo in organos_de_su_especialidad:
+            return resultado >= 3
+        return resultado > 5
 
-        if organo_tipo in organo_especialidad:
-            resultado=random.randint(1,10)
-            return resultado >=3
-        else: 
-            resultado=random.randit(1,10)
-            return resultado >5 #donde pondriamos si es exitoso o no
-
+        
     def __str__(self):
-        if self.especialidad:
-            esp= f"especialidad{self.especialidad}"
-        else: 
-            esp="general"
-        return f"Cirujano:{self.nombre}"
-    
-
+        return f"Cirujano: {self.nombre} - Especialidad: {self.especialidad}"
