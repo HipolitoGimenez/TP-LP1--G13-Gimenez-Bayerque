@@ -3,9 +3,6 @@ from datetime import datetime
 class organo:
 
     def __init__(self, tipo):
-        print("Constructor correcto llamado")
-
-
         self.tipo=tipo.lower() 
         self.fecha_hora_de_ablacion=None
         self.fecha_extraccion=None

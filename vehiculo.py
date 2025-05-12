@@ -15,8 +15,8 @@ class vehiculo:
         else:
             return (distancia/self.velocidad)+trafico
 
-    def registrar_viaje(self,destino,tiempo):
-        self.registro_de_viajes.append(destino,tiempo,datetime.now())
+    def registrar_viaje(self,direccion,tiempo):
+        self.registro_de_viajes.append(direccion,tiempo,datetime.now())
         
 
 

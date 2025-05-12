@@ -11,18 +11,21 @@ ESPECIALIDADES={
 
 class cirujano(persona):
 
-    def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud):
-        
+    def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, lista_de_organos=[]):        
         super().__init__( nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud)
         self.especialidad = especialidad
         self.disponibilidad = disponibilidad
         self.cantidad_operaciones = cantidad_operaciones
+        self.lista_de_organos=lista_de_organos
 
        
     def ocupado (self):
         self.disponibilidad=False
     def disponible (self):
         self.disponibilidad=True
+
+    def especialidad(self, organo):
+         return self.especialidad!=None and self.especialidad==self.
    
     def operacion(self):
         if not self.disponibilidad:

@@ -3,7 +3,7 @@ from vehiculo import vehiculo
 class auto(vehiculo):
 
 
-    def __init__(self, velocidad:int , distancia,  registro_de_viajes):   
+    def __init__(self, velocidad:int):   
         super().__init__( velocidad)
 
     def __str__(self):
