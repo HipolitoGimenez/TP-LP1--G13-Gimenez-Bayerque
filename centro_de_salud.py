@@ -1,11 +1,10 @@
 from typing import List
-from vehiculo import vehiculo
+from avion import avion
 from auto import auto
 from helicoptero import helicoptero
-from avion import avion
 from cirujano import cirujano
+from receptor import receptor
 from organo import organo
-
 
 class centro_de_salud:
 
@@ -31,15 +30,13 @@ class centro_de_salud:
         self.cirujanos.append(cirujano)
 
 
-    def buscar_cirujano(self, organo_requerido, ):
+    def buscar_cirujano(self, receptor, cirujanos ):
 
         for cirujano in self.cirujanos:
-
-            if organo_requerido in 
-
-
-
-    
+             
+             for or
+             
+             if receptor.organo_necesario==cirujano.organo_necesario:
 
 '''
     def asignar_transporte(self, provincia:str, partido:str, distancia:float, trafico, direccion):
