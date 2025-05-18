@@ -3,7 +3,7 @@ from vehiculo import vehiculo
 class auto(vehiculo):
     def __init__(self, velocidad):
         super().__init__(velocidad)
-
+    
     def __str__(self):
         return f"Vehículo Terrestre (Velocidad: {self.velocidad} km/h)"
 

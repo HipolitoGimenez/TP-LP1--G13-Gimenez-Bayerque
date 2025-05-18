@@ -23,3 +23,4 @@ class organo:
         ablacion = self.fecha_hora_de_ablacion.strftime("%Y-%m-%d %H:%M") if self.fecha_hora_de_ablacion else "No ablacionado" 
         return f"Órgano: {self.tipo.capitalize()}, Ablación: {ablacion}" 
         
+        
