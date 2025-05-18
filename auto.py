@@ -1,20 +1,13 @@
 from vehiculo import vehiculo
 
 class auto(vehiculo):
-
-
-    def __init__(self, velocidad:int):   
-        super().__init__( velocidad)
+    def __init__(self, velocidad):
+        super().__init__(velocidad)
 
     def __str__(self):
-        return f"auto{self.velocidad}km/h"
-    
-    def calculo_de_trayecto(self, distancia:float, nivel_de_trafico:float):
+        return f"Vehículo Terrestre (Velocidad: {self.velocidad} km/h)"
 
-        if distancia<=0 or self.velocidad<=0:
-            return "Error"
-        else:
-
-            return (distancia/self.velocidad) + nivel_de_trafico
-      
-
+    def calcular_tiempo_viaje(self, distancia, trafico):
+        if distancia <= 0 or self.velocidad <= 0:
+            return float('inf')
+        return distancia / self.velocidad + trafico

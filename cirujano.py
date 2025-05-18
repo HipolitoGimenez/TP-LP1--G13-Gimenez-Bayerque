@@ -1,32 +1,48 @@
 from persona import persona
 from organo import organo
 import random 
+ESPECIALIDADES = {
+            "cardiovascular": ["corazon"],
+            "pulmonar": ["pulmones"],
+            "plastico": ["corneas", "piel"],
+            "traumatologo": ["huesos"],
+            "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]}
 
-ESPECIALIDADES={
-    "cardiovascular":["corazon"], 
-    "pulmonar":["pulmones"],
-    "plastico":["corneas","piel"],
-    "traumatologo":["huesos"], 
-    "gastroenterologo":["intestino","riñon","higado","pancreas"]}
 
-class cirujano(persona):
-
-    def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, lista_de_organos=[]):        
-        super().__init__( nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud)
+class cirujano:
+    def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, dni, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, organos):
+        self.nombre = nombre
         self.especialidad = especialidad
         self.disponibilidad = disponibilidad
         self.cantidad_operaciones = cantidad_operaciones
-        self.lista_de_organos=lista_de_organos
+        self.dni = dni
+        self.fecha_de_nacimiento = fecha_de_nacimiento
+        self.sexo = sexo
+        self.telefono = telefono
+        self.tipo_de_sangre = tipo_de_sangre
+        self.centro_de_salud = centro_de_salud
+        self.organismos = organos
 
-       
+        
+    def __str__(self):
+        return f"Cirujano: {self.nombre} - Especialidad: {self.especialidad}"
+    
     def ocupado (self):
         self.disponibilidad=False
+        
     def disponible (self):
         self.disponibilidad=True
 
-    def especialidad(self, organo):
-         return self.especialidad!=None and self.especialidad==self.
-   
+    def es_especialista(self, organo):
+        ESPECIALIDADES = {
+        "cardiovascular": ["corazon"],
+        "pulmonar": ["pulmones"],
+        "plastico": ["corneas", "piel"],
+        "traumatologo": ["huesos"],
+        "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
+    }
+        return self.especialidad is not None and organo in ESPECIALIDADES.get(self.especialidad, [])
+
     def operacion(self):
         if not self.disponibilidad:
             print (f"Cirujano {self.nombre} ya opero hoy.")
@@ -40,6 +56,3 @@ class cirujano(persona):
             return resultado >= 3
         return resultado > 5
 
-        
-    def __str__(self):
-        return f"Cirujano: {self.nombre} - Especialidad: {self.especialidad}"
