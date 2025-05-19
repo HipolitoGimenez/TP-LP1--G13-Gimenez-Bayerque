@@ -1,5 +1,4 @@
-from persona import persona
-from organo import organo
+
 import random
 
 ESPECIALIDADES = {
@@ -37,11 +36,9 @@ class cirujano:
         return self.especialidad is not None and organo.lower() in ESPECIALIDADES.get(self.especialidad.lower(), [])
 
     def operacion(self):
-        if not self.disponibilidad:
+        if  self.disponibilidad==False:
             print(f"Cirujano {self.nombre} ya operó hoy.")
-        else:
-            self.cantidad_operaciones += 1
-            self.ocupado()
+    
 
     def calcular_exito(self, organo_tipo):
         organos_de_su_especialidad = ESPECIALIDADES.get(self.especialidad.lower(), [])

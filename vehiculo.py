@@ -1,14 +1,14 @@
+
 from datetime import datetime
-from typing import List
+
 
 class vehiculo:
-    def __init__(self, nombre: str, velocidad: int):
-        self.nombre = nombre
+    def __init__(self, velocidad: int):
         self.velocidad = velocidad
         self.registro_de_viajes = []  # Lista vacía para cada instancia
 
     def __str__(self):
-        return f"{self.nombre} (Velocidad: {self.velocidad} km/h)"
+        return f"Vehículo (Velocidad: {self.velocidad} km/h)"
     
     def calcular_tiempo(self, distancia: float, trafico: float):
         if distancia <= 0 or self.velocidad <= 0:

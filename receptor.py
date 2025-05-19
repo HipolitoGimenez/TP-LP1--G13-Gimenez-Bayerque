@@ -5,8 +5,8 @@ from datetime import datetime
 class receptor(persona):
 
 
-    def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud,organo_necesario,estado,fecha_de_ingreso,prioridad,patologia):
-      super().__init__(nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud)
+    def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, partido, provincia, organo_necesario,estado,fecha_de_ingreso,prioridad,patologia):
+      super().__init__(nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, partido, provincia)
 
 
       self.organo_necesario=organo_necesario# estos son los atributos propios de receptor
@@ -15,5 +15,5 @@ class receptor(persona):
       self.prioridad=prioridad
       self.patologia=patologia
 
-def __str__ (self):
-  return f"{super().__str__}, Necesita: {self.organo_necesario}, Prioridad: {self.prioridad}"
+    def __str__(self):
+      return f"{self.nombre}. Organo: {self.organo_necesario}, Prioridad: {self.prioridad}"
