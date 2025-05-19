@@ -29,9 +29,8 @@ class INCUCAI:
         posibles = []
         for i in range(len(self.lista_receptores)):
           receptor = self.lista_receptores[i]
-          if receptor.organo== organo_donado and receptor.grupo_sanguineo == grupo_donante:
+          if receptor.organo== organo and receptor.tipo_de_sangre == donante.tipo_de_sangre:
              posibles.append(receptor)
-
 
         if len(posibles) == 0:
             print("No se encontraron receptores compatibles.")
