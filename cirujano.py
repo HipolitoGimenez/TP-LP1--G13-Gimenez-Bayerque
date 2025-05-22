@@ -1,15 +1,15 @@
 
-import random
-
+from persona import Persona
+from organo import Organo
+import random 
 ESPECIALIDADES = {
-    "cardiovascular": ["corazon"],
-    "pulmonar": ["pulmones"],
-    "plastico": ["corneas", "piel"],
-    "traumatologo": ["huesos"],
-    "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
-}
+            "cardiovascular": ["corazon"],
+            "pulmonar": ["pulmones"],
+            "plastico": ["corneas", "piel"],
+            "traumatologo": ["huesos"],
+            "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]}
 
-class cirujano:
+class Cirujano:
     def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, dni, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, organos):
         self.nombre = nombre
         self.especialidad = especialidad
@@ -33,15 +33,24 @@ class cirujano:
         self.disponibilidad = True
 
     def es_especialista(self, organo):
-        return self.especialidad is not None and organo.lower() in ESPECIALIDADES.get(self.especialidad.lower(), [])
+        ESPECIALIDADES = {
+        "cardiovascular": ["corazon"],
+        "pulmonar": ["pulmones"],
+        "plastico": ["corneas", "piel"],
+        "traumatologo": ["huesos"],
+        "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
+    }
+        return self.especialidad is not None and organo in ESPECIALIDADES.get(self.especialidad, [])
 
+        
     def operacion(self):
-        if  self.disponibilidad==False:
-            print(f"Cirujano {self.nombre} ya operó hoy.")
-    
+        if not self.disponibilidad:
+            print (f"Cirujano {self.nombre} ya opero hoy.")
+            self.cantidad_operaciones=+1
 
     def calcular_exito(self, organo_tipo):
-        organos_de_su_especialidad = ESPECIALIDADES.get(self.especialidad.lower(), [])
+        organos_de_su_especialidad = ESPECIALIDADES.get(self.especialidad.lower(), []) # busca en el diccionario el organo de especialidad del cirujano, Retorna ["corazon"] porque es lo que hay en el diccionario para esa especialidad.Y si no hay coincidencia Retorna una lista vacía [], así no se rompe el programa. Evita un KeyError.
+        
         resultado = random.randint(1, 10)
         if organo_tipo.lower() in organos_de_su_especialidad:
             return resultado >= 3

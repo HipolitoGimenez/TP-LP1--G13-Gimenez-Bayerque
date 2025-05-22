@@ -1,6 +1,6 @@
-from vehiculo import vehiculo
+from vehiculo import Vehiculo
 
-class avion(vehiculo):
+class Avion(Vehiculo):
      
 
     def __init__(self, velocidad:int):   

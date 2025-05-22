@@ -1,6 +1,6 @@
-from vehiculo import vehiculo
+from vehiculo import Vehiculo
 
-class helicoptero(vehiculo):
+class Helicoptero(Vehiculo):
 
     def __init__(self, velocidad:int):   
         super().__init__( velocidad)

@@ -1,9 +1,8 @@
 from typing import List
-from cirujano import cirujano 
-from helicoptero import helicoptero
-from avion import avion
+from vehiculo import Vehiculo
+from cirujano import Cirujano
 
-class centro_de_salud:
+class CentroDeSalud:
     def __init__(self, nombre: str, direccion: str, partido: str, provincia: str, telefono: str):
         self.nombre = nombre
         self.direccion = direccion
@@ -17,7 +16,7 @@ class centro_de_salud:
     def agregar_vehiculos(self, vehiculo):
         self.vehiculos.append(vehiculo)
 
-    def agregar_cirujano(self, nuevo_cirujano: cirujano):       
+    def agregar_cirujano(self, nuevo_cirujano: Cirujano):       
         self.cirujanos.append(nuevo_cirujano)
     
     def asignar_cirujano(self, organo_necesario):
@@ -26,7 +25,7 @@ class centro_de_salud:
         return None
 
       for i in range(len(self.cirujanos)):
-        ciru = self.cirujanos[i]  
+        ciru = self.cirujanos[i]  # nombrá explícitamente la variable
         if ciru.disponibilidad and ciru.es_especialista(organo_necesario):
             ciru.ocupado()
             print(f"Cirujano asignado: {ciru.nombre} para el órgano {organo_necesario}")
@@ -35,20 +34,47 @@ class centro_de_salud:
         print(f"No se encontró cirujano disponible para el órgano {organo_necesario}")
         return None
     
-    def obtener_vehiculo_para(self, destino_partido, destino_provincia):
-        if self.partido == destino_partido and self.provincia == destino_provincia:
-            terrestres = [v for v in self.vehiculos if not isinstance(v, (helicoptero, avion))]
-            if terrestres:
-                return max(terrestres, key=lambda v: v.velocidad)
-        elif self.provincia == destino_provincia:
-            for v in self.vehiculos:
-                if isinstance(v, helicoptero):
-                    return v
+    """
+    def asignar_transporte(self, provincia:str, partido:str, distancia:float, trafico, direccion):
+
+        vehiculo=None
+
+        if self.provincia==provincia:
+            if self.partido==partido:
+                max_vel=-1
+                for v in self.vehiculos:
+                    if v.velocidad>max_vel:
+                        vehiculo=v
+                        max_vel=v.velocidad
+            else:
+                for v in self.vehiculos:
+                    if isinstance(v, helicoptero):
+                        vehiculo=v
+                        break
         else:
             for v in self.vehiculos:
                 if isinstance(v, avion):
-                    return v
-        return None
+                    vehiculo=v
+                    break
+        
+        if vehiculo is None:
+            print("No se encontro vehiculo adecuado")
+            return None 
+        tiempo=vehiculo.calcular_tiempo(distancia, trafico)
+        vehiculo.registrar_viaje(direccion, tiempo)
+        print(f"Vehiculo asignado: {vehiculo} con un tiempo estimado de {tiempo} horas")
+        return vehiculo"""
+   
+ 
+
+
+        
+        
+
+
+
+
+    
     
  
     
