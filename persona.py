@@ -1,6 +1,6 @@
 class Persona:
 
- def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, partido, provincia):
+ def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud):
     
         self.nombre=nombre
 

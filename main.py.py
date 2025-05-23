@@ -9,14 +9,14 @@ from vehiculo import Vehiculo
 from helicoptero import Helicoptero
 from auto import Auto
 from avion import Avion
+from centro_de_salud import CentroDeSalud
+from persona import Persona
 from INCUCAI import INCUCAI
 
 
-incu=INCUCAI()
-
 #Cirujanos
 cirujano1 = Cirujano( "Adrian","cardiovascular",True,0,"12345678","1980-01-01","masculino","1122334455","A+","Hospital Italiano", "[Corazon]")
-cirujano2 = Cirujano( "Juan","Pulmonar",False,0,"48545678","1975-06-11","masculino","114434455","B+","Hospital Aleman", "[Pulmones]")
+cirujano2 = Cirujano( "Juan","Pulmonar",True,0,"48545678","1975-06-11","masculino","114434455","B+","Hospital Aleman", "[Pulmones]")
 
 
 
@@ -25,8 +25,8 @@ persona1 = Persona("Adriana", "23060432", "02-06-1978", "F", "2494534523", "A+",
 persona2 = Persona("Juan", "25258456", "12-01-1994", "M", "15252523", "B+", "Aleman")
 
 #Receprores
-receptor1 = Receptor("Lucía","2345768988","04-11-2000","F","1122334455","A+","Hospital Italiano", "CABA", "Buenos Aires","Corazón","Estable","2025-05-05", "Alta","Paro cardíaco")
-receptor2= Receptor("Claudio","33545966","09-06-1999","M","1155566685","B+","Hospital Aleman", "CABA", "Buenos Aires","Pulmon","Estable","2025-05-05", "Alta","Neumonia")
+receptor1 = Receptor("Lucía","2345768988","04-11-2000","F","1122334455","A+","Hospital Italiano","Corazón","Estable","2025-05-05", "Alta","Paro cardíaco")
+receptor2= Receptor("Claudio","33545966","09-06-1999","M","1155566685","B+","Hospital Aleman","Pulmon","Estable","2025-05-05", "Alta","Neumonia")
 
 
 #Organos
@@ -50,11 +50,11 @@ hospital2.agregar_vehiculos(avion2)
 
 #Agrego cirujanos a los hospitales
 hospital1.agregar_cirujano(cirujano1)
-hospital2.agregar_cirujano(cirujano2)
+hospital2.agregar_cirujano(cirujano1)
 
 print("Cirujanos del Hospital Italiano:")
 for c in hospital1.cirujanos:
-     print(f"- {c}")
+     print(c)
 
 
 

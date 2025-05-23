@@ -5,8 +5,8 @@ from datetime import datetime
 class Receptor(Persona):
 
 
-    def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, partido, provincia, organo_necesario,estado,fecha_de_ingreso,prioridad,patologia):
-      super().__init__(nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, partido, provincia)
+    def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, organo_necesario,estado,fecha_de_ingreso,prioridad,patologia):
+      super().__init__(nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud)
 
 
       self.organo_necesario=organo_necesario# estos son los atributos propios de receptor
@@ -17,12 +17,12 @@ class Receptor(Persona):
       self.organos=[]
 
     def __str__ (self):
-      return f"{super().__str__}, Necesita: {self.organo_necesario}, Prioridad: {self.prioridad}"
+      return f"{super().__str__()}, Necesita: {self.organo_necesario}, Prioridad: {self.prioridad}"
     
     # Metodo magico para ordenar por prioridad (it es less than)
     def __lt__ (self,otro):
        if self.prioridad != otro.prioridad:
           return self.prioridad < otro.prioridad
-       return self.fecha_de_ingreso < otro.fecha_ingreso
+       return self.fecha_ingreso < otro.fecha_ingreso
 
 
