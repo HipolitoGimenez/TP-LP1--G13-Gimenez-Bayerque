@@ -12,7 +12,14 @@ from avion import Avion
 from centro_de_salud import CentroDeSalud
 from persona import Persona
 from INCUCAI import INCUCAI
+from donantes import donantes
 
+
+#Centros de salud
+hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
+hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 145", "CABA", "Buenos Aires", "48545262385")
+hospital3 = CentroDeSalud("Hospital Provincial de Córdoba", "Av. Vélez Sarsfield 1200", "Córdoba Capital", "Córdoba", "3514896523")
+hospital4 = CentroDeSalud("Hospital José María Cullen", "Av. Freyre 2150", "Santa Fe", "Santa Fe", "3424578912")
 
 #Cirujanos
 cirujano1 = Cirujano( "Adrian","cardiovascular",True,0,"12345678", datetime.strptime("01-11-1980", "%d-%m-%Y"),"masculino","1122334455","A+","Hospital Italiano", "[Corazon]")
@@ -20,9 +27,9 @@ cirujano2 = Cirujano( "Juan","Pulmonar",True,0,"48545678", datetime.strptime("11
 cirujano3 = Cirujano("Carla", "Hepática", True, 0, "56789456", datetime.strptime("22-02-1982", "%d-%m-%Y"), "femenino", "1166778899", "O+", "Hospital Provincial de Córdoba", "[Hígado]")
 cirujano4 = Cirujano("Esteban", "Renal", True, 0, "47859632", datetime.strptime("03-12-1978", "%d-%m-%Y"), "masculino", "1155998877", "AB-", "Hospital José María Cullen", "[Riñón]")
 
-#Personas/ donantes
-#donante1 = Donante("Adriana","23060432",fecha_de_nacimiento=datetime.strptime("02-06-1978", "%d-%m-%Y"),"F","2494534523","A+","hospital_italiano")
-#donante2 = Donante("Juan","25258456",fecha_de_nacimiento=datetime.strptime("12-01-1994", "%d-%m-%Y"),"M","15252523", "B+", "hospital_aleman", "Pulmón")
+# Donantes
+#donante1 = donante("Adriana","23060432",fecha_de_nacimiento=datetime.strptime("02-06-1978", "%d-%m-%Y"),"F","2494534523","A+","hospital_italiano")
+#donante2 =donante("Juan","25258456",fecha_de_nacimiento=datetime.strptime("12-01-1994", "%d-%m-%Y"),"M","15252523", "B+", "hospital_aleman", "Pulmón")
 
 #Receprores
 receptor1 = Receptor("Lucía","2345768988",datetime.strptime("04-11-2000", "%d-%m-%Y"),"F","1122334455","A+","Hospital Italiano","Corazón","Estable","2025-05-05", "Alta","Paro cardíaco")
@@ -36,11 +43,6 @@ organo1.fecha_ablacion(datetime.now())
 organo2 = Organo("Pulmon")  
 organo2.fecha_ablacion(datetime.now()) 
 
-#Centros de salud
-hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
-hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 145", "CABA", "Buenos Aires", "48545262385")
-hospital3 = CentroDeSalud("Hospital Provincial de Córdoba", "Av. Vélez Sarsfield 1200", "Córdoba Capital", "Córdoba", "3514896523")
-hospital4 = CentroDeSalud("Hospital José María Cullen", "Av. Freyre 2150", "Santa Fe", "Santa Fe", "3424578912")
 
 #Agrego los vehiculos
 ambulancia1=Auto(120)
