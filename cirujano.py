@@ -1,13 +1,13 @@
 
-from paciente import Paciente
-from organo import Organo
 import random 
+
 ESPECIALIDADES = {
             "cardiovascular": ["corazon"],
             "pulmonar": ["pulmones"],
             "plastico": ["corneas", "piel"],
             "traumatologo": ["huesos"],
-            "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]}
+            "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
+            }
 
 class Cirujano:
     def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, dni, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, organos):
