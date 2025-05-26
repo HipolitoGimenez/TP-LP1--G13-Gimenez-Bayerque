@@ -31,7 +31,7 @@ class INCUCAI:
             print('El paciente ya fue registrado previamente')
 
     # Valida si el paciente ya esta registrado en cualquiera de las 2 listas
-    def estaRegistradoPaciente(self, otroPaciente: Paciente):
+    def _estaRegistradoPaciente(self, otroPaciente: Paciente):
         yaFueRegistrado = False
         for paciente in self.lista_donantes:
             if paciente == otroPaciente:
@@ -42,7 +42,7 @@ class INCUCAI:
                 return True
         return yaFueRegistrado
         
-    def buscarReceptores(self, donante: Donante):
+    def _buscarReceptores(self, donante: Donante):
         listaReceptoresParaDonante = []
         for organo in donante.lista_organos:
             receptor: Receptor
@@ -58,14 +58,14 @@ class INCUCAI:
                 self.enviarOrganoAUbicacionReceptor(receptorElegido)
                 donante.lista_organos.remove(organo)
 
-    def buscarDonantes(self, receptor: Receptor):
+    def _buscarDonantes(self, receptor: Receptor):
         donante: Donante = None
         for donante in self.lista_donantes:
             if receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario):
                 self.enviarOrganoAUbicacionReceptor(receptor)
                 donante.lista_organos.remove(receptor.organo_necesario)
 
-    def enviarOrganoAUbicacionReceptor(self, receptor: Receptor):
+    def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor):
         receptor.recibioOrgano = True
 
     # Realizar correctamente todo el proceso de asignación y derivación de un organo a un receptor,  contemplando el viaje, la disponibilidad en ese horario de los vehiculos de un centro medico y el tiempo de viaje.

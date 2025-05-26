@@ -45,10 +45,10 @@ class CentroDeSalud:
         else:
            self.transportarOrgano(otroCentroSalud, self.obtenerVehiculo('Avion'), distancia, nivelTrafico)
 
-    def estanEnLaMismaProvinciaYPartido(self, otroCentroSalud):
+    def _estanEnLaMismaProvinciaYPartido(self, otroCentroSalud):
        return self.provincia == otroCentroSalud.provincia and self.partido == otroCentroSalud.partido
     
-    def estanEnMismaProvincia(self, otroCentroSalud):
+    def _estanEnMismaProvincia(self, otroCentroSalud):
        return self.provincia == otroCentroSalud.provincia
     
     def transportarOrgano(self, vehiculo, distancia, nivelTrafico):
@@ -56,7 +56,7 @@ class CentroDeSalud:
        vehiculo.nivelTrafico = nivelTrafico
        vehiculo.registrar_viaje(self.direccion)
     
-    def obtenerVehiculo(self, tipo):
+    def _obtenerVehiculo(self, tipo):
        vehiculoAsignado = None
        for vehiculo in self.vehiculos:
           if tipo == vehiculo.get_class_name() and not vehiculo.ocupado():
