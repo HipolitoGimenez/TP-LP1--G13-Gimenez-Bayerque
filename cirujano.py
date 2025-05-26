@@ -1,7 +1,7 @@
 
-from persona import Persona
-from organo import Organo
+
 import random 
+
 ESPECIALIDADES = {
             "cardiovascular": ["corazon"],
             "pulmonar": ["pulmones"],
@@ -19,7 +19,6 @@ class Cirujano:
         self.fecha_de_nacimiento = fecha_de_nacimiento
         self.sexo = sexo
         self.telefono = telefono
-        self.tipo_de_sangre = tipo_de_sangre
         self.centro_de_salud = centro_de_salud
         self.organos = organos
 
