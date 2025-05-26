@@ -1,5 +1,5 @@
 
-from persona import Persona
+from paciente import Paciente
 from organo import Organo
 import random 
 ESPECIALIDADES = {
