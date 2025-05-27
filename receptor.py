@@ -16,12 +16,12 @@ class Receptor(Paciente):
     self.patologia=patologia
     self.recibioOrgano=False
 
-  def __str__ (self):
+  def __str__ (self):#Devuelve una cadena con los datos principales del receptor
     return f"{super().__str__}, Necesita: {self.organo_necesario}, Prioridad: {self.prioridad}"
 
   # Metodo magico para ordenar por prioridad (lt es less than)
-  def __lt__(self, otro):
-        if self.prioridad != otro.prioridad:
+  def __lt__(self, otro):#Método mágico que permite comparar receptores con <. 
+        if self.prioridad != otro.prioridad:#Primero compara las prioridades.
             return self.prioridad < otro.prioridad
-        return self.fecha_ingreso < otro.fecha_ingreso
+        return self.fecha_de_ingreso < otro.fecha_de_ingreso
 
