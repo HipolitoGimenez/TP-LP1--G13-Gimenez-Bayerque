@@ -38,12 +38,12 @@ class CentroDeSalud:
         return None
 
     def asignarVehiculo(self, otroCentroSalud, distancia, nivelTrafico):
-        if(self.estanEnLaMismaProvinciaYPartido(otroCentroSalud)):
-           self.transportarOrgano(otroCentroSalud, self.obtenerVehiculo('Auto'), distancia, nivelTrafico)
-        elif (self.estanEnMismaProvincia(otroCentroSalud)):
-           self.transportarOrgano(otroCentroSalud, self.obtenerVehiculo('Helicoptero'), distancia, nivelTrafico)
+        if(self._estanEnLaMismaProvinciaYPartido(otroCentroSalud)):
+           self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Auto'), distancia, nivelTrafico)
+        elif (self._estanEnMismaProvincia(otroCentroSalud)):
+           self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Helicoptero'), distancia, nivelTrafico)
         else:
-           self.transportarOrgano(otroCentroSalud, self.obtenerVehiculo('Avion'), distancia, nivelTrafico)
+           self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Avion'), distancia, nivelTrafico)
 
     def _estanEnLaMismaProvinciaYPartido(self, otroCentroSalud):
        return self.provincia == otroCentroSalud.provincia and self.partido == otroCentroSalud.partido

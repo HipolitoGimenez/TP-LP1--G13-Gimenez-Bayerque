@@ -20,13 +20,13 @@ class INCUCAI:
     #  Registrar pacientes nuevos (Validando que no se encuentre en otra lista ni se repita).
     def registrarPaciente(self, paciente: Paciente):
 
-        if not self.estaRegistradoPaciente(paciente):
+        if not self._estaRegistradoPaciente(paciente):
             if isinstance(paciente, Donante):
                 self.lista_donantes.append(paciente)
-                self.buscarReceptores(paciente)
+                self._buscarReceptores(paciente)
             else:
                 self.lista_receptores.append(paciente)
-                self.buscarDonantes(paciente)
+                self._buscarDonantes(paciente)
         else:
             print('El paciente ya fue registrado previamente')
 
@@ -55,14 +55,14 @@ class INCUCAI:
                 receptor.prioridad < receptorElegido.prioridad # Esto se pudo hacer por la funcion __lt__
                 receptorElegido = receptor
             if receptorElegido is not None:
-                self.enviarOrganoAUbicacionReceptor(receptorElegido)
+                self._enviarOrganoAUbicacionReceptor(receptorElegido)
                 donante.lista_organos.remove(organo)
 
     def _buscarDonantes(self, receptor: Receptor):
         donante: Donante = None
         for donante in self.lista_donantes:
             if receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario):
-                self.enviarOrganoAUbicacionReceptor(receptor)
+                self._enviarOrganoAUbicacionReceptor(receptor)
                 donante.lista_organos.remove(receptor.organo_necesario)
 
     def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor):

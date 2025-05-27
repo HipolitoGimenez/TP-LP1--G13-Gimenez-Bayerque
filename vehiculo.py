@@ -27,7 +27,7 @@ class Vehiculo:
         return self.enUso
 
     def ocupar(self):
-        self.enUso = True
+        self.enUso = True#para que sirven cada uno si se nombran casi igual
         
 
 
