@@ -20,15 +20,15 @@ class INCUCAI:
     #  Registrar pacientes nuevos (Validando que no se encuentre en otra lista ni se repita).
     def registrarPaciente(self, paciente: Paciente):
 
-        if not self._estaRegistradoPaciente(paciente):
-            if isinstance(paciente, Donante):
-                self.lista_donantes.append(paciente)
-                self._buscarReceptores(paciente)
+        if not self._estaRegistradoPaciente(paciente):#verifica que el paciente no este registrado previament y llama al metodo
+            if isinstance(paciente, Donante):#si el paciente es una instancia de la clase donante
+                self.lista_donantes.append(paciente)#agrega ese paciente a la lista donante
+                self._buscarReceptores(paciente)#llama al metodo priv para buscar receptores compatibles con los organos de ese donante
             else:
-                self.lista_receptores.append(paciente)
-                self._buscarDonantes(paciente)
+                self.lista_receptores.append(paciente)# si no es donante se agrega a la lista de receptores
+                self._buscarDonantes(paciente)#y se busca donante compatible
         else:
-            print('El paciente ya fue registrado previamente')
+            print('El paciente ya fue registrado previamente')#y si ya esta registrado se manda este mensaje
 
     # Valida si el paciente ya esta registrado en cualquiera de las 2 listas
     def _estaRegistradoPaciente(self, otroPaciente: Paciente):
@@ -43,30 +43,30 @@ class INCUCAI:
         return yaFueRegistrado
         
     def _buscarReceptores(self, donante: Donante):
-        listaReceptoresParaDonante = []
-        for organo in donante.lista_organos:
-            receptor: Receptor
-            for receptor in self.lista_receptores:
-                if receptor.organo_necesario.tipo == organo.tipo and receptor.tipo_de_sangre == donante.tipo_de_sangre:
-                    listaReceptoresParaDonante.append(receptor)
+        listaReceptoresParaDonante = []#crea una lista vacia para guardar los receptores compatibles que se vayan encontrando
+        for organo in donante.lista_organos:#recorre cada organo disponible en la lista de organos del donante
+            receptor: Receptor#la variable receptor sera de tipo receptor
+            for receptor in self.lista_receptores:#recorre todos los receptores registrados en el sistema
+                if receptor.organo_necesario.tipo == organo.tipo and receptor.tipo_de_sangre == donante.tipo_de_sangre:#comprueba que el receptor tenga mismotipo organo que el donante y tipo de sangre
+                    listaReceptoresParaDonante.append(receptor)# si se cumple agrega el receptor a la lista
         
-            receptorElegido = listaReceptoresParaDonante.index(0)
-            for receptor in listaReceptoresParaDonante:
+            receptorElegido = listaReceptoresParaDonante.index(0)#intenta obyener el indice del valor 0 de la lista
+            for receptor in listaReceptoresParaDonante:#recorre nuevamente la lista para seleccionar el de mayor prioridad
                 receptor.prioridad < receptorElegido.prioridad # Esto se pudo hacer por la funcion __lt__
                 receptorElegido = receptor
-            if receptorElegido is not None:
-                self._enviarOrganoAUbicacionReceptor(receptorElegido)
-                donante.lista_organos.remove(organo)
+            if receptorElegido is not None:#verifica que se haya elegido un receptor
+                self._enviarOrganoAUbicacionReceptor(receptorElegido)#llama a metodo para marcar que el organo sera enviado a receptor
+                donante.lista_organos.remove(organo)#elimina ese organo de la lista de donantes
 
     def _buscarDonantes(self, receptor: Receptor):
         donante: Donante = None
         for donante in self.lista_donantes:
             if receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario):
-                self._enviarOrganoAUbicacionReceptor(receptor)
-                donante.lista_organos.remove(receptor.organo_necesario)
+                self._enviarOrganoAUbicacionReceptor(receptor)#llama al metodo para guardar info del receptor
+                donante.lista_organos.remove(receptor.organo_necesario)#remueve le organo del donante
 
     def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor):
-        receptor.recibioOrgano = True
+        receptor.recibioOrgano = True#marca que el receptor recibio el organo
 
     # Realizar correctamente todo el proceso de asignación y derivación de un organo a un receptor,  contemplando el viaje, la disponibilidad en ese horario de los vehiculos de un centro medico y el tiempo de viaje.
     def iniciarProtocoloTransplanteYTransporte(self, donante: Donante, centroSaludReceptor: CentroDeSalud, organo: Organo):
@@ -79,7 +79,7 @@ class INCUCAI:
         donante: Donante
         for donante in self.lista_donantes:
             if not donante.lista_organos:
-                self.lista_donantes.remove(donante)
+                self.lista_donantes.remove(donante)#elimina de la lista de donantes a quienes ya donaron todos sus organos
 
     # Quitar de la lista a un receptor una vez que ha recibido su organo exitosamente.
     def quitarReceptorConCirugiaExitosa(self):
@@ -94,7 +94,7 @@ class INCUCAI:
         receptor: Receptor
         for receptor in self.lista_receptores:
             if receptor.centro_de_salud == centroDeSalud:
-                pacientesListaEspera.append(receptor)
+                pacientesListaEspera.append(receptor)#se lo agrega a la lista de espera que estan en un centro de salud especifico
 
     # Buscar un receptor e informar qué prioridad tiene en la lista de espera.
     def buscarPrioridadReceptor(self, receptorBuscado):
