@@ -1,6 +1,9 @@
 from enum import Enum
-#clase para poder comparar y setear mas facilmente cuando se trate de organos
 class TipoOrganoEnum(Enum):
+    """
+    Enumeración para representar tipos de órganos.
+    Facilita la comparación y asignación de tipos de órganos mediante nombres claros.
+    """
     CORAZON = 1
     HIGADO = 2
     PANCREAS = 3

@@ -7,29 +7,76 @@ from src.Modelos.viaje import Viaje
 class Vehiculo:
 
     def __init__(self, velocidad:int):
+        """
+        Inicializa un vehículo con su velocidad y atributos para registrar viajes y estado.
+
+        Args:
+            velocidad (int): Velocidad máxima del vehículo en km/h.
+
+        Returns:
+            None
+        """
         self.velocidad=velocidad
-        self.registro_de_viajes=[]## Lista vacía para cada instancia
+        self.registro_de_viajes=[]
         self.distancia=0
         self.nivelTrafico = None
         self.enUso=False
         self.tiempoViaje=0
 
-    def __str__(self):#Muestra la velocidad del vehículo cuando se imprime.
 
+    def __str__(self):
+        """
+        Representa el vehículo con su velocidad cuando se imprime.
+
+        Returns:
+            str: Descripción del vehículo.
+        """
         return f"vehiculo(Velocidad:{self.velocidad}km/h)"
     
-    def calcular_tiempo(self):#Calcula el tiempo estimado del viaje usando la velocidad, la distancia y quizás el tráfico.
+    def calcular_tiempo(self):
+        """
+        Calcula el tiempo estimado del viaje basado en velocidad, distancia y nivel de tráfico.
+
+        Returns:
+            float: Tiempo estimado de viaje en horas (o la unidad que se defina).
+        """
         pass
 
-    def registrar_viaje(self,direccion, distancia, trafico):#Método para registrar un nuevo viaje. Recibe la dirección del destino, la distancia y el tráfico como parámetros.
-        viaje = Viaje(direccion,self.calcular_tiempo(),datetime.now())#Crea una nueva instancia de Viaje, con la dirección, el tiempo calculado y la fecha y hora actual.
-        self.registro_de_viajes.append(viaje)#Guarda el viaje en el registro de viajes del vehículo.
 
-    def ocupado(self):#Devuelve un valor booleano que indica si el vehículo está en uso.
+    def registrar_viaje(self,direccion, distancia, trafico):
+        """
+        Registra un nuevo viaje con destino, distancia y nivel de tráfico.
+
+        Args:
+            direccion (str): Destino del viaje.
+            distancia (float): Distancia en km.
+            trafico (str/int): Nivel o estado del tráfico que puede afectar el tiempo.
+
+        Returns:
+            None
+        """
+        viaje = Viaje(direccion,self.calcular_tiempo(),datetime.now())
+        self.registro_de_viajes.append(viaje)
+
+
+    def ocupado(self):
+        """
+        Indica si el vehículo está actualmente en uso.
+
+        Returns:
+            bool: True si está ocupado, False si está disponible.
+        """
         return self.enUso
 
-    def ocupar(self):#Cambia el estado del vehículo a ocupado
-        self.enUso = True#para que sirven cada uno si se nombran casi igual
+
+    def ocupar(self):
+        """
+        Marca el vehículo como ocupado (en uso).
+
+        Returns:
+            None
+        """
+        self.enUso = True
         
 
 

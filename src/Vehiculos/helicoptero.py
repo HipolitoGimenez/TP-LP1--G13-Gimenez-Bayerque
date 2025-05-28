@@ -2,19 +2,42 @@ from src.Vehiculos.vehiculo import Vehiculo
 
 class Helicoptero(Vehiculo):
 
-    def __init__(self, velocidad:int):  #Constructor del Helicoptero. Llama al constructor de la clase padre (Vehiculo) usando super(), y le pasa la velocidad. 
+    def __init__(self, velocidad:int): 
+        """
+        Inicializa un helicóptero con una velocidad específica.
+
+        Args:
+            velocidad (int): Velocidad máxima del helicóptero en km/h.
+
+        Returns:
+            None
+        """ 
         super().__init__( velocidad)
 
-    def __str__(self):#Método mágico. Devuelve una representación legible del helicóptero, mostrando su velocidad.
+
+    def __str__(self):
+        """
+        Representa al helicóptero como texto mostrando su velocidad.
+
+        Returns:
+            str: Descripción legible del helicóptero.
+        """
         return f"helicoptero (Velocidad: {self.velocidad}km/h)"
     
         
-    def calculo_de_trayecto(self, distancia:float):#Método que calcula el tiempo estimado de trayecto en horas, usando la fórmula tiempo = distancia / velocidad.
+    def calculo_de_trayecto(self, distancia:float):
+        """
+        Calcula el tiempo estimado del trayecto en horas basado en la distancia y la velocidad.
 
-        if distancia<=0 or self.velocidad<=0:#Valida que tanto la distancia como la velocidad sean mayores que cero
+        Args:
+            distancia (float): Distancia del trayecto en kilómetros.
+
+        Returns:
+            float|str: Tiempo estimado en horas si los datos son válidos, o "Error" si distancia o velocidad no son positivas.
+        """
+        if distancia<=0 or self.velocidad<=0:
             return "Error"
-        else:#Si los datos son válidos, calcula y devuelve el tiempo del trayecto.
-
+        else:
             return distancia/self.velocidad
 
 
