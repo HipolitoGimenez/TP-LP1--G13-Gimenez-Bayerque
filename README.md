@@ -17,7 +17,6 @@
 
 ## Objetivo del proyecto
 
-Desarrollo de una agenda que permite la adicción, modificación, búsqueda y eliminación de contactos. Tanto la lectura como escritura de los archivos es en archivos binarios.
 
 _**Nota:** Este proyecto se enfoca en la gestión de donantes y receptores de órganos, simulando un sistema de gestión para INCUCAI._
 
