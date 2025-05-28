@@ -9,9 +9,7 @@ class Auto(Vehiculo):
 
     def calcular_tiempo(self):
         if self.distancia <= 0 or self.velocidad <= 0:
-<<<<<<< HEAD
+
             return float('inf')
-=======
-            return float('inf') #retorna tiempo infinito o no valido
->>>>>>> 7b5cabf (Guardo todos mis cambios)
+
         return self.velocidad / (self.distancia + self.nivelTrafico)

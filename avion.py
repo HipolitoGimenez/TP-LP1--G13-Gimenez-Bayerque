@@ -13,13 +13,9 @@ class Avion(Vehiculo):
     def calcular_tiempo(self):
         if self.distancia <= 0 or self.velocidad <= 0:
             return float('inf')
-<<<<<<< HEAD
-        return self.velocidad / self.distancia
-=======
-        return self.velocidad/self.distancia
+
+        return self.velocidad / self.distancia      
     
->>>>>>> 7b5cabf (Guardo todos mis cambios)
-        
     def calculo_de_trayecto(self, distancia:float):
 
         if distancia<=0 or self.velocidad<=0:
