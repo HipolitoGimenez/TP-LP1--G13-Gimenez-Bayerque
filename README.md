@@ -25,10 +25,10 @@ _**Nota:** Este proyecto se enfoca en la gestión de donantes y receptores de ó
 
 Para ejecutar este proyecto, asegúrate de tener Python 3.x instalado (se recomienda usar un entorno virtual como Anaconda para manejar las dependencias).
 
+
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [https://github.com/HipolitoGimenez/TP-LP1.git](https://github.com/HipolitoGimenez/TP-LP1.git)
-    cd TP-LP1
+    https://github.com/HipolitoGimenez/TP-LP1--G13-Gimenez-Bayerque.git
     ```
 
 2.  **Configurar el entorno (Opcional, pero recomendado):**
