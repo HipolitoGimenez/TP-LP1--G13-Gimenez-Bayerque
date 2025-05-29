@@ -1,12 +1,12 @@
 # G13_Comision_1
 
 "Breve descripción del trabajo"
-
+Simulador de logística para el INCUCAI: Este proyecto modela un sistema de gestión de trasplantes de órganos en Argentina, incluyendo la asignación de órganos, disponibilidad de cirujanos, transporte y centros de salud. Permite simular distintos escenarios de donación y recepción, priorizando criterios médicos y logísticos.
 ---
 
 ## Integrantes
 
-* **Docentes de Práctica:**
+* **Docentes:**
     * Fernando Romero Muñoz
     * Camila Zavidowski
 * **Alumnos:**
@@ -16,7 +16,6 @@
 ---
 
 ## Objetivo del proyecto
-
 
 _**Nota:** Este proyecto se enfoca en la gestión de donantes y receptores de órganos, simulando un sistema de gestión para INCUCAI._
 
