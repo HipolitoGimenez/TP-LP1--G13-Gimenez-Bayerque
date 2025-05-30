@@ -16,12 +16,8 @@ class Cirujano:
         self.disponibilidad = disponibilidad
         self.cantidad_operaciones = cantidad_operaciones
         self.dni = dni
-        self.fecha_de_nacimiento = fecha_de_nacimiento
-        self.sexo = sexo
-        self.telefono = telefono
-        self.tipo_de_sangre = tipo_de_sangre
         self.centro_de_salud = centro_de_salud 
-        self.organos = organos#
+
 
 
     def __str__(self): 
@@ -48,14 +44,19 @@ class Cirujano:
         """
         Marca al cirujano como disponible para operar.
 
-        Indica si el cirujano está disponible para operar.
-
         Returns:
             bool: True si está disponible, False si no.
         """
         self.disponibilidad = True
-        return self.disponibilidad
+        
+    def estaDisponible(self):
+        """
+        Indica si el cirujano está disponible para operar.
 
+        Returns:
+        bool: True si está disponible, False si no lo está.
+        """
+        return self.disponibilidad
 
     def es_especialista(self, organo):
         """

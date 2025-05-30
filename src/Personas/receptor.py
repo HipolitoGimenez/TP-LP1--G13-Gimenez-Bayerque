@@ -1,4 +1,5 @@
 from src.Personas.paciente import Paciente
+from src.Modelos.organo import Organo
 from datetime import datetime
 
 
@@ -27,12 +28,56 @@ class Receptor(Paciente):
             None
         """
     super().__init__(nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud)
-    self.organo_necesario=organo_necesario
+    self.organo_necesario: Organo=organo_necesario
     self.estado=estado
     self.fecha_de_ingreso=fecha_de_ingreso
     self.prioridad=prioridad
     self.patologia=patologia
     self.recibioOrgano=False
+  def get_Estado(self):
+     """
+    Devuelve el estado clínico del receptor (por ejemplo: Estable o Inestable).
+
+    Returns:
+        str: Estado del receptor.
+    """
+     return self.__estado
+  
+  def get_Fecha_de_ingreso(self):
+     """
+    Devuelve la fecha en la que el receptor ingresó a la lista de espera.
+
+    Returns:
+        datetime: Fecha de ingreso a la lista de espera.
+    """
+     return self.__fecha_de_ingreso
+  
+  def get_Prioridad(self):
+     """
+    Devuelve el nivel de prioridad asignado al receptor.
+
+    Returns:
+        int: Prioridad del receptor (menor número indica mayor prioridad).
+    """
+     return self.__prioridad
+  
+  def get_Patologia(self):
+     """
+    Devuelve la patología por la cual el receptor necesita un trasplante.
+
+    Returns:
+        str: Nombre de la patología.
+    """
+     return self.__patologia
+  
+  def get_RecibioOrgano(self):
+     """
+    Indica si el receptor ya recibió un órgano o no.
+
+    Returns:
+        bool: True si recibió un órgano, False en caso contrario.
+    """
+     return self.__recibioOrgano
 
   def __str__ (self):
     """

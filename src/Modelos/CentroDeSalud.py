@@ -137,7 +137,7 @@ class CentroDeSalud:
         Hace: registra la fecha y hora de ablación del órgano y lo quita de la lista del donante.
         Devuelve: nada.
         """
-        organo.fecha_hora_de_ablacion = datetime.now()#
+        organo.fecha_hora_de_ablacion = datetime.now()
         donante.lista_organos.remove(organo)
 
 

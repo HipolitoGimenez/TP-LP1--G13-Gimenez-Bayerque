@@ -74,20 +74,20 @@ class INCUCAI:
             None
         """
         listaReceptoresParaDonante = []
-        for organo in donante.lista_organos:
+        for organo in donante.get_Lista_organos():
             receptor: Receptor
             for receptor in self.lista_receptores:
-                if receptor.organo_necesario.tipo == organo.tipo and receptor.tipo_de_sangre == donante.tipo_de_sangre:
+                if receptor.organo_necesario == organo.tipo and receptor.getTipo_de_sangre() == donante.getTipo_de_sangre():
                     listaReceptoresParaDonante.append(receptor)
         
-            receptorElegido = listaReceptoresParaDonante.index(0)
-            for receptor in listaReceptoresParaDonante:
-                receptor.prioridad < receptorElegido.prioridad 
-                receptorElegido = receptor
-            if receptorElegido is not None:
-                self._enviarOrganoAUbicacionReceptor(receptorElegido)
-                donante.lista_organos.remove(organo)
-
+            if len(listaReceptoresParaDonante) > 0:
+                receptorElegido = listaReceptoresParaDonante.index(0)
+                for receptor in listaReceptoresParaDonante:
+                    receptor.prioridad < receptorElegido.prioridad 
+                    receptorElegido = receptor
+                if receptorElegido is not None:
+                    self.enviarOrganoAUbicacionReceptor(receptorElegido)
+                    donante.lista_organos.remove(organo)
 
     def _buscarDonantes(self, receptor: Receptor):
         """
