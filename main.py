@@ -19,11 +19,76 @@ from src.Vehiculos.vehiculo import Vehiculo
 
 
 #Cirujanos
-cirujano1 = Cirujano( "Adrian","cardiovascular",True,0,"12345678","Hospital Italiano")
-cirujano2 = Cirujano( "Juan","pulmonar",True,0,"48545678","Hospital Aleman")
-cirujano1 = Cirujano( "Estela","plastico",True,0,"31345678","Hospital Italiano")
-cirujano2 = Cirujano( "Maria","traumatologo",False,0,"22545678","Hospital Aleman")
-cirujano2 = Cirujano( "Maria","gastroenterologo",True,0,"33545678","Hospital Aleman")
+cirujano1 = Cirujano(
+    "Adrian",                     # nombre
+    "cardiovascular",             # especialidad
+    True,                         # disponibilidad
+    0,                            # cantidad_operaciones
+    "12345678",                   # dni
+    "1975-06-12",                 # fecha_de_nacimiento
+    "M",                          # sexo
+    "1134567890",                 # teléfono
+    "A+",                         # tipo_de_sangre
+    "Hospital Italiano",         # centro_de_salud
+    ["corazon"]                   # órganos
+)
+
+cirujano2 = Cirujano(
+    "Juan",
+    "pulmonar",
+    True,
+    0,
+    "48545678",
+    "1982-09-30",
+    "M",
+    "1145678901",
+    "B+",
+    "Hospital Aleman",
+    ["pulmones"]
+)
+
+cirujano3 = Cirujano(
+    "Estela",
+    "plastico",
+    True,
+    0,
+    "31345678",
+    "1978-04-22",
+    "F",
+    "1156789012",
+    "AB-",
+    "Hospital Italiano",
+    ["corneas", "piel"]
+)
+
+cirujano4 = Cirujano(
+    "Maria",
+    "traumatologo",
+    False,
+    0,
+    "22545678",
+    "1985-11-05",
+    "F",
+    "1167890123",
+    "O+",
+    "Hospital Aleman",
+    ["huesos"]
+)
+
+cirujano5 = Cirujano(
+    "Maria",
+    "gastroenterologo",
+    True,
+    0,
+    "33545678",
+    "1981-02-18",
+    "F",
+    "1178901234",
+    "A-",
+    "Hospital Aleman",
+    ["intestino", "riñon", "higado", "pancreas"]
+)
+
 
 #Organos
 organo1 = Organo("Corazon")
@@ -133,7 +198,74 @@ receptor18 = Receptor("Alan","33545496","09-06-1974","M","1155566685","B-","Hosp
 receptor19 = Receptor("Justina","2345168988","09-12-2009","F","1122334455","AB+","Hospital Italiano","Huesos","Inestable","2025-01-31", 1,"Fractura")
 receptor20 = Receptor("Patricia","33529966","09-06-1968","M","1155566685","AB-","Hospital Aleman","Huesos","Inestable","2025-10-12", 1,"Pulverizacion osea")
 
+#Organos
+organo1 = Organo("Corazon")  
+organo1.fecha_ablacion(datetime.now()) 
+organo2 = Organo("Pulmon")  
+organo1.fecha_ablacion(datetime.now()) 
 
+#Personas/ donantes
+
+donante1 = Donante("Adriana", "23060432", "02-06-1978", "F", "2494534523", "A+", "Italiano",
+                   datetime.strptime("02-06-2010", "%d-%m-%Y"),
+                   datetime.strptime("02-06-2010 12:00", "%d-%m-%Y %H:%M"))
+
+donante1.cargarOrgano(organo1)   # Corazón
+donante1.cargarOrgano(organo5)   # Pulmón
+donante1.cargarOrgano(organo9)   # Piel
+donante1.cargarOrgano(organo13)
+
+
+donante2 = Donante("Juan", "25678456", "12-01-1990", "M", "15252523", "B+", "Aleman",
+                   datetime.strptime("12-01-2025", "%d-%m-%Y"),
+                   datetime.strptime("12-01-2025 13:00", "%d-%m-%Y %H:%M"))
+donante2.cargarOrgano(organo6)  
+donante2.cargarOrgano(organo10) 
+donante2.cargarOrgano(organo14)  
+donante2.cargarOrgano(organo17)  
+
+
+donante3 = Donante("Marta", "23069832", "02-06-1979", "F", "24921234523", "A-", "Italiano",
+                   datetime.strptime("02-04-2021", "%d-%m-%Y"),
+                   datetime.strptime("02-04-2021 10:30", "%d-%m-%Y %H:%M"))
+donante3.cargarOrgano(organo18)  
+donante3.cargarOrgano(organo21)  
+donante3.cargarOrgano(organo25) 
+donante3.cargarOrgano(organo29)  
+
+
+donante4 = Donante("Beatriz", "25258425", "12-01-1991", "F", "155452523", "B-", "Aleman",
+                   datetime.strptime("02-05-2024", "%d-%m-%Y"),
+                   datetime.strptime("02-05-2024 09:45", "%d-%m-%Y %H:%M"))
+donante4.cargarOrgano(organo20)  # Huesos
+donante4.cargarOrgano(organo24)  # Intestinos
+donante4.cargarOrgano(organo33)  # Páncreas
+donante4.cargarOrgano(organo29)
+
+#Receptores 
+receptor1 = Receptor(
+    "Lucía", "2345763388", "04-11-2000", "F", "1122334455", "A+", "hospital_italiano",
+    organo1,  # Corazón
+    "Inestable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Paro cardíaco"
+)
+
+receptor2 = Receptor(
+    "Claudio", "335555966", "09-06-1999", "M", "1155566685", "B+", "hospital_aleman",
+    organo5,  # Pulmón
+    "Estable", datetime.strptime("2025-01-05", "%Y-%m-%d"), 2, "Neumonía"
+)
+
+receptor3 = Receptor(
+    "Susana", "3145768988", "04-11-2001", "F", "1122334455", "AB+", "hospital_italiano",
+    organo6,  # Pulmón
+    "Estable", datetime.strptime("2025-02-05", "%Y-%m-%d"), 2, "Neumonía"
+)
+
+receptor4 = Receptor(
+    "Julieta", "33543366", "09-06-1990", "M", "1155566685", "B+", "hospital_italiano",
+    organo9,  # Piel
+    "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Quemaduras"
+)
 #Centros de salud
 hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
 hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 145", "CABA", "Buenos Aires", "48545262385")
@@ -164,7 +296,7 @@ hospital2.agregar_vehiculos(helicoptero1)
 #avion1 = avion(800)
 #helicoptero1=helicoptero(500)
 #lista_vehiculos_Hospital_Italiano=[]
-print(f"Paciente {receptor1.get_Nombre()} Se en cuentra{ receptor1.get_Estado()}")
+print(f"Paciente {receptor1.get_Nombre()} Se encuentra {receptor1.get_Estado()}")
 print(cirujano1.operacion())
 print(cirujano1) 
 print("Se encuentra disponible {cirujano1.}")
@@ -194,37 +326,14 @@ incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(receptor4)
-incucai.registrarPaciente(receptor5)
-incucai.registrarPaciente(receptor6)
-incucai.registrarPaciente(receptor7)
-incucai.registrarPaciente(receptor8)
-incucai.registrarPaciente(receptor9)
-incucai.registrarPaciente(receptor10)
-incucai.registrarPaciente(receptor11)
-incucai.registrarPaciente(receptor12)
-incucai.registrarPaciente(receptor13)
-incucai.registrarPaciente(receptor14)
-incucai.registrarPaciente(receptor15)
-incucai.registrarPaciente(receptor16)
-incucai.registrarPaciente(receptor17)
-incucai.registrarPaciente(receptor18)
-incucai.registrarPaciente(receptor19)
-incucai.registrarPaciente(receptor20)
 incucai.registrarPaciente(donante1)
 incucai.registrarPaciente(donante2)
 incucai.registrarPaciente(donante3)
 incucai.registrarPaciente(donante4)
-incucai.registrarPaciente(donante5)
-incucai.registrarPaciente(donante6)
-incucai.registrarPaciente(donante7)
-incucai.registrarPaciente(donante8)
-incucai.registrarPaciente(donante9)
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante3)
-incucai.registrarPaciente(donante6)
-incucai.registrarPaciente(donante8)
 incucai.registrarPaciente(receptor4)
 #incucai.agregar_receptor(receptor1.nombre, receptor1.DNI, receptor1.fecha_de_nacimiento, receptor1.sexo, receptor1.telefono, receptor1.tipo_de_sangre, receptor1.centro_de_salud,receptor1.organo_necesario,receptor1.estado,receptor1.fecha_de_ingreso,receptor1.prioridad,receptor1.patologia)
 #incucai.agregar_receptor(receptor2.nombre, receptor2.DNI, receptor2.fecha_de_nacimiento, receptor2.sexo, receptor2.telefono, receptor2.tipo_de_sangre, receptor2.centro_de_salud,receptor2.organo_necesario,receptor2.estado,receptor2.fecha_de_ingreso,receptor2.prioridad,receptor2.patologia)

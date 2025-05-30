@@ -16,7 +16,7 @@ class Donante(Paciente):
             raise ValueError("La ablación debe ocurrir después de la muerte.")
 
         self.__fecha_de_muerte=fecha_de_muerte
-        self.__fecha_hora_ablacion= None
+        self.__fecha_hora_ablacion = fecha_hora_ablacion
         self.__lista_organos=[]
     
     def get_Fecha_de_muerte(self):
@@ -45,22 +45,17 @@ class Donante(Paciente):
         list: Lista de objetos órgano disponibles para trasplante.
         """
         return self.__lista_organos
-
+    
 
     def tieneOrgano(self, organo):
-        """
-        Verifica si el donante tiene un órgano específico en su lista.
-
-        Args:
-            organo (Organo): El órgano a verificar.
-
-        Returns:
-            bool: True si el órgano está en la lista, False en caso contrario.
-        """
-        for o in self.__lista_organos:
-            o.tipo == organo.tipo
+     for o in self.__lista_organos:
+        if o.tipo == organo.tipo:
             return True
-        return False
+     return False
+
+
+
+   
     
     def cargarOrgano(self, organo: Organo):
         """
