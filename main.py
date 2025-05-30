@@ -1,4 +1,3 @@
-
 from datetime import datetime
 from src.Modelos.CentroDeSalud import CentroDeSalud
 from src.Modelos.organo import Organo
@@ -128,77 +127,6 @@ organo34 = Organo("Páncreas")
 organo35 = Organo("Páncreas")
 organo36 = Organo("Páncreas")
 
-
-#Personas/ donantes
-donante1 = Donante("Adriana", "23060432", "02-06-1978", "F", "2494534523", "A+", "Italiano", "02-06-2010")
-donante1.cargarOrgano(organo1)
-donante1.cargarOrgano(organo2)
-donante1.cargarOrgano(organo3)
-donante1.cargarOrgano(organo4)
-donante2 = Donante("Juan", "25678456", "12-01-1990", "M", "15252523", "B+", "Aleman", "12-01-2025")
-donante2.cargarOrgano(organo6)
-donante2.cargarOrgano(organo7)
-donante2.cargarOrgano(organo8)
-donante2.cargarOrgano(organo9)
-donante3 = Donante("Marta", "23069832", "02-06-1979", "F", "24921234523", "A-", "Italiano", "02-04-2021")
-donante3.cargarOrgano(organo10)
-donante3.cargarOrgano(organo11)
-donante3.cargarOrgano(organo12)
-donante3.cargarOrgano(organo13)
-donante4 = Donante("Beatriz", "25258425", "12-01-1991", "F", "155452523", "B-", "Aleman", "02-05-2024")
-donante4.cargarOrgano(organo14)
-donante4.cargarOrgano(organo15)
-donante4.cargarOrgano(organo16)
-donante4.cargarOrgano(organo17)
-donante5 = Donante("Carlos", "30060432", "02-06-1985", "M", "2494224523", "AB+", "Italiano","02-03-2025")
-donante5.cargarOrgano(organo18)
-donante5.cargarOrgano(organo19)
-donante5.cargarOrgano(organo20)
-donante5.cargarOrgano(organo21)
-donante6 = Donante("Romina", "29738456", "12-01-1981", "F", "15252663", "AB-", "Aleman", "12-01-2022")
-donante6.cargarOrgano(organo21)
-donante6.cargarOrgano(organo22)
-donante6.cargarOrgano(organo23)
-donante6.cargarOrgano(organo24)
-donante7 = Donante("Maricel", "23080232", "02-06-1966", "F", "2492234523", "O+", "Italiano", "02-06-2010")
-donante7.cargarOrgano(organo25)
-donante7.cargarOrgano(organo26)
-donante7.cargarOrgano(organo27)
-donante7.cargarOrgano(organo28)
-donante8 = Donante("Pedro", "25256056", "12-01-1975", "M", "15255523", "O-", "Aleman", "02-06-2008")
-donante8.cargarOrgano(organo29)
-donante8.cargarOrgano(organo30)
-donante8.cargarOrgano(organo31)
-donante8.cargarOrgano(organo32)
-donante9 = Donante("Roxana", "23060499", "02-11-1978", "F", "2494566523", "AB+", "Italiano", "02-01-2005")
-donante9.cargarOrgano(organo33)
-donante9.cargarOrgano(organo34)
-donante9.cargarOrgano(organo35)
-donante9.cargarOrgano(organo36)
-
-#Receptores
-receptor1 = Receptor("Lucía","2345763388","04-11-2000","F","1122334455","A+","Hospital Italiano","Corazón","Inestable","2025-05-05", 1,"Paro cardíaco")
-receptor2 = Receptor("Claudio","335555966","09-06-1999","M","1155566685","B+","Hospital Aleman","Pulmon","Estable","2025-01-05", "Alta","Neumonia")
-receptor3 = Receptor("Susana","3145768988","04-11-2001","F","1122334455","AB+","Hospital Italiano","Pulmon","Estable","2025-02-05", "Alta","Neumonia")
-receptor4 = Receptor("Claudio","33548866","09-06-1997","M","1155566685","B-","Hospital Italiano","Pulmon","Estable","2025-03-05", "Alta","Neumonia")
-receptor5 = Receptor("Lorena","2345768922","04-11-2005","F","1122334455","A-","Hospital Italiano","Pulmon","Estable","2025-04-05", "Alta","Neumonia")
-receptor6 = Receptor("Julieta","33543366","09-06-1990","M","1155566685","B+","Hospital Italiano","Piel","Estable","2025-05-05", "Alta","Quemaduras")
-receptor7 = Receptor("Martin","2345768977","04-11-2009","F","1122334455","AB-","Hospital Italiano","Riñón","Inestable","2025-06-05", 1,"Insuficiencia renal")
-receptor8 = Receptor("Jose","38845966","09-06-1999","M","1155566685","B+","Hospital Aleman","Pulmon","Inestable","2025-05-15", 1,"Neumonia")
-receptor9 = Receptor("Edgar","2345766988","04-11-2007","F","1122334455","O+","Hospital Aleman","Corazón","Estable","2025-05-25", "Alta","Insuficiencia cardiaca")
-receptor10 = Receptor("Marianela","33225966","09-06-1988","M","1155566685","O-","Hospital Aleman","Hígado","Inestable","2025-05-12", 1,"Cirrosis")
-receptor11 = Receptor("Luciana","2345764488","04-11-2010","F","1122334455","A+","Hospital Aleman","Hígado","Inestable","2025-04-14", 1,"Cirrosis")
-receptor12 = Receptor("Josefina","33541166","09-06-1972","M","1155566685","AB+","Hospital Aleman","Pulmon","Estable","2025-04-11", "Alta","Neumonia")
-receptor13 = Receptor("Marcelo","2995768988","04-11-2003","F","1122334455","AB-","Hospital Aleman","Páncreas","Inestable","2025-12-29", 1,"Pancreatitis")
-receptor14 = Receptor("Alejandro","33533966","09-06-1995","M","1155566685","A-","Hospital Aleman","Páncreas","Estable","2025-12-02", "Alta","Pancreatitis")
-receptor15 = Receptor("Rodrigo","2345769988","04-11-2008","F","1122334455","A+","Hospital Italiano","Páncreas","Estable","2025-06-27", "Alta","Pancreatitis")
-receptor16 = Receptor("Monica","33225966","09-06-1999","M","1155566685","B-","Hospital Aleman","Pulmon","Inestable","2025-02-28", 1,"Neumonia")
-receptor17 = Receptor("Cintia","2345773988","04-11-2000","F","1122334455","AB+","Hospital Italiano","Intestinos","Estable","2025-07-26", "Alta","Obstruccion intestinal")
-receptor18 = Receptor("Alan","33545496","09-06-1974","M","1155566685","B-","Hospital Aleman","Pulmon","Intestinos","2025-05-30", "Alta","Neumonia")
-receptor19 = Receptor("Justina","2345168988","09-12-2009","F","1122334455","AB+","Hospital Italiano","Huesos","Inestable","2025-01-31", 1,"Fractura")
-receptor20 = Receptor("Patricia","33529966","09-06-1968","M","1155566685","AB-","Hospital Aleman","Huesos","Inestable","2025-10-12", 1,"Pulverizacion osea")
-
-#Organos
 organo1 = Organo("Corazon")  
 organo1.fecha_ablacion(datetime.now()) 
 organo2 = Organo("Pulmon")  
@@ -270,6 +198,10 @@ receptor4 = Receptor(
 hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
 hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 145", "CABA", "Buenos Aires", "48545262385")
 
+ambulancia1=Auto( 120)
+helicoptero1=Helicoptero( 300)
+avion2 = Avion(600)
+
 #vehiculos
 ambulancia1=Auto( 120)
 helicoptero1=Helicoptero( 300)
@@ -337,8 +269,3 @@ incucai.registrarPaciente(donante3)
 incucai.registrarPaciente(receptor4)
 #incucai.agregar_receptor(receptor1.nombre, receptor1.DNI, receptor1.fecha_de_nacimiento, receptor1.sexo, receptor1.telefono, receptor1.tipo_de_sangre, receptor1.centro_de_salud,receptor1.organo_necesario,receptor1.estado,receptor1.fecha_de_ingreso,receptor1.prioridad,receptor1.patologia)
 #incucai.agregar_receptor(receptor2.nombre, receptor2.DNI, receptor2.fecha_de_nacimiento, receptor2.sexo, receptor2.telefono, receptor2.tipo_de_sangre, receptor2.centro_de_salud,receptor2.organo_necesario,receptor2.estado,receptor2.fecha_de_ingreso,receptor2.prioridad,receptor2.patologia)
-
-
-
-
-
