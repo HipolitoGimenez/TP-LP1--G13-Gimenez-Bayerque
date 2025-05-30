@@ -133,19 +133,10 @@ receptor18 = Receptor("Alan","33545496","09-06-1974","M","1155566685","B-","Hosp
 receptor19 = Receptor("Justina","2345168988","09-12-2009","F","1122334455","AB+","Hospital Italiano","Huesos","Inestable","2025-01-31", 1,"Fractura")
 receptor20 = Receptor("Patricia","33529966","09-06-1968","M","1155566685","AB-","Hospital Aleman","Huesos","Inestable","2025-10-12", 1,"Pulverizacion osea")
 
-#Organos
-organo1 = Organo("Corazon")  
-organo1.fecha_ablacion(datetime.now()) 
-organo2 = Organo("Pulmon")  
-organo1.fecha_ablacion(datetime.now()) 
 
 #Centros de salud
 hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
 hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 145", "CABA", "Buenos Aires", "48545262385")
-
-ambulancia1=Auto( 120)
-helicoptero1=Helicoptero( 300)
-avion2 = Avion(600)
 
 #vehiculos
 ambulancia1=Auto( 120)
