@@ -1,4 +1,3 @@
-
 from src.Personas.donantes import Donante
 from src.Personas.paciente import Paciente
 from src.Personas.receptor import Receptor
@@ -6,6 +5,7 @@ from src.Modelos.coincidencia import Coincidencia
 from src.Modelos.organo import Organo
 from src.Personas.cirujano import Cirujano
 from src.Modelos.CentroDeSalud import CentroDeSalud
+
 class INCUCAI:
 
     def __init__(self):
@@ -30,12 +30,15 @@ class INCUCAI:
         Returns:
             None
         """
+        print("Registrando Paciente")
         if not self._estaRegistradoPaciente(paciente):
             if isinstance(paciente, Donante):
                 self.lista_donantes.append(paciente)
+                print("Buscando receptores")
                 self._buscarReceptores(paciente)
             else:
                 self.lista_receptores.append(paciente)
+                print("Buscando donantes")
                 self._buscarDonantes(paciente)
         else:
             print('El paciente ya fue registrado previamente')
@@ -63,6 +66,7 @@ class INCUCAI:
         
 
     def _buscarReceptores(self, donante: Donante):
+        print("Buscando Receptores")
         """
         Busca receptores compatibles para los órganos del donante dado.
         Selecciona el receptor de mayor prioridad y actualiza listas.
@@ -77,17 +81,28 @@ class INCUCAI:
         for organo in donante.get_Lista_organos():
             receptor: Receptor
             for receptor in self.lista_receptores:
-                if receptor.organo_necesario == organo.tipo and receptor.getTipo_de_sangre() == donante.getTipo_de_sangre():
+                print(f"Receptor1: {receptor.organo_necesario}")
+                print(f"Organo: {organo.tipo}")
+                print(f"Receptor sangre:{receptor.tipo_de_sangre}")
+                print(f"Donante sangre:{donante.tipo_de_sangre}")
+                print("_______")
+
+                if receptor.organo_necesario == organo.tipo and receptor.tipo_de_sangre == donante.tipo_de_sangre:
                     listaReceptoresParaDonante.append(receptor)
+                    print("Se agrega Receptor:"+receptor.nombre)
         
             if len(listaReceptoresParaDonante) > 0:
-                receptorElegido = listaReceptoresParaDonante.index(0)
+                receptorElegido = listaReceptoresParaDonante[0]
                 for receptor in listaReceptoresParaDonante:
-                    receptor.prioridad < receptorElegido.prioridad 
+                    receptor.prioridad < receptorElegido.prioridad
                     receptorElegido = receptor
+                print("Receptor elegido"+receptorElegido.nombre)
                 if receptorElegido is not None:
-                    self.enviarOrganoAUbicacionReceptor(receptorElegido)
-                    donante.lista_organos.remove(organo)
+                    self._enviarOrganoAUbicacionReceptor(receptorElegido,donante,organo)
+                    donante.get_Lista_organos().remove(organo)
+                    self.quitarDonantesSinOrganos()
+            else :
+                print("No se encontro el Organo, queda en lista de espera")
 
     def _buscarDonantes(self, receptor: Receptor):
         """
@@ -103,10 +118,14 @@ class INCUCAI:
         donante: Donante = None
         for donante in self.lista_donantes:
             if receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario):
+                print("Se encontro organo")
                 self._enviarOrganoAUbicacionReceptor(receptor)
                 donante.lista_organos.remove(receptor.organo_necesario)
+                print("Se removio de la lista de donantes")
+            
 
-    def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor):
+
+    def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor, donante: Donante,organo:Organo):
         """
         Marca que el receptor recibió un órgano.
 
@@ -116,6 +135,9 @@ class INCUCAI:
         Returns:
             None
         """
+        print("Asignar Vehiculo")
+        centro=receptor.centro_de_salud
+        #centro.asignarVehiculo(donante.centro_de_salud,4, 1)
         receptor.recibioOrgano = True
 
     
@@ -123,6 +145,7 @@ class INCUCAI:
         """
         Inicia el proceso de asignación y transporte del órgano desde el donante al receptor.
         Incluye asignación de vehículo y cirujano, y realización de ablación.
+        Yo asigno el nivel de trafico y la distancia
 
         Args:
             donante (Donante): Donante del órgano.
@@ -132,9 +155,11 @@ class INCUCAI:
         Returns:
             None
         """
-        donante.centro_de_salud.asignarVehiculo(centroSaludReceptor, organo)
-        donante.centro_de_salud.asignarCirujano(organo)
-        donante.centro_de_salud.realizarAblacion(organo)
+        distancia=10
+        nivelTrafico=1
+        centroSaludReceptor.asignarVehiculo(centroSaludReceptor,distancia, nivelTrafico)
+        cirujanoCoincide= centroSaludReceptor.asignarCirujano(organo)
+        centroSaludReceptor.realizarAblacion(organo)
 
     
     def quitarDonantesSinOrganos(self):
@@ -146,7 +171,7 @@ class INCUCAI:
         """
         donante: Donante
         for donante in self.lista_donantes:
-            if not donante.lista_organos:
+            if not donante.get_Lista_organos():
                 self.lista_donantes.remove(donante)
 
     

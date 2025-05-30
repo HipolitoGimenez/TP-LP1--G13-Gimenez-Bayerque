@@ -5,6 +5,9 @@ from src.Vehiculos.avion import Avion
 from src.Vehiculos.helicoptero import Helicoptero
 from src.Vehiculos.vehiculo import Vehiculo
 from src.Personas.cirujano import Cirujano
+from src.Personas.paciente import Paciente
+from src.Personas.donantes import Donante
+from src.Personas.receptor import Receptor
 
 class CentroDeSalud:
     def __init__(self, nombre: str, direccion: str, partido: str, provincia: str, telefono: str):
@@ -19,6 +22,9 @@ class CentroDeSalud:
         self.telefono = telefono
         self.cirujanos = []  
         self.vehiculos = []  
+        self.pacientes=[]
+        self.receptor=[]
+        self.donante=[]
         self.transplante_realizado = 0 
 
     
@@ -38,9 +44,41 @@ class CentroDeSalud:
         Devuelve: nada.
         """     
         self.cirujanos.append(nuevo_cirujano)
+    
+    def agregar_pacientes(self,nuevo_paciente:Paciente):
+       """
+    Agrega un paciente (donante o receptor) a la lista general de pacientes.
+
+    Args:
+        nuevo_paciente (Paciente): Instancia de la clase Paciente o sus subclases.
+    """
+       self.pacientes.append(nuevo_paciente)
+    
+
+    def agregar_receptor(self,nuevo_receptor:Receptor):
+       """
+    Agrega un receptor a la lista de receptores y también a la lista general de pacientes.
+
+    Args:
+        nuevo_receptor (Receptor): Instancia de Receptor.
+    """
+       self.receptor.append(nuevo_receptor)
+       self.pacientes.append(nuevo_receptor)
+
+
+    def agregar_donantes(self,nuevo_donante:Donante):
+       """
+    Agrega un donante a la lista de donantes y también a la lista general de pacientes.
+
+    Args:
+        nuevo_donante (Donante): Instancia de Donante.
+    """
+       self.donante.append(nuevo_donante)
+       self.pacientes.append(nuevo_donante)
 
 
     def asignar_cirujano(self, organo_necesario):
+      print("Asignando_cirujano")
       """
         Recibe: un objeto Organo.
         Hace: busca un cirujano disponible y especializado en el tipo de órgano necesario.
@@ -49,20 +87,21 @@ class CentroDeSalud:
         """
       if not self.cirujanos:
         print("No hay cirujanos registrados.")
-        return None
+        return False
 
       for i in range(len(self.cirujanos)):
         ciru = self.cirujanos[i]  
         if ciru.disponibilidad and ciru.es_especialista(organo_necesario):
             ciru.ocupado()
             print(f"Cirujano asignado: {ciru.nombre} para el órgano {organo_necesario}")
-            return ciru
+            return ciru.calcular_exito(organo_necesario)
 
-        print(f"No se encontró cirujano disponible para el órgano {organo_necesario}")
-        return None
+        print(f"No se encontró cirujano disponible para el {organo_necesario}")
+        return False
 
 
-    def asignarVehiculo(self, otroCentroSalud, distancia, nivelTrafico):
+    def asignarVehiculo(self, otroCentroSalud:any, distancia:int, nivelTrafico:int):
+        print("Comienzo asignacion Vehiculo")
         """
         Recibe: otro CentroDeSalud, una distancia (float/int), y un nivel de tráfico (str/int).
         Hace: elige un tipo de vehículo apropiado (Auto, Helicóptero, Avión) según la ubicación del otro centro,
@@ -70,12 +109,15 @@ class CentroDeSalud:
         Devuelve: nada.
         """
         if(self._estanEnLaMismaProvinciaYPartido(otroCentroSalud)):
+           print("Vehiculo designado  auto")
            self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Auto'), distancia, nivelTrafico)
         elif (self._estanEnMismaProvincia(otroCentroSalud)):
+           print("Vehiculo designado  Helicoptero")
            self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Helicoptero'), distancia, nivelTrafico)
         else:
+           print("Vehiculo designado Avion")
            self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Avion'), distancia, nivelTrafico)
-
+    
 
     def _estanEnLaMismaProvinciaYPartido(self, otroCentroSalud):
        """
@@ -118,20 +160,10 @@ class CentroDeSalud:
             vehiculoAsignado = vehiculo
             break
        return vehiculoAsignado
-    
-
-    def asignarCirujano(self):
-        """
-        (Método incompleto)
-        Recorre la lista de cirujanos y verifica si hay alguno disponible.
-        Actualmente no hace nada más. Podés eliminarlo o completarlo.
-        """
-        for cirujano in self.cirujanos:
-           if cirujano.estaDisponible():
-              pass
 
 
     def realizarAblacion(self, donante, organo):
+        print("Se realiza Ablacion")
         """
         Recibe: un objeto Donante y un objeto Organo.
         Hace: registra la fecha y hora de ablación del órgano y lo quita de la lista del donante.
@@ -141,13 +173,7 @@ class CentroDeSalud:
         donante.lista_organos.remove(organo)
 
 
-    def realizarTrasplante(self, vehiculo):
-        """
-        (Método aún no implementado)
-        Recibe: un objeto Vehiculo.
-        Hace: (pendiente por definir la lógica del trasplante y actualización de estado).
-        """
-        pass
+    
 
     def __eq__(self, otroCentroSalud): 
         """

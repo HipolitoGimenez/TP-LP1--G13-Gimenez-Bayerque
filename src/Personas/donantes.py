@@ -48,10 +48,25 @@ class Donante(Paciente):
     
 
     def tieneOrgano(self, organo):
-     for o in self.__lista_organos:
-        if o.tipo == organo.tipo:
-            return True
-     return False
+        """
+        Verifica si el donante posee un órgano del mismo tipo que el proporcionado.
+
+        Args:
+        organo (Organo): El órgano a verificar, del cual se evalúa el tipo.
+
+        Returns:
+        bool: True si el donante tiene al menos un órgano del mismo tipo en su lista,
+              False en caso contrario.
+
+        Detalles:
+        - Compara el atributo 'tipo' del órgano proporcionado con los órganos en
+          la lista del donante (__lista_organos).
+        - No requiere que sea el mismo objeto, solo que coincida el tipo.
+        """
+        for o in self.__lista_organos:
+            if o.tipo == organo.tipo:
+                return True
+            return False
 
 
 
@@ -64,10 +79,10 @@ class Donante(Paciente):
         Args:
         organo (Organo): Objeto órgano que será añadido al donante.
         """
-        if not isinstance(organo, Organo):
+        """if not isinstance(organo, Organo):
             raise TypeError("El órgano debe ser una instancia de la clase Organo.")
         if self.tieneOrgano(organo):
-            raise ValueError(f"El donante ya tiene un órgano del tipo '{organo.tipo}' registrado.")
+            raise ValueError(f"El donante ya tiene un órgano del tipo '{organo.tipo}' registrado.")"""
         
         self.__lista_organos.append(organo)
 
@@ -78,7 +93,7 @@ class Donante(Paciente):
         Returns:
             str: Cadena con el nombre, DNI y la fecha desde que es donante.
         """
-        return f"{super().__str__}, Donante desde: {self.fecha_de_muerte}"
+        return f"Donante: {self.nombre}, Donante DNI:{self.DNI}, Donante desde: {self.__fecha_de_muerte}"
     
     def quitarOrgano(self, organo):
         """

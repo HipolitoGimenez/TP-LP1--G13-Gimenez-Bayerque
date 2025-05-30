@@ -1,8 +1,9 @@
-from src.Modelos.CentroDeSalud import CentroDeSalud
+
 
 class Paciente:
 
         def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud):
+                from src.Modelos.CentroDeSalud import CentroDeSalud  
                 """
                         Inicializa un objeto Paciente con sus datos personales y centro de salud asociado.
 
@@ -87,7 +88,7 @@ def getCentro_de_salud(self):
     Returns:
         CentroDeSalud: Centro de salud del paciente.
     """
-        return self.__centro_de_salud
+        return f"Centro de Salud: {self.__centro_de_salud}"
         
 def __str__(self):
         """
