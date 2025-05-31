@@ -8,12 +8,6 @@ class Donante(Paciente):
    
         super().__init__(nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud)
 
-        if not isinstance(fecha_de_muerte, datetime):
-            raise TypeError("La fecha de muerte debe ser un objeto datetime.")
-        if not isinstance(fecha_hora_ablacion, datetime):
-            raise TypeError("La fecha y hora de ablación debe ser un objeto datetime.")
-        if fecha_hora_ablacion <= fecha_de_muerte:
-            raise ValueError("La ablación debe ocurrir después de la muerte.")
 
         self.__fecha_de_muerte=fecha_de_muerte
         self.__fecha_hora_ablacion = fecha_hora_ablacion
@@ -67,9 +61,6 @@ class Donante(Paciente):
             if o.tipo == organo.tipo:
                 return True
             return False
-
-
-
    
     
     def cargarOrgano(self, organo: Organo):
@@ -79,11 +70,7 @@ class Donante(Paciente):
         Args:
         organo (Organo): Objeto órgano que será añadido al donante.
         """
-        """if not isinstance(organo, Organo):
-            raise TypeError("El órgano debe ser una instancia de la clase Organo.")
-        if self.tieneOrgano(organo):
-            raise ValueError(f"El donante ya tiene un órgano del tipo '{organo.tipo}' registrado.")"""
-        
+    
         self.__lista_organos.append(organo)
 
     def __str__ (self):

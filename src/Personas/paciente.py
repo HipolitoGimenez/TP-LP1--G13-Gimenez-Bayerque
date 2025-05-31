@@ -27,92 +27,92 @@ class Paciente:
                 self.tipo_de_sangre=tipo_de_sangre
                 self.centro_de_salud: CentroDeSalud=centro_de_salud
                         
-def get_Nombre(self):
-        """
-        Devuelve el nombre del paciente.
+        def get_Nombre(self):
+                """
+                Devuelve el nombre del paciente.
+
+                Returns:
+                str: Nombre del paciente.
+                """
+                return self.__nombre
+        
+        def get_DNI(self):
+                """
+                Devuelve el número de DNI del paciente.
+
+                Returns:
+                int: DNI del paciente.
+                """
+                return self.__DNI
+                
+        def get_Fecha_de_nacimiento(self):
+                """
+        Devuelve la fecha de nacimiento del paciente.
 
         Returns:
-        str: Nombre del paciente.
+                datetime: Fecha de nacimiento.
         """
-        return self.__nombre
-        
-def get_DNI(self):
-        """
-        Devuelve el número de DNI del paciente.
+                return self.__fecha_de_nacimiento
+                
+        def get_Sexo(self):
+                """
+        Devuelve el sexo del paciente.
 
         Returns:
-        int: DNI del paciente.
+                str: Sexo del paciente.
         """
-        return self.__DNI
-        
-def get_Fecha_de_nacimiento(self):
-        """
-    Devuelve la fecha de nacimiento del paciente.
-
-    Returns:
-        datetime: Fecha de nacimiento.
-    """
-        return self.__fecha_de_nacimiento
-        
-def get_Sexo(self):
-        """
-    Devuelve el sexo del paciente.
-
-    Returns:
-        str: Sexo del paciente.
-    """
-        return self.__sexo
-        
-def get_Telefono(self):
-        """
-    Devuelve el número de teléfono del paciente.
-
-    Returns:
-        str: Teléfono del paciente.
-    """
-        return self.__telefono
-        
-def getTipo_de_sangre(self):
-        """
-    Devuelve el tipo de sangre del paciente.
-
-    Returns:
-        str: Tipo de sangre.
-    """
-        return self.__tipo_de_sangre
-        
-def getCentro_de_salud(self):
-        """
-    Devuelve el centro de salud asociado al paciente.
-
-    Returns:
-        CentroDeSalud: Centro de salud del paciente.
-    """
-        return f"Centro de Salud: {self.__centro_de_salud}"
-        
-def __str__(self):
-        """
-        Devuelve una representación legible con los datos principales del paciente.
+                return self.__sexo
+                
+        def get_Telefono(self):
+                """
+        Devuelve el número de teléfono del paciente.
 
         Returns:
-            str: Cadena con nombre y DNI del paciente.
+                str: Teléfono del paciente.
         """
-        return f"Nombre: {self.nombre} , DNI: {self.DNI}"
-
-
-def __eq__(self, otroPaciente): 
-        """
-        Compara dos pacientes por nombre y DNI para determinar si son iguales.
-
-        Args:
-            otroPaciente (Paciente): Otro objeto paciente para comparar.
+                return self.__telefono
+                
+        def getTipo_de_sangre(self):
+                """
+        Devuelve el tipo de sangre del paciente.
 
         Returns:
-            bool: True si ambos pacientes tienen el mismo nombre y DNI, False en caso contrario.
+                str: Tipo de sangre.
         """
-        return self.nombre == otroPaciente.nombre and self.DNI == otroPaciente.DNI
+                return self.__tipo_de_sangre
+                
+        def getCentro_de_salud(self):
+                """
+        Devuelve el centro de salud asociado al paciente.
+
+        Returns:
+                CentroDeSalud: Centro de salud del paciente.
+        """
+                return f"Centro de Salud: {self.__centro_de_salud}"
+                
+        def __str__(self):
+                """
+                Devuelve una representación legible con los datos principales del paciente.
+
+                Returns:
+                str: Cadena con nombre y DNI del paciente.
+                """
+                return f"Nombre: {self.nombre} , DNI: {self.DNI}"
 
 
-    
-    
-    
+        def __eq__(self, otroPaciente): 
+                """
+                Compara dos pacientes por nombre y DNI para determinar si son iguales.
+
+                Args:
+                otroPaciente (Paciente): Otro objeto paciente para comparar.
+
+                Returns:
+                bool: True si ambos pacientes tienen el mismo nombre y DNI, False en caso contrario.
+                """
+                return self.nombre == otroPaciente.nombre and self.DNI == otroPaciente.DNI
+
+
+        
+        
+           

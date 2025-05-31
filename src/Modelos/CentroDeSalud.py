@@ -75,6 +75,7 @@ class CentroDeSalud:
     """
        self.donante.append(nuevo_donante)
        self.pacientes.append(nuevo_donante)
+  
 
     def asignar_cirujano(self, organo_necesario):
       print("Asignando_cirujano")
@@ -82,7 +83,7 @@ class CentroDeSalud:
         Recibe: un objeto Organo.
         Hace: busca un cirujano disponible y especializado en el tipo de órgano necesario.
               Si lo encuentra, lo marca como ocupado y lo devuelve.
-        Devuelve: el cirujano asignado o None si no hay uno disponible.
+        Devuelve: el cirujano asignado o False si no hay uno disponible.
         """
       if not self.cirujanos:
         print("No hay cirujanos registrados.")
@@ -144,9 +145,8 @@ class CentroDeSalud:
         Devuelve: nada.
         """
        vehiculo.setDistancia(distancia)
-
-       
        vehiculo.registrar_viaje(self.direccion,distancia,nivelTrafico)
+
     
     def _obtenerVehiculo(self, tipo):
        """
@@ -173,8 +173,6 @@ class CentroDeSalud:
         """
         organo.fecha_hora_de_ablacion = datetime.now()
         donante.lista_organos.remove(organo)
-
-
     
 
     def __eq__(self, otroCentroSalud): 

@@ -27,17 +27,17 @@ hospital4=CentroDeSalud("Hospital Central","Av España 23","Capital","Cordoba","
 
 #Cirujanos
 cirujano1 = Cirujano(
-    "Adrian",                     # nombre
-    "cardiovascular",             # especialidad
-    True,                         # disponibilidad
-    0,                            # cantidad_operaciones
-    "12345678",                   # dni
-    "1975-06-12",                 # fecha_de_nacimiento
-    "M",                          # sexo
-    "1134567890",                 # teléfono
-    "A+",                         # tipo_de_sangre
-    "Hospital Italiano",         # centro_de_salud
-    ["corazon"]                   # órganos
+    "Adrian",                     
+    "cardiovascular",             
+    True,                         
+    0,                            
+    "12345678",                   
+    "1975-06-12",                 
+    "M",                          
+    "1134567890",                 
+    "A+",                         
+    "Hospital Italiano",         
+    ["corazon"]                   
 )
 
 cirujano2 = Cirujano(
@@ -127,8 +127,8 @@ donante1 = Donante("Adriana", "23060432", "02-06-1978", "F", "2494534523", "A+",
                    datetime.strptime("02-06-2010", "%d-%m-%Y"),
                    datetime.strptime("02-06-2010 12:00", "%d-%m-%Y %H:%M"))
 
-donante1.cargarOrgano(organocorazon)   # Corazón
-donante1.cargarOrgano(organoPulmon)   # Pulmón
+donante1.cargarOrgano(organocorazon)   
+donante1.cargarOrgano(organoPulmon)   
 
 
 
@@ -186,25 +186,62 @@ receptor4 = Receptor(
 #vehiculos
 ambulancia1=Auto( 120)
 helicoptero1=Helicoptero( 300)
-avion2 = Avion(600)
+avion1 = Avion(600)
+
+ambulancia2=Auto(200)
+helicoptero2=Helicoptero(500)
+avion2= Avion(100)
+
+ambulancia3=Auto(400)
+helicoptero3=Helicoptero(230)
+avion3=Avion(500)
+
+ambulancia4=Auto(600)
+helicoptero4=Helicoptero(200)
+avion4=Avion(100)
 
 
+hospital1.agregar_receptor(receptor1)
+hospital2.agregar_receptor(receptor2)
+hospital3.agregar_receptor(receptor3)
+hospital4.agregar_receptor(receptor4)
+#caso que donantes estan en distintos hospitales o mismo hospital que receptor
+hospital1.agregar_donantes(donante1)
+hospital2.agregar_donantes(donante2)
+hospital3.agregar_donantes(donante3)
+hospital4.agregar_donantes(donante4)
 
-#hospital1.agregar_donantes(donante1)
-hospital1.agregar_receptor(receptor1)#y asi de cada uno hacer
 
 #agrego vehiculos a los hospitales
 hospital1.agregar_vehiculos(ambulancia1)
 hospital1.agregar_vehiculos(helicoptero1)
+hospital1.agregar_vehiculos(helicoptero4)
+hospital2.agregar_vehiculos(avion1)
 hospital2.agregar_vehiculos(avion2)
+hospital2.agregar_vehiculos(helicoptero3)
+hospital3.agregar_vehiculos(helicoptero2)
+hospital3.agregar_vehiculos(ambulancia2)
+hospital3.agregar_vehiculos(avion4)
+hospital4.agregar_vehiculos(ambulancia4)
+hospital4.agregar_vehiculos(ambulancia3)
+hospital4.agregar_vehiculos(avion3)
+
 
 #Agrego cirujanos a los hospitales
 hospital1.agregar_cirujano(cirujano1)
-hospital2.agregar_cirujano(cirujano1)
+hospital2.agregar_cirujano(cirujano2)
+hospital3.agregar_cirujano(cirujano3)
+hospital3.agregar_cirujano(cirujano4)
+hospital4.agregar_cirujano(cirujano5)
 
+
+#agrego la lista de hospitales cada hospital
 hospitales=[]
 hospitales.append(hospital1)
 hospitales.append(hospital2)
+hospitales.append(hospital3)
+hospitales.append(hospital4)
+
 
 #me imprime todos 
 for hospital in hospitales:
@@ -215,29 +252,16 @@ for hospital in hospitales:
     print("Pacientes del Hospital:"+hospital.nombre)
     for paciente in hospital.pacientes:
         print (paciente)
+        print(" ")
 
 
-hospital1.agregar_vehiculos(ambulancia1)
-hospital2.agregar_vehiculos(helicoptero1)
-
-
-
-
-# Asignar cirujano al órgano necesario del receptor
-#cirujano_asignado = hospital1.(receptor1.organo_necesario)
-
-
-#print(f"Vehiculo: Auto Velocidad: {auto1.velocidad}km/h.  Distancia Recorrida: {auto1.distancia} kms")
-#print(f"Vehiculo: Avion  Velocidad: {avion1.velocidad}km/h. Distancia Recorrida: {avion1.distancia} kms")
-###
 
 #registra donantes y pacientes
 incucai = INCUCAI()
-#receptor 1 con donante 3 hay match, receptor 2 con conante 3 no hay match
+
 incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante3)
-
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(receptor4)

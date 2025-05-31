@@ -97,6 +97,8 @@ class INCUCAI:
                     break
                 else:
                     print("sin coincidencia")
+                    print(" ")
+                    print(" ")
                 
         
             print("Longitud Receptores: "+str(len(listaReceptoresParaDonante)))
@@ -112,6 +114,7 @@ class INCUCAI:
                     self.quitarDonantesSinOrganos()
             else :
                 print("No se encontro el Organo, queda en lista de espera")
+
 
     def _buscarDonantes(self, receptor: Receptor):
         """
@@ -144,7 +147,7 @@ class INCUCAI:
             receptor (Receptor): Receptor que recibirá el órgano.
 
         Returns:
-            None
+            Bool
         """
         print("enviar organo: asignar vehiculo")
         
