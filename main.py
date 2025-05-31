@@ -16,6 +16,14 @@ from src.Vehiculos.avion import Avion
 from src.Vehiculos.helicoptero import Helicoptero
 from src.Vehiculos.vehiculo import Vehiculo
 
+#Centros de salud misma provincia y partido
+hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
+hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 145", "CABA", "Buenos Aires", "48545262385")
+#Centro de salud distinto partido
+hospital3=CentroDeSalud("Hospital Posadas","AV Rivadabia 234","Moron","Buenos Aires","345676543")
+#Centro de salud distinta provincia y partido
+hospital4=CentroDeSalud("Hospital Central","Av España 23","Capital","Cordoba","7653456787")
+
 
 #Cirujanos
 cirujano1 = Cirujano(
@@ -115,23 +123,23 @@ organoPancreas.fecha_ablacion(datetime.now())
 
 #Personas/ donantes
 
-"""donante1 = Donante("Adriana", "23060432", "02-06-1978", "F", "2494534523", "A+", "Italiano",
+donante1 = Donante("Adriana", "23060432", "02-06-1978", "F", "2494534523", "A+", hospital2,
                    datetime.strptime("02-06-2010", "%d-%m-%Y"),
                    datetime.strptime("02-06-2010 12:00", "%d-%m-%Y %H:%M"))
 
-donante1.cargarOrgano(organo1)   # Corazón
-donante1.cargarOrgano(organo2)   # Pulmón
+donante1.cargarOrgano(organocorazon)   # Corazón
+donante1.cargarOrgano(organoPulmon)   # Pulmón
 
 
 
-donante2 = Donante("Juan", "25678456", "12-01-1990", "M", "15252523", "B+", "Aleman",
+donante2 = Donante("Juan", "25678456", "12-01-1990", "M", "15252523", "B+", hospital1,
                    datetime.strptime("12-01-2025", "%d-%m-%Y"),
                    datetime.strptime("12-01-2025 13:00", "%d-%m-%Y %H:%M"))
-donante2.cargarOrgano(organo6)  
-donante2.cargarOrgano(organo17)  
+donante2.cargarOrgano(organoHuesos)  
+donante2.cargarOrgano(organoPiel)  
 
-"""
-donante3 = Donante("Marta", "23069832", "02-06-1979", "F", "24921234523", "A+", "Italiano",
+
+donante3 = Donante("Marta", "23069832", "02-06-1979", "F", "24921234523", "A+", hospital1,
                    datetime.strptime("02-04-2021", "%d-%m-%Y"),
                    datetime.strptime("02-04-2021 10:30", "%d-%m-%Y %H:%M"))
   
@@ -140,51 +148,47 @@ donante3.cargarOrgano(organoRiñon)
 
 
 
-"""donante4 = Donante("Beatriz", "25258425", "12-01-1991", "F", "155452523", "B-", "Aleman",
+donante4 = Donante("Beatriz", "25258425", "12-01-1991", "F", "155452523", "B-", hospital4,
                    datetime.strptime("02-05-2024", "%d-%m-%Y"),
                    datetime.strptime("02-05-2024 09:45", "%d-%m-%Y %H:%M"))
-donante4.cargarOrgano(organo20)  # Huesos
-#donante4.cargarOrgano(organo24)  # Intestinos
-donante4.cargarOrgano(organo33)  # Páncreas
-donante4.cargarOrgano(organo29)"""
+donante4.cargarOrgano(organoHigado)  
+donante4.cargarOrgano(organoPancreas)  
+donante4.cargarOrgano(organoPulmon)
+
+
 
 #Receptores 
 receptor1 = Receptor(
-    "Lucía", "2345763388", "04-11-2000", "F", "1122334455", "A+", "hospital_italiano",
+    "Lucía", "2345763388", "04-11-2000", "F", "1122334455", "A+", hospital1,
     "corazon",  # Corazón
     "Inestable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Paro cardíaco"
 )
 
 receptor2 = Receptor(
-    "Claudio", "335555966", "09-06-1999", "M", "1155566685", "A+", "hospital_aleman",
+    "Claudio", "335555966", "09-06-1999", "M", "1155566685", "A+", hospital2,
     "pulmon",  # Pulmón
     "Estable", datetime.strptime("2025-01-05", "%Y-%m-%d"), 2, "Neumonía"
 )
-"""
+
 
 receptor3 = Receptor(
-    "Susana", "3145768988", "04-11-2001", "F", "1122334455", "AB+", "hospital_italiano",
+    "Susana", "3145768988", "04-11-2001", "F", "1122334455", "AB+", hospital3,
     "huesos",  # Pulmón
     "Estable", datetime.strptime("2025-02-05", "%Y-%m-%d"), 2, "Neumonía"
 )
 
 receptor4 = Receptor(
-    "Julieta", "33543366", "09-06-1990", "M", "1155566685", "B+", "hospital_italiano",
+    "Julieta", "33543366", "09-06-1990", "M", "1155566685", "B+",hospital4 ,
     "riñon",  # Piel
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Quemaduras"
-)"""
-#Centros de salud misma provincia y partido
-hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
-hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 145", "CABA", "Buenos Aires", "48545262385")
-#Centro de salud distinto partido
-hospital3=CentroDeSalud("Hospital Posadas","AV Rivadabia 234","Moron","Buenos Aires","345676543")
-#Centro de salud distinta provincia y partido
-hospital4=CentroDeSalud("Hospital Central","Av España 23","Capital","Cordoba","7653456787")
+)
 
 #vehiculos
 ambulancia1=Auto( 120)
 helicoptero1=Helicoptero( 300)
 avion2 = Avion(600)
+
+
 
 #hospital1.agregar_donantes(donante1)
 hospital1.agregar_receptor(receptor1)#y asi de cada uno hacer
@@ -212,25 +216,10 @@ for hospital in hospitales:
     for paciente in hospital.pacientes:
         print (paciente)
 
-"""print("Cirujanos del Hospital Italiano:")
-for c in hospital1.cirujanos:
-    print(c)
-
-print(f" ")
-print("Pacientes del Hospital Italiano:")
-for c in hospital1.paciente:
-    print(c)"""
 
 hospital1.agregar_vehiculos(ambulancia1)
 hospital2.agregar_vehiculos(helicoptero1)
 
-
-"""#si coincide hago el procesos
-cirujano_asignado = hospital1.asignar_cirujano(receptor1.organo_necesario)
-if cirujano_asignado:
-    print(f"El cirujano : {cirujano_asignado.nombre} fue asignado a {receptor1.get_Nombre()}")
-else:
-    print("No se pudo asignar un cirujano.")"""
 
 
 
@@ -249,7 +238,7 @@ incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante3)
 
-"""incucai.registrarPaciente(receptor2)
+incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(receptor4)
 incucai.registrarPaciente(donante1)
@@ -257,6 +246,6 @@ incucai.registrarPaciente(donante2)
 incucai.registrarPaciente(donante3)
 incucai.registrarPaciente(donante4)
 incucai.registrarPaciente(receptor2)
-incucai.registrarPaciente(receptor1)"""
+incucai.registrarPaciente(receptor1)
 
 #

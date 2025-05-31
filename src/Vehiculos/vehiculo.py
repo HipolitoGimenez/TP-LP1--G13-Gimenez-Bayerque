@@ -57,6 +57,10 @@ class Vehiculo:
         """
         viaje = Viaje(direccion,self.calcular_tiempo(),datetime.now())
         self.registro_de_viajes.append(viaje)
+        print("registrando viaje: "+viaje.direccion)
+    def setDistancia(self,distancia:int):
+        self.distancia=distancia
+        
 
 
     def ocupado(self):

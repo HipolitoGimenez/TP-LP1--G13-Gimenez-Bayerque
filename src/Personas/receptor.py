@@ -87,6 +87,9 @@ class Receptor(Paciente):
         bool: True si ya recibió un órgano, False si no.
     """
         return self.__recibioOrgano
+    
+    def get_CentrodeSalud(self):
+        return self.centro_de_salud
 
     def set_estado(self, nuevo_estado):
         """

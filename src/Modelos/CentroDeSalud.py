@@ -76,7 +76,6 @@ class CentroDeSalud:
        self.donante.append(nuevo_donante)
        self.pacientes.append(nuevo_donante)
 
-
     def asignar_cirujano(self, organo_necesario):
       print("Asignando_cirujano")
       """
@@ -100,7 +99,7 @@ class CentroDeSalud:
         return False
 
 
-    def asignarVehiculo(self, otroCentroSalud:any, distancia:int, nivelTrafico:int):
+    def asignarVehiculo(self, otroCentroSalud, distancia:int, nivelTrafico:int):
         print("Comienzo asignacion Vehiculo")
         """
         Recibe: otro CentroDeSalud, una distancia (float/int), y un nivel de tráfico (str/int).
@@ -110,16 +109,17 @@ class CentroDeSalud:
         """
         if(self._estanEnLaMismaProvinciaYPartido(otroCentroSalud)):
            print("Vehiculo designado  auto")
-           self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Auto'), distancia, nivelTrafico)
+           self.transportarOrgano( self._obtenerVehiculo('Auto'), distancia, nivelTrafico)
         elif (self._estanEnMismaProvincia(otroCentroSalud)):
            print("Vehiculo designado  Helicoptero")
-           self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Helicoptero'), distancia, nivelTrafico)
+           self.transportarOrgano( self._obtenerVehiculo('Helicoptero'), distancia, nivelTrafico)
         else:
            print("Vehiculo designado Avion")
-           self.transportarOrgano(otroCentroSalud, self._obtenerVehiculo('Avion'), distancia, nivelTrafico)
+           self.transportarOrgano( self._obtenerVehiculo('Avion'), distancia, nivelTrafico)
     
 
     def _estanEnLaMismaProvinciaYPartido(self, otroCentroSalud):
+       
        """
         Recibe: otro CentroDeSalud.
         Hace: compara provincia y partido entre ambos centros.
@@ -137,15 +137,16 @@ class CentroDeSalud:
        return self.provincia == otroCentroSalud.provincia
     
 
-    def transportarOrgano(self, vehiculo, distancia, nivelTrafico):
+    def transportarOrgano(self, vehiculo:Vehiculo, distancia, nivelTrafico):
        """
         Recibe: un objeto Vehiculo, una distancia y un nivel de tráfico.
         Hace: asigna esos valores al vehículo y registra el viaje con destino al centro de salud actual.
         Devuelve: nada.
         """
-       vehiculo.distancia = distancia
-       vehiculo.nivelTrafico = nivelTrafico
-       vehiculo.registrar_viaje(self.direccion)
+       vehiculo.setDistancia(distancia)
+
+       
+       vehiculo.registrar_viaje(self.direccion,distancia,nivelTrafico)
     
     def _obtenerVehiculo(self, tipo):
        """
@@ -155,9 +156,10 @@ class CentroDeSalud:
         """
        vehiculoAsignado = None
        for vehiculo in self.vehiculos:
-          if tipo == vehiculo.get_class_name() and not vehiculo.ocupado():
-            vehiculo.ocupar()
-            vehiculoAsignado = vehiculo
+          vehiculoobjeto=Vehiculo(vehiculo)
+          if not vehiculoobjeto.enUso:
+            vehiculoobjeto.ocupado()
+            vehiculoAsignado = vehiculoobjeto
             break
        return vehiculoAsignado
 
