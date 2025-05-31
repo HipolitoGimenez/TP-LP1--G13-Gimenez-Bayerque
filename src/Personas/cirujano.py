@@ -1,5 +1,6 @@
 
 import random 
+from src.Modelos.organo import Organo
 
 ESPECIALIDADES = {
             "cardiovascular": ["corazon"],
@@ -58,7 +59,7 @@ class Cirujano:
         """
         return self.disponibilidad
 
-    def es_especialista(self, organo):
+    def es_especialista(self, organo: Organo):
         """
         Verifica si el cirujano es especialista en operar un órgano específico.
 
@@ -76,7 +77,7 @@ class Cirujano:
         "traumatologo": ["huesos"],
         "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
     }
-        return self.especialidad is not None and organo in ESPECIALIDADES.get(self.especialidad, [])
+        return self.especialidad is not None and organo.tipo in ESPECIALIDADES.get(self.especialidad, [])
     
 
     def operacion(self):

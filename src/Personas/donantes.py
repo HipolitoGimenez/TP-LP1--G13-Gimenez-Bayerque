@@ -41,7 +41,7 @@ class Donante(Paciente):
         return self.__lista_organos
     
 
-    def tieneOrgano(self, organo):
+    def tieneOrgano(self, organo:Organo):
         """
         Verifica si el donante posee un órgano del mismo tipo que el proporcionado.
 

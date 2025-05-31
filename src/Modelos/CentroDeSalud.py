@@ -88,15 +88,17 @@ class CentroDeSalud:
       if not self.cirujanos:
         print("No hay cirujanos registrados.")
         return False
-
+      ciru:Cirujano
       for i in range(len(self.cirujanos)):
         ciru = self.cirujanos[i]  
+        print("cirujano especialista: "+str(ciru.es_especialista(organo_necesario)))
         if ciru.disponibilidad and ciru.es_especialista(organo_necesario):
             ciru.ocupado()
             print(f"Cirujano asignado: {ciru.nombre} para el órgano {organo_necesario}")
-            return ciru.calcular_exito(organo_necesario)
+            return ciru.calcular_exito(organo_necesario.tipo)
 
         print(f"No se encontró cirujano disponible para el {organo_necesario}")
+        raise
         return False
 
 
@@ -109,10 +111,10 @@ class CentroDeSalud:
         Devuelve: nada.
         """
         if(self._estanEnLaMismaProvinciaYPartido(otroCentroSalud)):
-           print("Vehiculo designado  auto")
+           print("Vehiculo designado auto")
            self.transportarOrgano( self._obtenerVehiculo('Auto'), distancia, nivelTrafico)
         elif (self._estanEnMismaProvincia(otroCentroSalud)):
-           print("Vehiculo designado  Helicoptero")
+           print("Vehiculo designado Helicoptero")
            self.transportarOrgano( self._obtenerVehiculo('Helicoptero'), distancia, nivelTrafico)
         else:
            print("Vehiculo designado Avion")
@@ -164,7 +166,7 @@ class CentroDeSalud:
        return vehiculoAsignado
 
 
-    def realizarAblacion(self, donante, organo):
+    def realizarAblacion(self, donante:Donante, organo):
         print("Se realiza Ablacion")
         """
         Recibe: un objeto Donante y un objeto Organo.
@@ -172,7 +174,7 @@ class CentroDeSalud:
         Devuelve: nada.
         """
         organo.fecha_hora_de_ablacion = datetime.now()
-        donante.lista_organos.remove(organo)
+        donante.get_Lista_organos().remove(organo)
     
 
     def __eq__(self, otroCentroSalud): 

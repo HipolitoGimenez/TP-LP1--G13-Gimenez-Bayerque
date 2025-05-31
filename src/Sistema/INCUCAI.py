@@ -84,21 +84,25 @@ class INCUCAI:
             receptor: Receptor
             for receptor in self.lista_receptores:
                 print(f"Receptor: {receptor.organo_necesario}")
-                print(f"Organo: {organo.tipo}")
+                print(f"Organo: {organo}")
                 print(f"Receptor sangre: {receptor.tipo_de_sangre}")
                 print(f"Donante sangre: {donante.tipo_de_sangre}")
                 print("_______")
-
-                if receptor.organo_necesario == organo.tipo and receptor.tipo_de_sangre == donante.tipo_de_sangre:
-                    print("coincidencia")
+                print("es compatible: "+str(self.es_compatible(receptor,donante)))
+                if self.es_compatible(receptor,donante):
+                    print("Resultado: coincidencia.")
                     listaReceptoresParaDonante.append(receptor)
                     print("Se agrega Receptor:"+receptor.nombre)
                     print(" ")
+                    print("_________")
                     break
                 else:
-                    print("sin coincidencia")
+                    print("Resultado: sin coincidencia")
                     print(" ")
                     print(" ")
+                print("_________")
+
+                    
                 
         
             print("Longitud Receptores: "+str(len(listaReceptoresParaDonante)))
@@ -110,11 +114,13 @@ class INCUCAI:
                 print("Receptor elegido: "+receptorElegido.nombre)
                 if receptorElegido is not None:
                     self._enviarOrganoAUbicacionReceptor(receptorElegido,donante,organo,receptorElegido.centro_de_salud)
-                    donante.get_Lista_organos().remove(organo)
+                    #donante.get_Lista_organos().remove(organo)
                     self.quitarDonantesSinOrganos()
             else :
                 print("No se encontro el Organo, queda en lista de espera")
 
+    def es_compatible(self,receptor: Receptor,donante: Donante):
+        return receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario)
 
     def _buscarDonantes(self, receptor: Receptor):
         """
@@ -129,10 +135,12 @@ class INCUCAI:
         """
         donante: Donante = None
         for donante in self.lista_donantes:
-            if receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario):
+            if self.es_compatible(receptor,donante):
                 print("Se encontro organo")
+                print("envio del organo...")
                 self._enviarOrganoAUbicacionReceptor(receptor,donante,receptor.organo_necesario,receptor.centro_de_salud)
-                donante.lista_organos.remove(receptor.organo_necesario)
+                donante.get_Lista_organos().remove(receptor.organo_necesario)
+                self.quitarDonantesSinOrganos()
                 print("Se removio de la lista de donantes")
         print("fin buscar donantes")
         print(" ")
@@ -150,15 +158,9 @@ class INCUCAI:
             Bool
         """
         print("enviar organo: asignar vehiculo")
-        
-        centro.asignarVehiculo(donante.centro_de_salud,4,1)
-        
-        
-        centro.asignarVehiculo(donante.centro_de_salud,4, 1)
+        #centro.asignarVehiculo(donante.centro_de_salud,4, 1)
         receptor.recibioOrgano = True
-
-    
-    def iniciarProtocoloTransplanteYTransporte(self, donante: Donante, centroSaludReceptor: CentroDeSalud, organo: Organo):
+        
         """
         Inicia el proceso de asignación y transporte del órgano desde el donante al receptor.
         Incluye asignación de vehículo y cirujano, y realización de ablación.
@@ -174,9 +176,15 @@ class INCUCAI:
         """
         distancia=10
         nivelTrafico=1
-        centroSaludReceptor.asignarVehiculo(centroSaludReceptor,distancia, nivelTrafico)
-        cirujanoCoincide= centroSaludReceptor.asignarCirujano(organo)
-        centroSaludReceptor.realizarAblacion(organo)
+        centro.asignarVehiculo(centro,distancia, nivelTrafico)
+        exito= centro.asignar_cirujano(organo)
+        print("Operacion exitosa: "+str(exito))
+        if exito:
+            print("realizar ablacion y eliminar de la lista de receptores")
+
+            centro.realizarAblacion(donante,organo)
+        else:
+            print("No se remueve de la lista de receptores")
 
     
     def quitarDonantesSinOrganos(self):

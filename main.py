@@ -160,26 +160,26 @@ donante4.cargarOrgano(organoPulmon)
 #Receptores 
 receptor1 = Receptor(
     "Lucía", "2345763388", "04-11-2000", "F", "1122334455", "A+", hospital1,
-    "corazon",  # Corazón
+    organocorazon,  # Corazón
     "Inestable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Paro cardíaco"
 )
 
 receptor2 = Receptor(
     "Claudio", "335555966", "09-06-1999", "M", "1155566685", "A+", hospital2,
-    "pulmon",  # Pulmón
+    organoPulmon,  # Pulmón
     "Estable", datetime.strptime("2025-01-05", "%Y-%m-%d"), 2, "Neumonía"
 )
 
 
 receptor3 = Receptor(
     "Susana", "3145768988", "04-11-2001", "F", "1122334455", "AB+", hospital3,
-    "huesos",  # Pulmón
+    organoHuesos,  # Pulmón
     "Estable", datetime.strptime("2025-02-05", "%Y-%m-%d"), 2, "Neumonía"
 )
 
 receptor4 = Receptor(
     "Julieta", "33543366", "09-06-1990", "M", "1155566685", "B+",hospital4 ,
-    "riñon",  # Piel
+    organoRiñon,  # Piel
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Quemaduras"
 )
 
@@ -190,7 +190,7 @@ avion1 = Avion(600)
 
 ambulancia2=Auto(200)
 helicoptero2=Helicoptero(500)
-avion2= Avion(100)
+avion2= Avion(600)
 
 ambulancia3=Auto(400)
 helicoptero3=Helicoptero(230)
@@ -198,7 +198,7 @@ avion3=Avion(500)
 
 ambulancia4=Auto(600)
 helicoptero4=Helicoptero(200)
-avion4=Avion(100)
+avion4=Avion(550)
 
 
 hospital1.agregar_receptor(receptor1)
@@ -244,24 +244,30 @@ hospitales.append(hospital4)
 
 
 #me imprime todos 
+
 for hospital in hospitales:
-    print("Cirujanos del Hospital:"+hospital.nombre)
+    print("Institucion:"+hospital.nombre)
+    print("________")
+    print(" ")
+    print("Cirujanos :")
+
     for cirujano in hospital.cirujanos:
         print (cirujano)
-        print(f"_____")
-    print("Pacientes del Hospital:"+hospital.nombre)
+    print(f"_____")
+    print("Pacientes :")
     for paciente in hospital.pacientes:
         print (paciente)
-        print(" ")
+    print(" ")
 
 
 
 #registra donantes y pacientes
 incucai = INCUCAI()
-
+print("Comienzo de busqueda:")
 incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante3)
+"""
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(receptor4)
@@ -270,6 +276,5 @@ incucai.registrarPaciente(donante2)
 incucai.registrarPaciente(donante3)
 incucai.registrarPaciente(donante4)
 incucai.registrarPaciente(receptor2)
-incucai.registrarPaciente(receptor1)
+incucai.registrarPaciente(receptor1)"""
 
-#
