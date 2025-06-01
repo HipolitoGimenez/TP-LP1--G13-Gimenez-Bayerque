@@ -14,7 +14,7 @@ class Avion(Vehiculo):
             None
         """
         super().__init__( velocidad)
-
+        self.tipo="avion"
 
     def __str__(self):
         """
@@ -23,7 +23,7 @@ class Avion(Vehiculo):
         Returns:
             str: Descripción del avión.
         """
-        return f"avion( Velocidad: {self.velocidad}km/h)"
+        return f"avion Velocidad: {self.velocidad}km/h ocupado : {self.enUso} tipo: {self.tipo}"
     
 
     def calcular_tiempo(self):

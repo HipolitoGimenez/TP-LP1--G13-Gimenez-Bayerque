@@ -176,7 +176,7 @@ class INCUCAI:
         """
         distancia=50
         nivelTrafico=1
-        centro.asignarVehiculo(centro,distancia, nivelTrafico)
+        vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro,distancia, nivelTrafico)
         exito= centro.asignar_cirujano(organo)
         print("Operacion exitosa: "+str(exito))
         if exito:
@@ -184,8 +184,9 @@ class INCUCAI:
 
             centro.realizarAblacion(donante,organo)
         else:
-            print("No se remueve de la lista de receptores")
-
+            print("No se remueve de la lista de receptores") #Agregar disponibilidad de vehiculo
+        vehiculo_asignado.desocupar()
+        
     
     def quitarDonantesSinOrganos(self):
         """
@@ -259,8 +260,5 @@ class INCUCAI:
             print(paciente)
         for paciente in self.lista_receptores:
             print(paciente)
-
-
-          
     
-        
+    

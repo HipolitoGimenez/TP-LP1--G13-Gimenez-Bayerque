@@ -91,15 +91,17 @@ class CentroDeSalud:
       ciru:Cirujano
       for i in range(len(self.cirujanos)):
         ciru = self.cirujanos[i]  
+        print("=====================================")
+        print("especialidad: "+str(ciru.especialidad))
         print("cirujano especialista: "+str(ciru.es_especialista(organo_necesario)))
-        if ciru.disponibilidad and ciru.es_especialista(organo_necesario):
+        if ciru.disponibilidad and ciru.es_especialista(organo_necesario): 
             ciru.ocupado()
             print(f"Cirujano asignado: {ciru.nombre} para el órgano {organo_necesario}")
             return ciru.calcular_exito(organo_necesario.tipo)
 
-        print(f"No se encontró cirujano disponible para el {organo_necesario}")
-        raise
-        return False
+      print(f"No se encontró cirujano disponible para el {organo_necesario}")
+      return False
+        
 
 
     def asignarVehiculo(self, otroCentroSalud, distancia:int, nivelTrafico:int):
@@ -110,15 +112,20 @@ class CentroDeSalud:
               y lo usa para transportar el órgano.
         Devuelve: nada.
         """
+        
         if(self._estanEnLaMismaProvinciaYPartido(otroCentroSalud)):
            print("Vehiculo designado auto")
-           self.transportarOrgano( self._obtenerVehiculo('Auto'), distancia, nivelTrafico)
+           vehiculo=self._obtenerVehiculo("auto")
+           self.transportarOrgano( vehiculo, distancia, nivelTrafico)
         elif (self._estanEnMismaProvincia(otroCentroSalud)):
            print("Vehiculo designado Helicoptero")
-           self.transportarOrgano( self._obtenerVehiculo('Helicoptero'), distancia, nivelTrafico)
+           vehiculo=self._obtenerVehiculo("helicoptero")
+           self.transportarOrgano( vehiculo, distancia, nivelTrafico)
         else:
            print("Vehiculo designado Avion")
-           self.transportarOrgano( self._obtenerVehiculo('Avion'), distancia, nivelTrafico)
+           vehiculo=self._obtenerVehiculo("avion")
+           self.transportarOrgano( vehiculo, distancia, nivelTrafico)
+        return vehiculo
     
 
     def _estanEnLaMismaProvinciaYPartido(self, otroCentroSalud):
@@ -151,19 +158,23 @@ class CentroDeSalud:
 
     
     def _obtenerVehiculo(self, tipo):
-       """
-        Recibe: un string que indica el tipo de vehículo ('Auto', 'Avion', 'Helicoptero').
-        Hace: busca el primer vehículo disponible del tipo especificado, lo marca como ocupado.
-        Devuelve: el vehículo encontrado o None si no hay disponible.
-        """
-       vehiculoAsignado = None
-       for vehiculo in self.vehiculos:
-          vehiculoobjeto=Vehiculo(vehiculo)
-          if not vehiculoobjeto.enUso:
-            vehiculoobjeto.ocupado()
-            vehiculoAsignado = vehiculoobjeto
-            break
-       return vehiculoAsignado
+      """
+      Recibe: un string que indica el tipo de vehículo ('Auto', 'Avion', 'Helicoptero').
+      Hace: busca el primer vehículo disponible del tipo especificado, lo marca como ocupado.
+      Devuelve: el vehículo encontrado o None si no hay disponible.
+      """
+      
+      vehiculomax=Auto(0)
+      for vehiculo in self.vehiculos:
+         vehiculoobjeto=vehiculo
+         if not vehiculoobjeto.ocupado() and vehiculoobjeto.tipo==tipo:
+            if isinstance(vehiculoobjeto,Auto) and vehiculoobjeto.velocidad>vehiculomax.velocidad:
+               vehiculomax.desocupar()
+            vehiculoobjeto.ocupar()#si no es un auto lo va a ocupar y lo llama como max y lo devuelve elige el primero de la lista
+            print("Vehiculo Max: "+str(vehiculomax))
+            vehiculomax=vehiculoobjeto
+      print("Vehiculo asigando es: "+str(vehiculomax))
+      return vehiculomax
 
 
     def realizarAblacion(self, donante:Donante, organo):

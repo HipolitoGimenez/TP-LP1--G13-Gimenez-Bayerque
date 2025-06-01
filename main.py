@@ -435,22 +435,23 @@ receptor4 = Receptor(
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Insuficiencia renal crónica termina"
 )
 
-receptor5=Receptor(
-    "Martina","45676543234","05-12-2002", "F", "123432344", "B+", hospital5,
-    organoIntestinos,
-    "Estable",datetime.strftime("2025-04-06","%Y-%m-%d" ),1, "Sindrome de Intestino corto"
+
+receptor5 = Receptor(
+    "Martina", "33543466", "09-12-2002", "F", "1155566635", "B+",hospital5 ,
+    organoIntestinos,  
+    "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Sidrome de Intestino corto"
 )
 
 receptor6 = Receptor(
     "Roberto","40123456","1992-06-15","M","1167891234","O+",hospital4,
     organoPiel,
-    "Estable",datetime.strftime("2025-05-20","%Y-%m-%d" ),3,"Quemaduras de tercer grado"
+    "Estable", datetime.strptime("2025-05-20", "%Y-%m-%d" ), 3, "Quemaduras de tercer grado"
 )
 
 receptor7=Receptor(
     "Lucas","40156987","1992-12-08","M","1167891234","O+",hospital3,
     organoPiel,
-    "Estable",datetime.strftime("2025-04-20","%Y-%m-%d" ),3,"Quemaduras de tercer grado"
+    "Estable",datetime.strptime("2025-04-20","%Y-%m-%d" ),3,"Quemaduras de tercer grado"
 )
 
 receptor8 = Receptor(
@@ -497,8 +498,8 @@ receptor13=Receptor("Marina","45678265","2000-09-21","M","1133445566","AB-",hosp
 
 
 #vehiculos
-ambulancia1=Auto( 120)
-helicoptero1=Helicoptero( 550)
+ambulancia1=Auto(120)
+helicoptero1=Helicoptero(550)
 avion1 = Avion(600)
 
 ambulancia2=Auto(200)
@@ -696,6 +697,7 @@ print("Comienzo de busqueda:")
 #caso coincidencia receptor 1 y donante 2 con corazon mismo tipo de sangre misma provincia, utiliza el auto con mayor velocidad
 incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(donante1)
+"""
 #caso coincidencia distintas provincias debe utilizar helicoptero. Donante 2 esta en hospital 3 y receptor dos en hospital dos
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante2)
@@ -726,13 +728,3 @@ incucai.registrarPaciente(receptor12)
 #ultimo caso hay ablacion pero llega fuera de tiempo
 
 """
-incucai.registrarPaciente(receptor2)
-incucai.registrarPaciente(receptor3)
-incucai.registrarPaciente(receptor4)
-incucai.registrarPaciente(donante1)
-incucai.registrarPaciente(donante2)
-incucai.registrarPaciente(donante3)
-incucai.registrarPaciente(donante4)
-incucai.registrarPaciente(receptor2)
-incucai.registrarPaciente(receptor1)"""
-

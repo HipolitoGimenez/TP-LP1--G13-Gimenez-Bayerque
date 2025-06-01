@@ -22,6 +22,8 @@ class Vehiculo:
         self.nivelTrafico = None
         self.enUso=False
         self.tiempoViaje=0
+        self.tipo=""
+        
 
 
     def __str__(self):
@@ -78,7 +80,10 @@ class Vehiculo:
             bool: True si está ocupado, False si está disponible.
         """
         return self.enUso
-
+    
+    def desocupar(self):
+        print("Desocupando vehiculo")
+        self.enUso = False
 
     def ocupar(self):
         """

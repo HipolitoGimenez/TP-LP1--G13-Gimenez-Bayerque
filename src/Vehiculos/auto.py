@@ -13,6 +13,7 @@ class Auto(Vehiculo):
             None
         """
         super().__init__(velocidad)
+        self.tipo="auto"
     
 
     def __str__(self):
@@ -22,7 +23,7 @@ class Auto(Vehiculo):
         Returns:
             str: Descripción legible del auto.
         """
-        return f"Vehículo Terrestre (Velocidad: {self.velocidad} km/h)"
+        return f"Automovil/ambulancia Velocidad: {self.velocidad} km/h ,ocupado: {self.enUso} , tipo: {self.tipo}"
 
 
     def calcular_tiempo(self):
@@ -34,6 +35,8 @@ class Auto(Vehiculo):
         """
         if self.distancia <= 0 or self.velocidad <= 0:
 
-            return float('inf')
+            return 0
 
-        return self.velocidad / (self.distancia + self.nivelTrafico)
+        #return self.velocidad / (self.distancia + self.nivelTrafico)
+        return 0
+

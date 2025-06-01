@@ -13,7 +13,7 @@ class Helicoptero(Vehiculo):
             None
         """ 
         super().__init__( velocidad)
-
+        self.tipo="helicoptero"
 
     def __str__(self):
         """
@@ -22,7 +22,7 @@ class Helicoptero(Vehiculo):
         Returns:
             str: Descripción legible del helicóptero.
         """
-        return f"helicoptero (Velocidad: {self.velocidad}km/h)"
+        return f"helicoptero Velocidad: {self.velocidad}km/h ocupado: {self.enUso} tipo: {self.tipo}"
     
         
     def calculo_de_trayecto(self, distancia:float):
