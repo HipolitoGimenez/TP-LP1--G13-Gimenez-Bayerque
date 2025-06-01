@@ -174,7 +174,7 @@ class INCUCAI:
         Returns:
             None
         """
-        distancia=10
+        distancia=50
         nivelTrafico=1
         centro.asignarVehiculo(centro,distancia, nivelTrafico)
         exito= centro.asignar_cirujano(organo)
