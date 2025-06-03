@@ -88,7 +88,7 @@ cirujanoPU1 = Cirujano(
     "1145678901",
     "B+",
     "Hospital Aleman",
-    ["pulmones"]
+    ["pulmon"]
 )
 cirujanoC4=Cirujano(
     "Juana",
@@ -697,10 +697,11 @@ print("Comienzo de busqueda:")
 #caso coincidencia receptor 1 y donante 2 con corazon mismo tipo de sangre misma provincia, utiliza el auto con mayor velocidad
 incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(donante1)
-"""
+
 #caso coincidencia distintas provincias debe utilizar helicoptero. Donante 2 esta en hospital 3 y receptor dos en hospital dos
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante2)
+"""
 #caso coincidencia distinta provincia distinto partido debe utilizar avion. donante 3 esta en Cordoba capital hospital 4 y receptor 3 esta en Buenos aires Moron
 incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(donante3)

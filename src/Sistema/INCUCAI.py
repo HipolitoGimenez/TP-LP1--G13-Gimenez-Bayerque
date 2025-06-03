@@ -5,6 +5,7 @@ from src.Modelos.coincidencia import Coincidencia
 from src.Modelos.organo import Organo
 from src.Personas.cirujano import Cirujano
 from src.Modelos.CentroDeSalud import CentroDeSalud
+import random
 
 class INCUCAI:
 
@@ -147,7 +148,7 @@ class INCUCAI:
             
 
 
-    def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor, donante: Donante,organo:Organo,centro: CentroDeSalud):
+    def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor, donante: Donante,organo:Organo,centro: CentroDeSalud, ):
         """
         Marca que el receptor recibió un órgano.
 
@@ -174,9 +175,11 @@ class INCUCAI:
         Returns:
             None
         """
-        distancia=50
-        nivelTrafico=1
-        vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro,distancia, nivelTrafico)
+        
+        distancia=random.randint(1, 200)
+        nivelTrafico=random.randint(1,10)
+        print("nivel de trafico prueba: "+str(nivelTrafico))
+        vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro, nivelTrafico,distancia)
         exito= centro.asignar_cirujano(organo)
         print("Operacion exitosa: "+str(exito))
         if exito:

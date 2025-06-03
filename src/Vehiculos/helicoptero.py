@@ -15,6 +15,8 @@ class Helicoptero(Vehiculo):
         super().__init__( velocidad)
         self.tipo="helicoptero"
 
+
+
     def __str__(self):
         """
         Representa al helicóptero como texto mostrando su velocidad.
@@ -25,7 +27,7 @@ class Helicoptero(Vehiculo):
         return f"helicoptero Velocidad: {self.velocidad}km/h ocupado: {self.enUso} tipo: {self.tipo}"
     
         
-    def calculo_de_trayecto(self, distancia:float):
+    def calcular_tiempo(self,direccion,nivelTrafico):
         """
         Calcula el tiempo estimado del trayecto en horas basado en la distancia y la velocidad.
 
@@ -35,10 +37,17 @@ class Helicoptero(Vehiculo):
         Returns:
             float|str: Tiempo estimado en horas si los datos son válidos, o "Error" si distancia o velocidad no son positivas.
         """
-        if distancia<=0 or self.velocidad<=0:
-            return "Error"
+        tiempodetrayecto=self.velocidad/self.distancia
+
+        if self.distancia<=0 or self.velocidad<=0:
+            print("No se puede realizar el vaje por que distancia y velocidad es menor o igual a 0")
+            return 0
+        
         else:
-            return distancia/self.velocidad
+            print("Tiempo en viaje: "+str(tiempodetrayecto))
+            if tiempodetrayecto>20:
+                print("No se puede transplante por que el tiempo de trayecto es mayor a 20"+str(tiempodetrayecto))
+            return tiempodetrayecto
 
 
 

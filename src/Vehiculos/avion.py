@@ -16,6 +16,8 @@ class Avion(Vehiculo):
         super().__init__( velocidad)
         self.tipo="avion"
 
+    
+    
     def __str__(self):
         """
         Representación legible del avión con su velocidad.
@@ -24,21 +26,10 @@ class Avion(Vehiculo):
             str: Descripción del avión.
         """
         return f"avion Velocidad: {self.velocidad}km/h ocupado : {self.enUso} tipo: {self.tipo}"
-    
 
-    def calcular_tiempo(self):
-        """
-        Calcula el tiempo estimado de viaje en horas, usando los atributos `distancia` y `velocidad`.
-
-        Returns:
-            float: Tiempo estimado del viaje. Devuelve float('inf') si los valores son inválidos.
-        """
-        if self.distancia <= 0 or self.velocidad <= 0:
-            return float('inf')
-        return self.velocidad / self.distancia
 
         
-    def calculo_de_trayecto(self, distancia:float):
+    def calcular_tiempo(self,direccion,nivelTrafico):
         """
         Calcula el tiempo estimado de trayecto para una distancia específica (en km).
 
@@ -48,10 +39,13 @@ class Avion(Vehiculo):
         Returns:
             float | str: Tiempo estimado del trayecto en horas. Devuelve "Error" si los datos no son válidos.
         """
-        if distancia<=0 or self.velocidad<=0:
+        tiempodetrayecto=self.velocidad / self.distancia
+        if self.distancia<=0 or self.velocidad<=0:
             return "Error"
         else:
-
-            return distancia/self.velocidad
+            print("Tiempo en viaje: "+str(tiempodetrayecto))
+            if tiempodetrayecto>20:
+                print("No se puede transplante por que el tiempo de trayecto es mayor a 20"+str(tiempodetrayecto))
+            return tiempodetrayecto
       
 

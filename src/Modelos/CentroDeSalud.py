@@ -104,7 +104,7 @@ class CentroDeSalud:
         
 
 
-    def asignarVehiculo(self, otroCentroSalud, distancia:int, nivelTrafico:int):
+    def asignarVehiculo(self, otroCentroSalud, nivelTrafico:int, distancia:int):
         print("Comienzo asignacion Vehiculo")
         """
         Recibe: otro CentroDeSalud, una distancia (float/int), y un nivel de tráfico (str/int).
@@ -154,7 +154,8 @@ class CentroDeSalud:
         Devuelve: nada.
         """
        vehiculo.setDistancia(distancia)
-       vehiculo.registrar_viaje(self.direccion,distancia,nivelTrafico)
+       print("Distancia: "+str(distancia))
+       vehiculo.registrar_viaje(self.direccion,nivelTrafico)
 
     
     def _obtenerVehiculo(self, tipo):

@@ -4,7 +4,7 @@ from src.Modelos.organo import Organo
 
 ESPECIALIDADES = {
             "cardiovascular": ["corazon"],
-            "pulmonar": ["pulmones"],
+            "pulmonar": ["pulmon"],
             "plastico": ["corneas", "piel"],
             "traumatologo": ["huesos"],
             "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
@@ -72,13 +72,14 @@ class Cirujano:
         
         ESPECIALIDADES = {
         "cardiovascular": ["corazon"],
-        "pulmonar": ["pulmones"],
+        "pulmonar": ["pulmon"],
         "plastico": ["corneas", "piel"],
         "traumatologo": ["huesos"],
         "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
-    }
+    }   
+        
         return self.especialidad is not None and organo.tipo in ESPECIALIDADES.get(self.especialidad, [])
-    
+        
 
     def operacion(self):
         """

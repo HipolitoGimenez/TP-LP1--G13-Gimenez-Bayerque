@@ -2,9 +2,12 @@
 from datetime import datetime
 from typing import List
 from src.Modelos.viaje import Viaje
+from abc import ABC, abstractmethod
 
 
-class Vehiculo:
+
+
+class Vehiculo(ABC):
 
     def __init__(self, velocidad:int):
         """
@@ -35,17 +38,14 @@ class Vehiculo:
         """
         return f"vehiculo(Velocidad:{self.velocidad}km/h)"
     
-    def calcular_tiempo(self):
-        """
-        Calcula el tiempo estimado del viaje basado en velocidad, distancia y nivel de tráfico.
 
-        Returns:
-            float: Tiempo estimado de viaje en horas (o la unidad que se defina).
-        """
+    
+        
+    @abstractmethod
+    def calcular_tiempo(self,direccion,nivelTrafico):
         pass
 
-
-    def registrar_viaje(self,direccion, distancia, trafico):
+    def registrar_viaje(self,direccion,nivelTrafico):
         """
         Registra un nuevo viaje con destino, distancia y nivel de tráfico.
 
@@ -57,7 +57,7 @@ class Vehiculo:
         Returns:
             None
         """
-        viaje = Viaje(direccion,self.calcular_tiempo(),datetime.now())
+        viaje = Viaje(direccion,self.calcular_tiempo(direccion,nivelTrafico),datetime.now())
         self.registro_de_viajes.append(viaje)
         print("registrando viaje: "+viaje.direccion)
  
