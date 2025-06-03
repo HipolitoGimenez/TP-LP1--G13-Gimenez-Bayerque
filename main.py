@@ -357,6 +357,13 @@ donante2 = Donante("Juan", "25678456", "12-01-1990", "M", "15252523", "B+", hosp
                    datetime.strptime("12-01-2025 13:00", "%d-%m-%Y %H:%M"))
 donante2.cargarOrgano(organoPulmon)  
 
+donante1A = Donante("Andrea", "23060432", "02-06-1578", "F", "2494564523", "A+", hospital2,
+                   datetime.strptime("02-06-2010", "%d-%m-%Y"),
+                   datetime.strptime("02-06-2010 12:00", "%d-%m-%Y %H:%M"))
+
+donante1A.cargarOrgano(organocorazon)
+
+
 
 donante3 = Donante("Marta", "23069832", "02-06-1979", "F", "24921234523", "AB+", hospital4,
                    datetime.strptime("02-04-2021", "%d-%m-%Y"),
@@ -564,6 +571,7 @@ hospital1.agregar_donantes(donante4)
 
 hospital2.agregar_donantes(donante1)
 hospital2.agregar_donantes(donante6)
+hospital2.agregar_donantes(donante1A)
 
 hospital3.agregar_donantes(donante2)
 hospital3.agregar_donantes(donante8)
@@ -693,18 +701,32 @@ for hospital in hospitales:
 
 #registra donantes y pacientes
 incucai = INCUCAI()
+print("~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("Comienzo de busqueda:")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("Caso numero 1 :")
+print(" ")
 #caso coincidencia receptor 1 y donante 2 con corazon mismo tipo de sangre misma provincia, utiliza el auto con mayor velocidad
 incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(donante1)
 
+print("Caso 1 prima busqueda receptor que fue eliminado")
+incucai.registrarPaciente(donante1A)
+
+print(" ")
+print("Caso numero 2 :")
+print(" ")
 #caso coincidencia distintas provincias debe utilizar helicoptero. Donante 2 esta en hospital 3 y receptor dos en hospital dos
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante2)
-"""
+
+print(" ")
+print("Caso 3: ")
+print(" ")
 #caso coincidencia distinta provincia distinto partido debe utilizar avion. donante 3 esta en Cordoba capital hospital 4 y receptor 3 esta en Buenos aires Moron
 incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(donante3)
+"""
 #caso coincidencia pero no hay cirujano especializado para realizar cirujia no hay ablacion
 incucai.registrarPaciente(receptor4)
 incucai.registrarPaciente(donante4)

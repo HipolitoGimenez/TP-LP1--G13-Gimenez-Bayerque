@@ -6,6 +6,7 @@ from src.Modelos.organo import Organo
 from src.Personas.cirujano import Cirujano
 from src.Modelos.CentroDeSalud import CentroDeSalud
 import random
+from src.Vehiculos.auto import Auto
 
 class INCUCAI:
 
@@ -14,10 +15,10 @@ class INCUCAI:
         Inicializa las listas vacías para donantes, receptores, centros de salud y coincidencias.
         """
             self.lista_donantes=[] 
-            self.lista_centro_salud=[]
+            
             self.lista_receptores=[]
             self.lista_coincidencia=[]
-    
+            self.lista_centro_salud=[]
     
     def registrarPaciente(self, paciente: Paciente):
         """
@@ -31,19 +32,34 @@ class INCUCAI:
         Returns:
             None
         """
+        print("   ")
+        print("  ")
         print("Registrando Paciente")
+        print("  ")
         if not self._estaRegistradoPaciente(paciente):
             if isinstance(paciente, Donante):
                 self.lista_donantes.append(paciente)
                 print("Buscando receptores")
-                self._buscarReceptores(paciente)
+                receptor= self._buscarReceptores(paciente)
+                if receptor: 
+                    print("Cantidad de receptores : "+str(len(self.lista_receptores)))
+                    self.lista_receptores.remove(receptor)
+                    print("Cantidad de receptores despues del transplante: "+str(len(self.lista_receptores)))
+                else:
+                    print("No hay receptores para ese donante.")
             else:
-                self.lista_receptores.append(paciente)
-                print("Buscando donantes")
-                self._buscarDonantes(paciente)
+                    self.lista_receptores.append(paciente)
+                    print("Buscando donantes")
+                    donante= self._buscarDonantes(paciente)
+                    if donante:
+                        print("Cantidad de donantes: "+str(len(self.lista_donantes)))
+                        self.lista_donantes.remove(donante)
+                        print("Cantidad de donantes luego de la ablacion: "+str(len(self.lista_donantes)))
+                    else:
+                        print("No hay donantes para ese receptores.")
         else:
             print('El paciente ya fue registrado previamente')
-
+        print("    ")
     
     def _estaRegistradoPaciente(self, otroPaciente: Paciente):
         """
@@ -117,8 +133,10 @@ class INCUCAI:
                     self._enviarOrganoAUbicacionReceptor(receptorElegido,donante,organo,receptorElegido.centro_de_salud)
                     #donante.get_Lista_organos().remove(organo)
                     self.quitarDonantesSinOrganos()
+                    return receptorElegido
             else :
                 print("No se encontro el Organo, queda en lista de espera")
+                return None
 
     def es_compatible(self,receptor: Receptor,donante: Donante):
         return receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario)
@@ -143,8 +161,11 @@ class INCUCAI:
                 donante.get_Lista_organos().remove(receptor.organo_necesario)
                 self.quitarDonantesSinOrganos()
                 print("Se removio de la lista de donantes")
+                return donante
         print("fin buscar donantes")
         print(" ")
+        return None
+
             
 
 
@@ -160,7 +181,7 @@ class INCUCAI:
         """
         print("enviar organo: asignar vehiculo")
         #centro.asignarVehiculo(donante.centro_de_salud,4, 1)
-        receptor.recibioOrgano = True
+        receptor.__recibioOrgano = True
         
         """
         Inicia el proceso de asignación y transporte del órgano desde el donante al receptor.
@@ -178,14 +199,15 @@ class INCUCAI:
         
         distancia=random.randint(1, 200)
         nivelTrafico=random.randint(1,10)
-        print("nivel de trafico prueba: "+str(nivelTrafico))
         vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro, nivelTrafico,distancia)
+        if isinstance(vehiculo_asignado,Auto):
+            print("nivel de trafico prueba: "+str(nivelTrafico))
         exito= centro.asignar_cirujano(organo)
         print("Operacion exitosa: "+str(exito))
         if exito:
             print("realizar ablacion y eliminar de la lista de receptores")
 
-            centro.realizarAblacion(donante,organo)
+            centro.realizarAblacion(donante,organo,receptor)
         else:
             print("No se remueve de la lista de receptores") #Agregar disponibilidad de vehiculo
         vehiculo_asignado.desocupar()

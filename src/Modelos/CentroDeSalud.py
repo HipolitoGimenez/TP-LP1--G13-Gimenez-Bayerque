@@ -8,6 +8,8 @@ from src.Personas.cirujano import Cirujano
 from src.Personas.paciente import Paciente
 from src.Personas.donantes import Donante
 from src.Personas.receptor import Receptor
+from src.Modelos.organo import Organo
+
 
 class CentroDeSalud:
     def __init__(self, nombre: str, direccion: str, partido: str, provincia: str, telefono: str):
@@ -178,7 +180,7 @@ class CentroDeSalud:
       return vehiculomax
 
 
-    def realizarAblacion(self, donante:Donante, organo):
+    def realizarAblacion(self, donante:Donante, organo: Organo,receptor):
         print("Se realiza Ablacion")
         """
         Recibe: un objeto Donante y un objeto Organo.
@@ -187,6 +189,8 @@ class CentroDeSalud:
         """
         organo.fecha_hora_de_ablacion = datetime.now()
         donante.get_Lista_organos().remove(organo)
+        
+
     
 
     def __eq__(self, otroCentroSalud): 
