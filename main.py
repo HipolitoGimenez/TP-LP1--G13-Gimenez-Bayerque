@@ -261,9 +261,9 @@ cirujanoC5= Cirujano(
 #cirujanos de hospital7 Hospital San Juan
 cirujanoG3 = Cirujano(
     "Gabriela",                     
-    "gastroenterologo",             
-    False,                          
-    1,                              
+    "general",             
+    True,                          
+    0,                              
     "55667788",                     
     "1980-03-22",                   
     "F",                            
@@ -704,32 +704,34 @@ incucai = INCUCAI()
 print("~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("Comienzo de busqueda:")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-print("Caso numero 1 :")
+print("Caso numero 1 : misma provincia y partido:")
 print(" ")
 #caso coincidencia receptor 1 y donante 2 con corazon mismo tipo de sangre misma provincia, utiliza el auto con mayor velocidad
 incucai.registrarPaciente(receptor1)
 incucai.registrarPaciente(donante1)
 
-print("Caso 1 prima busqueda receptor que fue eliminado")
+print("Caso 2 : chequear que una vez que se hace el match se elimina organo de donante y receptor de lista")
 incucai.registrarPaciente(donante1A)
 
 print(" ")
-print("Caso numero 2 :")
+print("Caso 3 match distintas provinvias :")
 print(" ")
 #caso coincidencia distintas provincias debe utilizar helicoptero. Donante 2 esta en hospital 3 y receptor dos en hospital dos
 incucai.registrarPaciente(receptor2)
 incucai.registrarPaciente(donante2)
 
 print(" ")
-print("Caso 3: ")
+print("Caso 4: match distintos partidos y provincia: ")
 print(" ")
 #caso coincidencia distinta provincia distinto partido debe utilizar avion. donante 3 esta en Cordoba capital hospital 4 y receptor 3 esta en Buenos aires Moron
 incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(donante3)
-"""
+print(" ")
+print("Caso 5 : hay coincidencia, pero el cirujano es general, menos probabilidad que sea exitoso ")
 #caso coincidencia pero no hay cirujano especializado para realizar cirujia no hay ablacion
 incucai.registrarPaciente(receptor4)
 incucai.registrarPaciente(donante4)
+"""
 #caso coincidencia en mismo centros deberia realizarse  ablacion sin trasnporte, no asignar vehiculo, no calcular tiempo de viaje
 incucai.registrarPaciente(receptor5)
 incucai.registrarPaciente(donante5)
