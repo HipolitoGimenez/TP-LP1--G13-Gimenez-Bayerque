@@ -100,9 +100,19 @@ class CentroDeSalud:
             ciru.ocupado()
             print(f"Cirujano asignado: {ciru.nombre} para el órgano {organo_necesario}")
             return ciru.calcular_exito(organo_necesario.tipo)
+        
 
-      print(f"No se encontró cirujano disponible para el {organo_necesario}")
+      print(f"No se encontró cirujano especialista disponible para el {organo_necesario.tipo}")
+      for i in range(len(self.cirujanos)):
+         ciru=self.cirujanos[i]
+         print("====================================")
+         if ciru.disponibilidad: 
+            ciru.ocupado()
+            print(f"Cirujano asignado: {ciru.nombre} para el órgano {organo_necesario.tipo}")
+            return ciru.calcular_exito(organo_necesario.tipo)
+        
       return False
+
         
 
 
@@ -188,7 +198,10 @@ class CentroDeSalud:
         Devuelve: nada.
         """
         organo.fecha_hora_de_ablacion = datetime.now()
+        print("Cantidad de organos del donante antes de la ablacion: "+str(len(donante.get_Lista_organos())))
+
         donante.get_Lista_organos().remove(organo)
+        print("Cantidad de organos del donante despues de la ablacion: "+str(len(donante.get_Lista_organos())))
         
 
     

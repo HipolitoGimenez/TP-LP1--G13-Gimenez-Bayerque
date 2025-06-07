@@ -110,4 +110,5 @@ class Cirujano:
             print("Resultado debe ser mayor a 3 para que se realize ablacion: "+str(resultado))
             return resultado >= 3
         print("Resultado debe ser mayor a 5 para que se realize ablacion: "+str(resultado))
+    
         return resultado > 5

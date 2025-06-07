@@ -162,7 +162,7 @@ cirujanoPU4=Cirujano(
 
 cirujanoG4=Cirujano(
     "Mario",
-    "gastroenterologo",
+    "plastico",
     True,
     0,
     "22545678",
@@ -189,8 +189,8 @@ cirujanoC1=Cirujano(
 
 #cirujanos de hospital4 hospital Central
 cirujanoT1 = Cirujano(
-    "Luz",
-    "traumatologo",
+    "Luz general",
+    "general",
     True,
     0,
     "33545678",
@@ -199,7 +199,7 @@ cirujanoT1 = Cirujano(
     "1178901234",
     "A-",
     "Hospital Central",
-    ["huesos"]
+    []
 )
 
 #cirujanos de hospital5 hospital Regional
@@ -215,6 +215,8 @@ cirujanoG1 = Cirujano(
     "AB+",
     "Hospital Regional",
     ["intestino", "riñon", "higado", "pancreas"]
+
+    
 )
 cirujanoG6 = Cirujano(
     "Marcos",
@@ -325,7 +327,7 @@ organoPulmon = Organo("pulmon")
 organoPiel = Organo("piel")
 organoCorneas = Organo("corneas")
 organoHuesos = Organo("huesos")
-organoIntestinos = Organo("intestinos")
+organoIntestinos = Organo("intestino")
 organoRiñon = Organo("riñón")
 organoHigado = Organo("hígado")
 organoPancreas = Organo("páncreas")
@@ -438,7 +440,7 @@ receptor3 = Receptor(
 
 receptor4 = Receptor(
     "Julieta", "33543366", "09-06-1990", "F", "1155566685", "B-",hospital4 ,
-    organoRiñon,  
+    organoIntestinos,  
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Insuficiencia renal crónica termina"
 )
 
@@ -728,13 +730,15 @@ incucai.registrarPaciente(receptor3)
 incucai.registrarPaciente(donante3)
 print(" ")
 print("Caso 5 : hay coincidencia, pero el cirujano es general, menos probabilidad que sea exitoso ")
-#caso coincidencia pero no hay cirujano especializado para realizar cirujia no hay ablacion
+#caso coincidencia pero no hay cirujano especializado para realizar cirujia es general menos probabildad que sea exitosa
 incucai.registrarPaciente(receptor4)
 incucai.registrarPaciente(donante4)
-"""
+print(" ")
+print("Caso 6: coincidencia en mismo centros deberia realizarse transplante sin transporte ")
 #caso coincidencia en mismo centros deberia realizarse  ablacion sin trasnporte, no asignar vehiculo, no calcular tiempo de viaje
 incucai.registrarPaciente(receptor5)
 incucai.registrarPaciente(donante5)
+"""
 #caso coincidencia un donante dos receptores misma prioridad, receptor7 ingreso antes se le debe hacer la operacion a el
 incucai.registrarPaciente(receptor6)
 incucai.registrarPaciente(receptor7)

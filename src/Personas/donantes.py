@@ -82,16 +82,7 @@ class Donante(Paciente):
         """
         return f"Donante: {self.nombre}, Donante DNI:{self.DNI}, Donante desde: {self.__fecha_de_muerte}"
     
-    def quitarOrgano(self, organo):
-        """
-        Elimina un órgano específico de la lista de órganos del donante.
-
-        Args:
-            organo (Organo): Órgano a eliminar de la lista.
-        """
-        if organo not in self.__lista_organos:
-            raise ValueError("El órgano no se encuentra en el donante.")
-        self.lista_organos.remove(organo)
+    
         
     
     

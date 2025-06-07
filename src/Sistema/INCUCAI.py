@@ -41,11 +41,7 @@ class INCUCAI:
                 self.lista_donantes.append(paciente)
                 print("Buscando receptores")
                 receptor= self._buscarReceptores(paciente)
-                if receptor: 
-                    print("Cantidad de receptores : "+str(len(self.lista_receptores)))
-                    self.lista_receptores.remove(receptor)
-                    print("Cantidad de receptores despues del transplante: "+str(len(self.lista_receptores)))
-                else:
+                if not receptor: 
                     print("No hay receptores para ese donante.")
             else:
                     self.lista_receptores.append(paciente)
@@ -100,21 +96,22 @@ class INCUCAI:
         for organo in donante.get_Lista_organos():
             receptor: Receptor
             for receptor in self.lista_receptores:
-                print(f"Receptor: {receptor.organo_necesario}")
-                print(f"Organo: {organo}")
+                print(f"Organo del receptor: {receptor.organo_necesario.tipo}")
+                print(f"Organo del donante: {organo.tipo}")
                 print(f"Receptor sangre: {receptor.tipo_de_sangre}")
                 print(f"Donante sangre: {donante.tipo_de_sangre}")
                 print("_______")
                 print("es compatible: "+str(self.es_compatible(receptor,donante)))
                 if self.es_compatible(receptor,donante):
-                    print("Resultado: coincidencia.")
+                    print("  ")   
+                    print("Resultado: COINCIDENCIA.") 
                     listaReceptoresParaDonante.append(receptor)
                     print("Se agrega Receptor:"+receptor.nombre)
                     print(" ")
                     print("_________")
                     break
                 else:
-                    print("Resultado: sin coincidencia")
+                    print("Resultado: SIN coincidencia")
                     print(" ")
                     print(" ")
                 print("_________")
@@ -196,22 +193,24 @@ class INCUCAI:
         Returns:
             None
         """
-        
-        distancia=random.randint(1, 200)
-        nivelTrafico=random.randint(1,10)
-        vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro, nivelTrafico,distancia)
-        if isinstance(vehiculo_asignado,Auto):
-            print("nivel de trafico prueba: "+str(nivelTrafico))
-        exito= centro.asignar_cirujano(organo)
-        print("Operacion exitosa: "+str(exito))
-        if exito:
-            print("realizar ablacion y eliminar de la lista de receptores")
-
-            centro.realizarAblacion(donante,organo,receptor)
+        if donante.centro_de_salud.direccion == receptor.centro_de_salud.direccion:
+            exito=centro.asignar_cirujano(organo)
+            print("Operacion exitosa: "+str(exito))
+            self.operar(exito,donante,receptor,organo,centro)
+            print("Mismo centro de salud no se necesita vehiculo")
+            
         else:
-            print("No se remueve de la lista de receptores") #Agregar disponibilidad de vehiculo
-        vehiculo_asignado.desocupar()
-        
+
+            distancia=random.randint(1, 200)
+            nivelTrafico=random.randint(1,10)
+            vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro, nivelTrafico,distancia)
+            if isinstance(vehiculo_asignado,Auto):
+                print("nivel de trafico prueba: "+str(nivelTrafico))
+            exito= centro.asignar_cirujano(organo)
+            print("Operacion exitosa: "+str(exito))
+            self.operar(exito,donante,receptor,organo,centro)
+            vehiculo_asignado.desocupar()
+            
     
     def quitarDonantesSinOrganos(self):
         """
@@ -285,5 +284,15 @@ class INCUCAI:
             print(paciente)
         for paciente in self.lista_receptores:
             print(paciente)
+    
+    def operar(self,exito,donante,receptor,organo,centro: CentroDeSalud):
+        if exito:
+                print("realizar transplante y eliminar de la lista de receptores")
+                centro.realizarAblacion(donante,organo,receptor)
+                print("Cantidad de receptores : "+str(len(self.lista_receptores)))
+                self.lista_receptores.remove(receptor)
+                print("Cantidad de receptores despues del transplante: "+str(len(self.lista_receptores)))
+        else:
+                print("No se remueve de la lista de receptores") 
     
     
