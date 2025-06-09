@@ -29,7 +29,7 @@ class Avion(Vehiculo):
 
 
         
-    def calcular_tiempo(self,direccion,nivelTrafico):
+    def calcular_tiempo(self,nivelTrafico):
         """
         Calcula el tiempo estimado de trayecto para una distancia específica (en km).
 
@@ -45,7 +45,7 @@ class Avion(Vehiculo):
         else:
             print("Tiempo en viaje: "+str(tiempodetrayecto))
             if tiempodetrayecto>20:
-                print("No se puede transplante por que el tiempo de trayecto es mayor a 20"+str(tiempodetrayecto))
+                print("No se puede transplante por que el tiempo de trayecto es mayor a 20 y el tiempo es:"+str(tiempodetrayecto))
             return tiempodetrayecto
       
 

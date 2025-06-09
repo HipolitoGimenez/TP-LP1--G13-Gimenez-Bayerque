@@ -27,7 +27,7 @@ class Helicoptero(Vehiculo):
         return f"helicoptero Velocidad: {self.velocidad}km/h ocupado: {self.enUso} tipo: {self.tipo}"
     
         
-    def calcular_tiempo(self,direccion,nivelTrafico):
+    def calcular_tiempo(self,nivelTrafico):
         """
         Calcula el tiempo estimado del trayecto en horas basado en la distancia y la velocidad.
 
@@ -46,7 +46,7 @@ class Helicoptero(Vehiculo):
         else:
             print("Tiempo en viaje: "+str(tiempodetrayecto))
             if tiempodetrayecto>20:
-                print("No se puede transplante por que el tiempo de trayecto es mayor a 20"+str(tiempodetrayecto))
+                print("No se puede transplante por que el tiempo de trayecto es mayor a 20 y es : "+str(tiempodetrayecto))
             return tiempodetrayecto
 
 

@@ -42,7 +42,7 @@ class Vehiculo(ABC):
     
         
     @abstractmethod
-    def calcular_tiempo(self,direccion,nivelTrafico):
+    def calcular_tiempo(self,nivelTrafico):
         pass
 
     def registrar_viaje(self,direccion,nivelTrafico):
@@ -57,7 +57,7 @@ class Vehiculo(ABC):
         Returns:
             None
         """
-        viaje = Viaje(direccion,self.calcular_tiempo(direccion,nivelTrafico),datetime.now())
+        viaje = Viaje(direccion,self.calcular_tiempo(nivelTrafico),datetime.now())
         self.registro_de_viajes.append(viaje)
         print("registrando viaje: "+viaje.direccion)
  

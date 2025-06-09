@@ -29,7 +29,7 @@ hospital6 = CentroDeSalud("Hospital Uruguay", "Boulevard Oroño 1500", "Rosario"
 hospital7 = CentroDeSalud("Hospital San Juan de Dios", "Av. San Martín 456", "La Plata", "Buenos Aires", "2214567890")
 hospital8 = CentroDeSalud("Hospital El Cruce","Camino General Belgrano 5400","Florencio Varela","Buenos Aires","1144556677")
 hospital9 = CentroDeSalud("Hospital Ramón Carrillo","Ruta 3 Km 1100","San Luis","San Luis","2664001234")
-hospital10 = CentroDeSalud("Hospital de Clínicas","Av. Córdoba 2351","Recoleta","CABA","1147891234")
+hospital10 = CentroDeSalud("Hospital de Clínicas","Av. Córdoba 2351","CABA","Buenos Aires","1147891234")
 
 
 
@@ -467,14 +467,14 @@ receptor8 = Receptor(
     "Luciana", "2345789388", "2000-12-04", "F",  "1122309455", "A+",  hospital1,
     organoCorneas,  
     "Estable", 
-    datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Ceguera por queratopatía bullosa"
+    datetime.strptime("2025-05-05", "%Y-%m-%d"), 3, "Ceguera por queratopatía bullosa"
 )
 
 receptor9 = Receptor(
     "Rosario", "2788899911", "1995-03-12", "F", "1133445566", "A+", hospital10,
     organoCorneas,  
     "Estable", 
-    datetime.strptime("2025-05-12", "%Y-%m-%d"),3, "Queratomalacia por deficiencia de vitamina A"
+    datetime.strptime("2025-05-12", "%Y-%m-%d"),1, "Queratomalacia por deficiencia de vitamina A"
 )
 
 receptor10=Receptor(
@@ -738,22 +738,28 @@ print("Caso 6: coincidencia en mismo centros deberia realizarse transplante sin 
 #caso coincidencia en mismo centros deberia realizarse  ablacion sin trasnporte, no asignar vehiculo, no calcular tiempo de viaje
 incucai.registrarPaciente(receptor5)
 incucai.registrarPaciente(donante5)
-"""
+
 #caso coincidencia un donante dos receptores misma prioridad, receptor7 ingreso antes se le debe hacer la operacion a el
 incucai.registrarPaciente(receptor6)
 incucai.registrarPaciente(receptor7)
 incucai.registrarPaciente(donante6)
+
+
 #caso coincidencia un donante dos receptores un cirujano se lo da al de mayor prioridad
 incucai.registrarPaciente(receptor8)
 incucai.registrarPaciente(receptor9)
 incucai.registrarPaciente(donante7)
-#caso un donante 3 organos se lo da a 3 receptores
-incucai.registrarPaciente(donante8)
+
+print("Caso 9 un donante 2 organos se lo da a 2 receptores: ")
+#caso un donante 2 organos se lo da a 2 receptores
+
 incucai.registrarPaciente(receptor10)
 incucai.registrarPaciente(receptor11)
+incucai.registrarPaciente(donante8)
+
+"""
 #caso un donante y un receptor pero ya el cirujano trabajo
 incucai.registrarPaciente(donante9)
 incucai.registrarPaciente(receptor12)
 #ultimo caso hay ablacion pero llega fuera de tiempo
-
 """
