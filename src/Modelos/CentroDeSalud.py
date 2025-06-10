@@ -117,7 +117,7 @@ class CentroDeSalud:
         
 
 
-    def asignarVehiculo(self, otroCentroSalud, nivelTrafico:int, distancia:int):
+    def asignarVehiculo(self, otroCentroSalud, nivelTrafico:int):
         print("Comienzo asignacion Vehiculo")
         """
         Recibe: otro CentroDeSalud, una distancia (float/int), y un nivel de tráfico (str/int).
@@ -136,28 +136,30 @@ class CentroDeSalud:
              if tiempo < 20:
                   print("Vehiculo designado auto")
                   
-                  self.transportarOrgano( auto, distancia, nivelTrafico)
+                  self.transportarOrgano( auto,nivelTrafico)
              
                   return auto
         elif (self._estanEnMismaProvincia(otroCentroSalud)):
            
            helicoptero=self._obtenerVehiculo("helicoptero")
-           tiempo=helicoptero.calcular_tiempo(nivelTrafico)
+           heli1=Helicoptero(helicoptero.velocidad)
+           heli1.distancia=helicoptero.distancia
+           tiempo=heli1.calcular_tiempo(nivelTrafico)
            print("Tiempo: "+str(tiempo))
            if tiempo < 20:
                   print("Vehiculo designado helicoptero")
                   
-                  self.transportarOrgano( helicoptero, distancia, nivelTrafico)
+                  self.transportarOrgano( helicoptero, nivelTrafico)
                   return helicoptero
         else:
-           print("Vehiculo designado Avion")
+           
            avion=self._obtenerVehiculo("avion")
            tiempo=avion.calcular_tiempo(nivelTrafico)
            print("Tiempo: "+str(tiempo))
            if tiempo < 20:
-                  print("Vehiculo designado helicoptero")
+                  print("Vehiculo designado Avion")
                   
-                  self.transportarOrgano( avion, distancia, nivelTrafico)
+                  self.transportarOrgano( avion,  nivelTrafico)
                   return avion
         return None
 
@@ -180,14 +182,14 @@ class CentroDeSalud:
        return self.provincia == otroCentroSalud.provincia
     
 
-    def transportarOrgano(self, vehiculo:Vehiculo, distancia, nivelTrafico):
+    def transportarOrgano(self, vehiculo:Vehiculo, nivelTrafico):
        """
         Recibe: un objeto Vehiculo, una distancia y un nivel de tráfico.
         Hace: asigna esos valores al vehículo y registra el viaje con destino al centro de salud actual.
         Devuelve: nada.
         """
-       vehiculo.setDistancia(distancia)
-       print("Distancia: "+str(distancia))
+       #vehiculo.setDistancia(distancia)#verificar
+       #print("Distancia Vehiculo: "+str(vehiculo.distancia))
        vehiculo.registrar_viaje(self.direccion,nivelTrafico)
 
     
@@ -225,13 +227,14 @@ class CentroDeSalud:
              tipovehiculo="helicoptero"
          elif isinstance(vehiculo,Avion):
              tipovehiculo="avion"
-         print("tipo Vehiculo: "+str(tipovehiculo))
+         
          if not vehiculo.ocupado() and vehiculo.tipo==tipo:
-               print("Vehiculo que se va a usar: "+str(vehiculo.tipo))
+               
                vehiculo.ocupar()
-               print("Distancia: "+str(vehiculo.distancia))
+               
                if vehiculo.distancia == 0:
                    vehiculo.distancia=random.randint(1, 200)
+               print("Distancia : "+str(vehiculo.distancia))
                return vehiculo
          
        

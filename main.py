@@ -662,6 +662,7 @@ hospital6.agregar_cirujano(cirujanoG2)
 
 hospital7.agregar_cirujano(cirujanoG3)
 
+
 hospital8.agregar_cirujano(cirujanoG7)
 
 hospital9.agregar_cirujano(cirujanoPU2)
@@ -738,13 +739,13 @@ print("Caso 6: coincidencia en mismo centros deberia realizarse transplante sin 
 #caso coincidencia en mismo centros deberia realizarse  ablacion sin trasnporte, no asignar vehiculo, no calcular tiempo de viaje
 incucai.registrarPaciente(receptor5)
 incucai.registrarPaciente(donante5)
-
+print("Caso 7: caso coincidencia un donante dos receptores misma prioridad, receptor7 ingreso antes se le debe hacer la operacion a el")
 #caso coincidencia un donante dos receptores misma prioridad, receptor7 ingreso antes se le debe hacer la operacion a el
 incucai.registrarPaciente(receptor6)
 incucai.registrarPaciente(receptor7)
 incucai.registrarPaciente(donante6)
 
-
+print("Caso 8: caso coincidencia un donante dos receptores un cirujano se lo da al de mayor prioridad")
 #caso coincidencia un donante dos receptores un cirujano se lo da al de mayor prioridad
 incucai.registrarPaciente(receptor8)
 incucai.registrarPaciente(receptor9)
@@ -760,6 +761,6 @@ incucai.registrarPaciente(donante8)
 """
 #caso un donante y un receptor pero ya el cirujano trabajo
 incucai.registrarPaciente(donante9)
-incucai.registrarPaciente(receptor12)
-#ultimo caso hay ablacion pero llega fuera de tiempo
-"""
+incucai.registrarPaciente(receptor12)"""
+
+

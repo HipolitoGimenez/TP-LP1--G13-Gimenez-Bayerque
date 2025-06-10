@@ -40,9 +40,8 @@ class INCUCAI:
             if isinstance(paciente, Donante):
                 self.lista_donantes.append(paciente)
                 print("Buscando receptores")
-                receptor= self._buscarReceptores(paciente)
-                if not receptor: 
-                    print("No hay receptores para ese donante.")
+                self._buscarReceptores(paciente)
+               
             else:
                     self.lista_receptores.append(paciente)
                     print("Buscando donantes")
@@ -95,61 +94,70 @@ class INCUCAI:
         print(" ")
         for organo in donante.get_Lista_organos():
             receptor: Receptor
+            print("====================")
+            print("organo del donante: "+str(organo.tipo))
+            print("====================")
+
+
+
+
             for receptor in self.lista_receptores:
                 print(f"Organo del receptor: {receptor.organo_necesario.tipo}")
-                print(f"Organo del donante: {organo.tipo}")
                 print(f"Receptor sangre: {receptor.tipo_de_sangre}")
                 print(f"Donante sangre: {donante.tipo_de_sangre}")
                 print("_______")
-                print("es compatible: "+str(self.es_compatible(receptor,donante)))
-                if self.es_compatible(receptor,donante):
+                print("es compatible: "+str(self.es_compatible(receptor,donante,organo)))
+                if self.es_compatible(receptor,donante,organo):
                     print("  ")   
                     print("Resultado: COINCIDENCIA.") 
                     listaReceptoresParaDonante.append(receptor)
                     print("Se agrega Receptor:"+receptor.nombre)
                     print(" ")
                     print("_________")
+                    self.procesar_lista_organos(listaReceptoresParaDonante,donante,organo)
                     
                 else:
                     print("Resultado: SIN coincidencia")
                     print(" ")
                     print(" ")
                 print("_________")
+            print("fin organo: "+str(organo.tipo))
 
                     
                 
         
-            print("Longitud Receptores: "+str(len(listaReceptoresParaDonante)))
-            if len(listaReceptoresParaDonante) > 0:
-                receptorElegido = listaReceptoresParaDonante[0]
-                for receptor in listaReceptoresParaDonante:
-                   if receptor.prioridad < receptorElegido.prioridad:
-                        print("prioridad del primer receptor en la lista: "+str(receptorElegido.prioridad))
-                        print("prioridad del receptor con menor prioridad: "+str(receptor.prioridad))
+    def procesar_lista_organos(self,listaReceptoresParaDonante,donante,organo):
+        print("Longitud Receptores: "+str(len(listaReceptoresParaDonante)))
+        if len(listaReceptoresParaDonante) > 0:
+            receptorElegido = listaReceptoresParaDonante[0]
+            for receptor in listaReceptoresParaDonante:
+                if receptor.prioridad < receptorElegido.prioridad:
+                    print("prioridad del primer receptor en la lista: "+str(receptorElegido.prioridad))
+                    print("prioridad del receptor con menor prioridad: "+str(receptor.prioridad))
 
+                    receptorElegido = receptor
+                    
+                else:
+                    if receptor.prioridad == receptorElegido.prioridad:# siempre el bucle primero se compara el receptor con el mismo y despues si en la segunda el primero con el segudno, por eso siempre va aimprimir los dos comentarios con misma fecha de ingreso por qu es el mismo receptor
+                        print("posibles receptores en la lista del donante: "+str(receptor.get_Nombre()))
+                        print("fecha de ingreso del segundo receptor que hay en la lista: "+str(receptor.get_Fecha_de_ingreso()))
+                        print("fecha de ingreso del receptor elegido(el primero): "+str(receptorElegido.get_Fecha_de_ingreso()))
+                        receptor.get_Fecha_de_ingreso()< receptorElegido.get_Fecha_de_ingreso()
                         receptorElegido = receptor
-                        
-                   else:
-                        if receptor.prioridad == receptorElegido.prioridad:# siempre el bucle primero se compara el receptor con el mismo y despues si en la segunda el primero con el segudno, por eso siempre va aimprimir los dos comentarios con misma fecha de ingreso por qu es el mismo receptor
-                            print("posibles receptores en la lista del donante: "+str(receptor.get_Nombre()))
-                            print("fecha de ingreso del segundo receptor que hay en la lista: "+str(receptor.get_Fecha_de_ingreso()))
-                            print("fecha de ingreso del receptor elegido(el primero): "+str(receptorElegido.get_Fecha_de_ingreso()))
-                            receptor.get_Fecha_de_ingreso()< receptorElegido.get_Fecha_de_ingreso()
-                            receptorElegido = receptor
 
-                print("Receptor elegido: "+receptorElegido.nombre)
-                if receptorElegido is not None:
-                    self._enviarOrganoAUbicacionReceptor(receptorElegido,donante,organo,receptorElegido.centro_de_salud)
-                    #donante.get_Lista_organos().remove(organo)
-                    self.quitarDonantesSinOrganos()
-                    return receptorElegido
-            else :
-                print("No se encontro el Organo, queda en lista de espera")
-                return None
+            print("Receptor elegido: "+receptorElegido.nombre)
+            if receptorElegido is not None:
+                self._enviarOrganoAUbicacionReceptor(receptorElegido,donante,organo,receptorElegido.centro_de_salud)
+                #donante.get_Lista_organos().remove(organo)
+                self.quitarDonantesSinOrganos()
+                
+        else :
+            print("No se encontro el Organo, queda en lista de espera")  
+            
 
-    def es_compatible(self,receptor: Receptor,donante: Donante):
+    def es_compatible(self,receptor: Receptor,donante: Donante, organo :Organo):
 
-        return receptor.tipo_de_sangre == donante.tipo_de_sangre and donante.tieneOrgano(receptor.organo_necesario)
+        return receptor.tipo_de_sangre == donante.tipo_de_sangre and organo.tipo==receptor.organo_necesario.tipo
 
     def _buscarDonantes(self, receptor: Receptor):
         """
@@ -164,14 +172,15 @@ class INCUCAI:
         """
         donante: Donante = None
         for donante in self.lista_donantes:
-            if self.es_compatible(receptor,donante):
-                print("Se encontro organo")
-                print("envio del organo...")
-                self._enviarOrganoAUbicacionReceptor(receptor,donante,receptor.organo_necesario,receptor.centro_de_salud)
-                donante.get_Lista_organos().remove(receptor.organo_necesario)
-                self.quitarDonantesSinOrganos()
-                print("Se removio de la lista de donantes")
-                return donante
+            for organo in donante.get_Lista_organos():
+                if self.es_compatible(receptor,donante,organo):
+                    print("Se encontro organo")
+                    print("envio del organo...")
+                    self._enviarOrganoAUbicacionReceptor(receptor,donante,receptor.organo_necesario,receptor.centro_de_salud)
+                    donante.get_Lista_organos().remove(receptor.organo_necesario)
+                    self.quitarDonantesSinOrganos()
+                    print("Se removio de la lista de donantes")
+                    return donante
         print("fin buscar donantes")
         print(" ")
         return None
@@ -214,9 +223,9 @@ class INCUCAI:
             
         else:
 
-            distancia=random.randint(1, 200)#REVISAR
+            #distancia=random.randint(1, 200)#REVISAR
             nivelTrafico=random.randint(1,10)
-            vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro, nivelTrafico,distancia)
+            vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro, nivelTrafico)
             if vehiculo_asignado==None:
                 print("No se puede asignar vehiculo por que el tiempo es mayor a 20")
             else:

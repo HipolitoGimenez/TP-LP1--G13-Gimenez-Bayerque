@@ -34,7 +34,7 @@ class Auto(Vehiculo):
             float: Tiempo estimado del viaje en horas. Retorna float('inf') si distancia o velocidad son inválidos.
         """
         print("Velocidad: "+str(self.velocidad))
-        print("Distancia: "+str(self.distancia))
+        print("Distancia 2: "+str(self.distancia))
         print("Nivel de Trafico: "+str(nivelTrafico))
 
         
