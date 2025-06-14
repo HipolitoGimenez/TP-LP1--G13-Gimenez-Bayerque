@@ -95,23 +95,16 @@ class CentroDeSalud:
       for i in range(len(self.cirujanos)):
         ciru = self.cirujanos[i]  
         print("=====================================")
-        print("especialidad: "+str(ciru.especialidad))
+        print("especialidad: "+str(ciru.especialidad)+ " "+ciru.nombre)
         print("cirujano especialista: "+str(ciru.es_especialista(organo_necesario)))
         if ciru.disponibilidad and ciru.es_especialista(organo_necesario): 
             ciru.ocupado()
             print(f"Cirujano asignado: {ciru.nombre} para el {organo_necesario}")
             return ciru.calcular_exito(organo_necesario.tipo)
-        
-
-      print(f"No se encontró cirujano especialista disponible para el {organo_necesario.tipo}")
-      for i in range(len(self.cirujanos)):
-         ciru=self.cirujanos[i]
-         print("====================================")
-         if ciru.disponibilidad: 
-            ciru.ocupado()
-            print(f"Cirujano asignado: {ciru.nombre} para el  {organo_necesario.tipo}")
-            return ciru.calcular_exito(organo_necesario.tipo)
-        
+        elif not ciru.disponibilidad and ciru.es_especialista(organo_necesario):
+            print(f"es especialista {ciru.nombre} pero ya trabajo hoy!")
+        else:
+            print(f"No se encontró cirujano especialista disponible para el {organo_necesario.tipo}")
       return False
 
         

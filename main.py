@@ -408,7 +408,7 @@ donante8.cargarOrgano(organocorazon)
 donante9=Donante("Tomas","23432123","09-12-2000","M","123456543","O-",hospital6,
                 datetime.strptime("02-06-2025","%d-%m-%Y"),
                 datetime.strptime("02-06-2025 10:37","%d-%m-%Y %H:%M"))
-donante9.cargarOrgano(organoHigado)
+donante9.cargarOrgano(organoPulmon)
 
 
 donante10=Donante("Estela","234678123","09-12-2001","F","123457843","AB-",hospital9,
@@ -492,17 +492,12 @@ receptor11=Receptor(
 )
 
 receptor12=Receptor(
-    "Valentino","45678765","1997-09-21","M","1133445566","O-",hospital8,
-    organoHigado,
-    "Estable",
-    datetime.strptime("2025-06-01", "%Y-%m-%d"),2, "Hepatitis fulminante"
-)
-
-receptor13=Receptor("Marina","45678265","2000-09-21","M","1133445566","AB-",hospital10,
+    "Valentino","45678765","1997-09-21","M","1133445566","O-",hospital2,
     organoPulmon,
     "Estable",
     datetime.strptime("2025-06-01", "%Y-%m-%d"),2, "Fibrosis"
 )
+
 
 
 
@@ -550,6 +545,7 @@ hospital1.agregar_receptor(receptor1)
 hospital1.agregar_receptor(receptor8)
 
 hospital2.agregar_receptor(receptor2)
+hospital2.agregar_receptor(receptor12)
 
 hospital3.agregar_receptor(receptor3)
 hospital3.agregar_receptor(receptor7)
@@ -563,9 +559,6 @@ hospital6.agregar_receptor(receptor10)
 
 hospital7.agregar_receptor(receptor11)
 
-hospital8.agregar_receptor(receptor12)
-
-hospital10.agregar_receptor(receptor13)
 hospital10.agregar_receptor(receptor9)
 
 #caso que donantes estan en distintos hospitales o mismo hospital que receptor
@@ -758,9 +751,10 @@ incucai.registrarPaciente(receptor10)
 incucai.registrarPaciente(receptor11)
 incucai.registrarPaciente(donante8)
 
-"""
+print("Caso 10 un donante y un receptor pero ya el cirujano trabajo")
 #caso un donante y un receptor pero ya el cirujano trabajo
+incucai.registrarPaciente(receptor12)
 incucai.registrarPaciente(donante9)
-incucai.registrarPaciente(receptor12)"""
+
 
 

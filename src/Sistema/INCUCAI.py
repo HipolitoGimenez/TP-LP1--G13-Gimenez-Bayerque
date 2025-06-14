@@ -34,7 +34,7 @@ class INCUCAI:
         """
         print("   ")
         print("  ")
-        print("Registrando Paciente")
+        print("Registrando Paciente, paciente es :"+str(paciente.nombre))
         print("  ")
         if not self._estaRegistradoPaciente(paciente):
             if isinstance(paciente, Donante):
