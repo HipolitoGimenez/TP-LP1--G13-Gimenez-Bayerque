@@ -14,7 +14,7 @@ class Receptor(Paciente):
 
         super().__init__(nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud)
 
-        self.organo_necesario: Organo = organo_necesario
+        self.__organo_necesario: Organo = organo_necesario
         self.__estado = estado_normalizado
         self.__fecha_de_ingreso = fecha_de_ingreso
         self.prioridad = prioridad
@@ -30,16 +30,6 @@ class Receptor(Paciente):
         str: "Estable" o "Inestable"
     """
         return self.__estado
-
-
-    def get_Nombre(self):
-        """
-    Devuelve el nombre del receptor.
-
-    Returns:
-        str: Nombre del receptor.
-    """
-        return self.nombre
 
 
     def get_Fecha_de_ingreso(self):
@@ -59,7 +49,7 @@ class Receptor(Paciente):
     Returns:
         int: Valor entero de prioridad (mayor número, mayor urgencia).
     """
-        return self.__prioridad
+        return self.prioridad#lo dejamos publico por que el objeto receptor esta contenido en una lista y si no salta error
 
 
     def get_Patologia(self):
@@ -82,14 +72,8 @@ class Receptor(Paciente):
         return self.__recibioOrgano
     
 
-    def get_CentrodeSalud(self):
-        """
-    Devuelve el centro de salud asociado al objeto.
-
-    Returns:
-        CentroDeSalud: El centro de salud al que está vinculado este objeto.
-    """
-        return self.centro_de_salud
+    def get_Organonecesario(self):
+        return self.__organo_necesario
 
 
     def set_estado(self, nuevo_estado):
@@ -114,7 +98,7 @@ class Receptor(Paciente):
     Returns:
         str: Información relevante sobre el receptor.
     """
-        return (f"Receptor: {self.nombre}, DNI:{self.DNI}, Necesita: {self.organo_necesario}, "
+        return (f"Receptor: {self.get_Nombre()}, DNI:{self.get_DNI()}, Necesita: {self.__organo_necesario}, "
                 f"Prioridad: {self.prioridad}, Estado: {self.__estado}")
 
     def __lt__(self, otro):
@@ -128,6 +112,6 @@ class Receptor(Paciente):
         bool: True si este receptor tiene menor prioridad o fue ingresado antes,
               False en caso contrario.
     """
-        if self.prioridad != otro.prioridad:
-            return self.prioridad < otro.prioridad
-        return self.__fecha_de_ingreso < otro.__fecha_de_ingreso
+        if self.__prioridad != otro.get_Prioridad():
+            return self.__prioridad < otro.get_Prioridad()
+        return self.__fecha_de_ingreso < otro.get_Fecha_de_ingreso()

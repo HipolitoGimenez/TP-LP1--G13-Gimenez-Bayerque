@@ -31,6 +31,9 @@ class CentroDeSalud:
         self.transplante_realizado = 0 
 
     
+    def get_Direccion(self):
+        return self.direccion
+    
     def agregar_vehiculos(self, vehiculo):
         """
         Recibe: un objeto Vehiculo.
@@ -48,14 +51,7 @@ class CentroDeSalud:
         """     
         self.cirujanos.append(nuevo_cirujano)
     
-    def agregar_pacientes(self,nuevo_paciente:Paciente):
-       """
-    Agrega un paciente (donante o receptor) a la lista general de pacientes.
-
-    Args:
-        nuevo_paciente (Paciente): Instancia de la clase Paciente o sus subclases.
-    """
-       self.pacientes.append(nuevo_paciente)
+    
     
 
     def agregar_receptor(self,nuevo_receptor:Receptor):
@@ -95,14 +91,14 @@ class CentroDeSalud:
       for i in range(len(self.cirujanos)):
         ciru = self.cirujanos[i]  
         print("=====================================")
-        print("especialidad: "+str(ciru.especialidad)+ " "+ciru.nombre)
+        print("especialidad: "+str(ciru.get_Especialidad())+ " "+ciru.get_Nombre())
         print("cirujano especialista: "+str(ciru.es_especialista(organo_necesario)))
-        if ciru.disponibilidad and ciru.es_especialista(organo_necesario): 
+        if ciru.get_Disponibilidad() and ciru.es_especialista(organo_necesario): 
             ciru.ocupado()
-            print(f"Cirujano asignado: {ciru.nombre} para el {organo_necesario}")
+            print(f"Cirujano asignado: {ciru.get_Nombre()} para el {organo_necesario}")
             return ciru.calcular_exito(organo_necesario.tipo)
-        elif not ciru.disponibilidad and ciru.es_especialista(organo_necesario):
-            print(f"es especialista {ciru.nombre} pero ya trabajo hoy!")
+        elif not ciru.get_Disponibilidad() and ciru.es_especialista(organo_necesario):
+            print(f"es especialista {ciru.get_Nombre()} pero ya trabajo hoy!")
         else:
             print(f"No se encontró cirujano especialista disponible para el {organo_necesario.tipo}")
       return False
@@ -181,8 +177,7 @@ class CentroDeSalud:
         Hace: asigna esos valores al vehículo y registra el viaje con destino al centro de salud actual.
         Devuelve: nada.
         """
-       #vehiculo.setDistancia(distancia)#verificar
-       #print("Distancia Vehiculo: "+str(vehiculo.distancia))
+       
        vehiculo.registrar_viaje(self.direccion,nivelTrafico)
 
     
@@ -232,7 +227,7 @@ class CentroDeSalud:
          
        
 
-    def realizarAblacion(self, donante:Donante, organo: Organo,receptor):
+    def realizarAblacion(self, donante:Donante, organo: Organo):
         print("Se realiza Ablacion")
         """
         Recibe: un objeto Donante y un objeto Organo.

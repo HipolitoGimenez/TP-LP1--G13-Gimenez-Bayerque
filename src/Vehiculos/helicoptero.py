@@ -44,7 +44,7 @@ class Helicoptero(Vehiculo):
             return 0
         
         else:
-            #print("Tiempo en viaje: "+str(tiempodetrayecto))
+            
             if tiempodetrayecto>20:
                 print("No se puede transplante por que el tiempo de trayecto es mayor a 20 y es : "+str(tiempodetrayecto))
             return tiempodetrayecto

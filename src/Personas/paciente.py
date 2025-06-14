@@ -19,13 +19,13 @@ class Paciente:
                         Returns:
                         None
                 """
-                self.nombre=nombre
-                self.DNI=DNI
-                self.fecha_de_nacimiento=fecha_de_nacimiento
-                self.sexo=sexo
-                self.telefono=telefono
-                self.tipo_de_sangre=tipo_de_sangre
-                self.centro_de_salud: CentroDeSalud=centro_de_salud
+                self.__nombre=nombre
+                self.__DNI=DNI
+                self.__fecha_de_nacimiento=fecha_de_nacimiento
+                self.__sexo=sexo
+                self.__telefono=telefono
+                self.__tipo_de_sangre=tipo_de_sangre
+                self.__centro_de_salud: CentroDeSalud=centro_de_salud
                         
         def get_Nombre(self):
                 """
@@ -88,7 +88,7 @@ class Paciente:
         Returns:
                 CentroDeSalud: Centro de salud del paciente.
         """
-                return f"Centro de Salud: {self.__centro_de_salud}"
+                return self.__centro_de_salud
                 
         def __str__(self):
                 """
@@ -97,7 +97,7 @@ class Paciente:
                 Returns:
                 str: Cadena con nombre y DNI del paciente.
                 """
-                return f"Nombre: {self.nombre} , DNI: {self.DNI}"
+                return f"Nombre: {self.__nombre} , DNI: {self.__DNI}"
 
 
         def __eq__(self, otroPaciente): 
@@ -110,7 +110,7 @@ class Paciente:
                 Returns:
                 bool: True si ambos pacientes tienen el mismo nombre y DNI, False en caso contrario.
                 """
-                return self.nombre == otroPaciente.nombre and self.DNI == otroPaciente.DNI
+                return self.__nombre == otroPaciente.get_Nombre() and self.__DNI == otroPaciente.get_DNI()
 
 
         

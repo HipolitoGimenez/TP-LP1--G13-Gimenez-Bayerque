@@ -1,6 +1,6 @@
 
 from datetime import datetime
-from typing import List
+
 from src.Modelos.viaje import Viaje
 from abc import ABC, abstractmethod
 
@@ -60,16 +60,7 @@ class Vehiculo(ABC):
         viaje = Viaje(direccion,self.calcular_tiempo(nivelTrafico),datetime.now())
         self.registro_de_viajes.append(viaje)
         print("registrando viaje: "+viaje.direccion)
- 
 
-    def setDistancia(self,distancia:int):
-        """
-    Establece la distancia a recorrer.
-
-    Args:
-        distancia (int): La distancia en kilómetros (u otra unidad) que se asigna al objeto.
-    """
-        self.distancia=distancia
         
 
     def ocupado(self):

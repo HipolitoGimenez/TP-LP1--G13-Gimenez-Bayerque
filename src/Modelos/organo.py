@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class Organo:
 
     def __init__(self, tipo):
@@ -15,7 +16,8 @@ class Organo:
         self.tipo=tipo.lower() 
         self.fecha_hora_de_ablacion=None 
         
-
+        
+    
     def fecha_ablacion(self, fecha_hora: datetime):
         """
         Recibe:
@@ -26,19 +28,6 @@ class Organo:
             - Nada explícito.
         """
         self.fecha_hora_de_ablacion = fecha_hora 
-
-
-    def esta_disponible(self):
-        """
-        Recibe:
-            - Ningún parámetro.
-        Hace:
-            - Verifica si el órgano está disponible para trasplante (no ablacionado).
-        Devuelve:
-            - True si el órgano no fue ablacionado (fecha_hora_de_ablacion es None).
-            - False en caso contrario.
-        """
-        return self.fecha_hora_de_ablacion is None 
     
 
     def __str__(self): 

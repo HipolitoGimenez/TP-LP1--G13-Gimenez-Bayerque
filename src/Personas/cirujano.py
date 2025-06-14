@@ -12,15 +12,25 @@ ESPECIALIDADES = {
 
 class Cirujano:
     def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, dni, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, organos):
-        self.nombre = nombre
-        self.especialidad = especialidad
-        self.disponibilidad = disponibilidad
-        self.cantidad_operaciones = cantidad_operaciones
-        self.dni = dni
-        self.centro_de_salud = centro_de_salud 
+        self.__nombre = nombre
+        self.__especialidad = especialidad
+        self.__disponibilidad = disponibilidad
+        self.__cantidad_operaciones = cantidad_operaciones
+        self.__dni = dni
+        self.__centro_de_salud = centro_de_salud 
 
-
-
+    def get_Nombre(self):
+        return self.__nombre
+    def get_Especialidad(self):
+        return self.__especialidad
+    def get_Disponibilidad(self):
+        return self.__disponibilidad
+    def get_Cantidad_Operaciones(self):
+        return self.__cantidad_operaciones
+    def get_dni(self):
+        return self.__dni
+    def get_Centro_de_salud(self):
+        return self.__centro_de_salud
     def __str__(self): 
         """
         Devuelve una representación legible del cirujano.
@@ -28,7 +38,7 @@ class Cirujano:
         Returns:
             str: Nombre y especialidad del cirujano.
         """
-        return f"Cirujano: {self.nombre} - Especialidad: {self.especialidad}"
+        return f"Cirujano: {self.__nombre} - Especialidad: {self.__especialidad}"
     
 
     def ocupado(self): 
@@ -38,7 +48,7 @@ class Cirujano:
         Returns:
             None
         """
-        self.disponibilidad = False
+        self.__disponibilidad = False
 
 
     def disponible(self):
@@ -48,7 +58,7 @@ class Cirujano:
         Returns:
             bool: True si está disponible, False si no.
         """
-        self.disponibilidad = True
+        self.__disponibilidad = True
         
     def estaDisponible(self):
         """
@@ -57,7 +67,7 @@ class Cirujano:
         Returns:
         bool: True si está disponible, False si no lo está.
         """
-        return self.disponibilidad
+        return self.__disponibilidad
 
     def es_especialista(self, organo: Organo):
         """
@@ -78,7 +88,7 @@ class Cirujano:
         "gastroenterologo": ["intestino", "riñon", "higado", "pancreas"]
     }   
         
-        return self.especialidad is not None and organo.tipo in ESPECIALIDADES.get(self.especialidad, [])
+        return self.__especialidad is not None and organo.tipo in ESPECIALIDADES.get(self.__especialidad, [])
         
 
     def operacion(self):
@@ -88,9 +98,9 @@ class Cirujano:
         Returns:
             None
         """
-        if not self.disponibilidad: 
-            print (f"Cirujano {self.nombre} ya opero hoy.")
-            self.cantidad_operaciones += 1
+        if not self.__disponibilidad: 
+            print (f"Cirujano {self.__nombre} ya opero hoy.")
+            self.__cantidad_operaciones += 1
 
 
     def calcular_exito(self, organo_tipo):
@@ -103,7 +113,7 @@ class Cirujano:
         Returns:
             bool: True si la operación fue exitosa, False si no.
         """
-        organos_de_su_especialidad = ESPECIALIDADES.get(self.especialidad.lower(), []) 
+        organos_de_su_especialidad = ESPECIALIDADES.get(self.__especialidad.lower(), []) 
         
         resultado = random.randint(1, 10)
         if organo_tipo.lower() in organos_de_su_especialidad: 

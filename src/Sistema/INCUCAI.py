@@ -1,7 +1,6 @@
 from src.Personas.donantes import Donante
 from src.Personas.paciente import Paciente
 from src.Personas.receptor import Receptor
-from src.Modelos.coincidencia import Coincidencia
 from src.Modelos.organo import Organo
 from src.Personas.cirujano import Cirujano
 from src.Modelos.CentroDeSalud import CentroDeSalud
@@ -34,7 +33,7 @@ class INCUCAI:
         """
         print("   ")
         print("  ")
-        print("Registrando Paciente, paciente es :"+str(paciente.nombre))
+        print("Registrando Paciente, paciente es :"+str(paciente.get_Nombre()))
         print("  ")
         if not self._estaRegistradoPaciente(paciente):
             if isinstance(paciente, Donante):
@@ -102,16 +101,16 @@ class INCUCAI:
 
 
             for receptor in self.lista_receptores:
-                print(f"Organo del receptor: {receptor.organo_necesario.tipo}")
-                print(f"Receptor sangre: {receptor.tipo_de_sangre}")
-                print(f"Donante sangre: {donante.tipo_de_sangre}")
+                print(f"Organo del receptor: {receptor.get_Organonecesario().tipo}")
+                print(f"Receptor sangre: {receptor.getTipo_de_sangre()}")
+                print(f"Donante sangre: {donante.getTipo_de_sangre()}")
                 print("_______")
                 print("es compatible: "+str(self.es_compatible(receptor,donante,organo)))
                 if self.es_compatible(receptor,donante,organo):
                     print("  ")   
                     print("Resultado: COINCIDENCIA.") 
                     listaReceptoresParaDonante.append(receptor)
-                    print("Se agrega Receptor:"+receptor.nombre)
+                    print("Se agrega Receptor:"+receptor.get_Nombre())
                     print(" ")
                     print("_________")
                     self.procesar_lista_organos(listaReceptoresParaDonante,donante,organo)
@@ -129,6 +128,7 @@ class INCUCAI:
     def procesar_lista_organos(self,listaReceptoresParaDonante,donante,organo):
         print("Longitud Receptores: "+str(len(listaReceptoresParaDonante)))
         if len(listaReceptoresParaDonante) > 0:
+            receptorElegido:Receptor
             receptorElegido = listaReceptoresParaDonante[0]
             for receptor in listaReceptoresParaDonante:
                 if receptor.prioridad < receptorElegido.prioridad:
@@ -145,9 +145,9 @@ class INCUCAI:
                         receptor.get_Fecha_de_ingreso()< receptorElegido.get_Fecha_de_ingreso()
                         receptorElegido = receptor
 
-            print("Receptor elegido: "+receptorElegido.nombre)
+            print("Receptor elegido: "+receptorElegido.get_Nombre())
             if receptorElegido is not None:
-                self._enviarOrganoAUbicacionReceptor(receptorElegido,donante,organo,receptorElegido.centro_de_salud)
+                self._enviarOrganoAUbicacionReceptor(receptorElegido,donante,organo,receptorElegido.getCentro_de_salud())
                 #donante.get_Lista_organos().remove(organo)
                 self.quitarDonantesSinOrganos()
                 
@@ -157,7 +157,7 @@ class INCUCAI:
 
     def es_compatible(self,receptor: Receptor,donante: Donante, organo :Organo):
 
-        return receptor.tipo_de_sangre == donante.tipo_de_sangre and organo.tipo==receptor.organo_necesario.tipo
+        return receptor.getTipo_de_sangre() == donante.getTipo_de_sangre() and organo.tipo==receptor.get_Organonecesario().tipo
 
     def _buscarDonantes(self, receptor: Receptor):
         """
@@ -176,8 +176,8 @@ class INCUCAI:
                 if self.es_compatible(receptor,donante,organo):
                     print("Se encontro organo")
                     print("envio del organo...")
-                    self._enviarOrganoAUbicacionReceptor(receptor,donante,receptor.organo_necesario,receptor.centro_de_salud)
-                    donante.get_Lista_organos().remove(receptor.organo_necesario)
+                    self._enviarOrganoAUbicacionReceptor(receptor,donante,receptor.get_Organonecesario(),receptor.getCentro_de_salud())
+                    donante.get_Lista_organos().remove(receptor.get_Organonecesario())
                     self.quitarDonantesSinOrganos()
                     print("Se removio de la lista de donantes")
                     return donante
@@ -215,7 +215,7 @@ class INCUCAI:
         Returns:
             None
         """
-        if donante.centro_de_salud.direccion == receptor.centro_de_salud.direccion:
+        if donante.getCentro_de_salud().get_Direccion() == receptor.getCentro_de_salud().get_Direccion():
             exito=centro.asignar_cirujano(organo)
             print("Operacion exitosa: "+str(exito))
             self.operar(exito,donante,receptor,organo,centro)
@@ -225,7 +225,7 @@ class INCUCAI:
 
             #distancia=random.randint(1, 200)#REVISAR
             nivelTrafico=random.randint(1,10)
-            vehiculo_asignado=donante.centro_de_salud.asignarVehiculo(centro, nivelTrafico)
+            vehiculo_asignado=donante.getCentro_de_salud().asignarVehiculo(centro, nivelTrafico)
             if vehiculo_asignado==None:
                 print("No se puede asignar vehiculo por que el tiempo es mayor a 20")
             else:
@@ -276,44 +276,17 @@ class INCUCAI:
         pacientesListaEspera = []
         receptor: Receptor
         for receptor in self.lista_receptores:
-            if receptor.centro_de_salud == centroDeSalud:
+            if receptor.getCentro_de_salud() == centroDeSalud:
                 pacientesListaEspera.append(receptor)
-    
-
-    def buscarPrioridadReceptor(self, receptorBuscado):
-        """
-        Busca y devuelve la prioridad de un receptor en la lista de espera.
-
-        Args:
-            receptorBuscado (Receptor): Receptor a buscar.
-
-        Returns:
-            int: Prioridad del receptor o None si no encontrado.
-        """
-        prioridad: int
-        receptor: Receptor
-        for receptor in self.lista_receptores:
-            if receptor == receptorBuscado:
-                return receptor.prioridad
-        return prioridad
+     
 
     
-    def listarPacientes(self):
-        """
-        Imprime la información de los pacientes donantes y receptores registrados.
-
-        Returns:
-            None
-        """
-        for paciente in self.lista_donantes:
-            print(paciente)
-        for paciente in self.lista_receptores:
-            print(paciente)
+    
     
     def operar(self,exito,donante,receptor,organo,centro: CentroDeSalud):
         if exito:
                 print("realizar transplante y eliminar de la lista de receptores")
-                centro.realizarAblacion(donante,organo,receptor)
+                centro.realizarAblacion(donante,organo)
                 print("Cantidad de receptores : "+str(len(self.lista_receptores)))
                 self.lista_receptores.remove(receptor)
                 print("Cantidad de receptores despues del transplante: "+str(len(self.lista_receptores)))

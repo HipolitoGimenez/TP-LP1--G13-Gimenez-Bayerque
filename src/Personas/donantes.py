@@ -39,28 +39,6 @@ class Donante(Paciente):
         list: Lista de objetos órgano disponibles para trasplante.
         """
         return self.__lista_organos
-    
-
-    def tieneOrgano(self, organo:Organo):
-        """
-        Verifica si el donante posee un órgano del mismo tipo que el proporcionado.
-
-        Args:
-        organo (Organo): El órgano a verificar, del cual se evalúa el tipo.
-
-        Returns:
-        bool: True si el donante tiene al menos un órgano del mismo tipo en su lista,
-              False en caso contrario.
-
-        Detalles:
-        - Compara el atributo 'tipo' del órgano proporcionado con los órganos en
-          la lista del donante (__lista_organos).
-        - No requiere que sea el mismo objeto, solo que coincida el tipo.
-        """
-        for o in self.__lista_organos:
-            if o.tipo == organo.tipo:
-                return True
-            return False
    
     
     def cargarOrgano(self, organo: Organo):
@@ -80,7 +58,7 @@ class Donante(Paciente):
         Returns:
             str: Cadena con el nombre, DNI y la fecha desde que es donante.
         """
-        return f"Donante: {self.nombre}, Donante DNI:{self.DNI}, Donante desde: {self.__fecha_de_muerte}"
+        return f"Donante: {self.get_Nombre()}, Donante DNI:{self.get_DNI()}, Donante desde: {self.__fecha_de_muerte}"
     
     
         
