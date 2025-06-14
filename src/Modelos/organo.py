@@ -1,7 +1,9 @@
 from datetime import datetime
 
 
+
 class Organo:
+
 
     def __init__(self, tipo):
         """
@@ -16,8 +18,6 @@ class Organo:
         self.tipo=tipo.lower() 
         self.fecha_hora_de_ablacion=None 
         
-        
-    
     def fecha_ablacion(self, fecha_hora: datetime):
         """
         Recibe:
@@ -29,7 +29,6 @@ class Organo:
         """
         self.fecha_hora_de_ablacion = fecha_hora 
     
-
     def __str__(self): 
         """
         Recibe:

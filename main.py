@@ -1,29 +1,23 @@
 from datetime import datetime
 from src.Modelos.CentroDeSalud import CentroDeSalud
 from src.Modelos.organo import Organo
-from src.Modelos.tipoOrganoEnum import TipoOrganoEnum
 from src.Modelos.viaje import Viaje
-
 from src.Personas.paciente import Paciente
 from src.Personas.receptor import Receptor
 from src.Personas.donantes import Donante
 from src.Personas.cirujano import Cirujano
-
 from src.Sistema.INCUCAI import INCUCAI
-
 from src.Vehiculos.auto import Auto
 from src.Vehiculos.avion import Avion
 from src.Vehiculos.helicoptero import Helicoptero
 from src.Vehiculos.vehiculo import Vehiculo
 
-#Centros de salud misma provincia y partido
+
+#crear hospitales
 hospital1=CentroDeSalud("Hospital Italiano", "AV Italia 145", "CABA", "Buenos Aires", "84515262385")
 hospital2=CentroDeSalud("Hospital Aleman", "AV Italia 200", "CABA", "Buenos Aires", "48545262385")
-#Centro de salud distinto partido
 hospital3=CentroDeSalud("Hospital Posadas","AV Rivadabia 234","Moron","Buenos Aires","345676543")
-#Centro de salud distinta provincia y partido y me sirve para cirujano no especializado tambien
 hospital4=CentroDeSalud("Hospital Central","Av España 23","Capital","Cordoba","7653456787")
-#Centro de salud mismo receptor y donante
 hospital5 = CentroDeSalud("Hospital Regional", "Calle San Martín 1025", "Godoy Cruz", "Mendoza", "2614345678")
 hospital6 = CentroDeSalud("Hospital Uruguay", "Boulevard Oroño 1500", "Rosario", "Santa Fe", "3416789012")
 hospital7 = CentroDeSalud("Hospital San Juan de Dios", "Av. San Martín 456", "La Plata", "Buenos Aires", "2214567890")
@@ -32,9 +26,7 @@ hospital9 = CentroDeSalud("Hospital Ramón Carrillo","Ruta 3 Km 1100","San Luis"
 hospital10 = CentroDeSalud("Hospital de Clínicas","Av. Córdoba 2351","CABA","Buenos Aires","1147891234")
 
 
-
-
-#Cirujanos hospital1 Italiano
+#crear cirujanos
 cirujanoG5 = Cirujano(
     "Adrian",                     
     "gastroenterologo",             
@@ -49,19 +41,18 @@ cirujanoG5 = Cirujano(
     ["intestino", "riñon", "higado", "pancreas"]                   
 )
 cirujanoC3 = Cirujano(
-    "Fausto",             # nombre
-    "cardiovascular",                     # especialidad
-    True,                           # disponible
-    0,                              # operaciones realizadas hoy
-    "40332011",                     # DNI
-    "1972-04-05",                   # fecha de nacimiento
-    "M",                            # sexo
-    "1165427090",                   # teléfono
-    "A+",                           # tipo de sangre
-    "Hospital Italiano",      # centro de salud
-    ["corazon"]                      # órganos compatibles
+    "Fausto",             
+    "cardiovascular",                     
+    True,                           
+    0,                              
+    "40332011",                     
+    "1972-04-05",                  
+    "M",                          
+    "1165427090",                 
+    "A+",                        
+    "Hospital Italiano",    
+    ["corazon"]                      
 )
-
 cirujanoPL2 = Cirujano(
     "Gaston",
     "plastico",
@@ -75,8 +66,6 @@ cirujanoPL2 = Cirujano(
     "Hospital Italiano",
     ["corneas", "piel"]
 )
-
-#cirujanos hospital2 Aleman
 cirujanoPU1 = Cirujano(
     "Juan",
     "pulmonar",
@@ -116,8 +105,6 @@ cirujanoPL3=Cirujano(
     "Hospital Aleman",
     ["corneas","piel"]
 )
-
-#cirujano hospital3 Hospital Posadas
 cirujanoPL1 = Cirujano(
     "Estela",
     "plastico",
@@ -131,7 +118,6 @@ cirujanoPL1 = Cirujano(
     "Hospital Posadas",
     ["corneas", "piel"]
 )
-
 cirujanoT = Cirujano(
     "Maria",
     "traumatologo",
@@ -145,7 +131,6 @@ cirujanoT = Cirujano(
     "Hospital Posadas",
     ["huesos"]
 )
-
 cirujanoPU4=Cirujano(
     "Marcos",
     "pulmonar",
@@ -159,7 +144,6 @@ cirujanoPU4=Cirujano(
     "Hospital Posadas",
     ["pulmones"]
 )
-
 cirujanoG4=Cirujano(
     "Mario",
     "plastico",
@@ -186,8 +170,6 @@ cirujanoC1=Cirujano(
     "Hospital Posadas",
     ["corazon"]
 )
-
-#cirujanos de hospital4 hospital Central
 cirujanoT1 = Cirujano(
     "Luz general",
     "general",
@@ -201,8 +183,6 @@ cirujanoT1 = Cirujano(
     "Hospital Central",
     []
 )
-
-#cirujanos de hospital5 hospital Regional
 cirujanoG1 = Cirujano(
     "Martín",
     "gastroenterologo",
@@ -214,9 +194,7 @@ cirujanoG1 = Cirujano(
     "1122334455",
     "AB+",
     "Hospital Regional",
-    ["intestino", "riñon", "higado", "pancreas"]
-
-    
+    ["intestino", "riñon", "higado", "pancreas"] 
 )
 cirujanoG6 = Cirujano(
     "Marcos",
@@ -231,8 +209,6 @@ cirujanoG6 = Cirujano(
     "Hospital Regional",
     ["intestino", "riñon", "higado", "pancreas"]
 )
-
-#cirujanos de hospital6 hospital Uruguay
 cirujanoG2 = Cirujano(
     "Hipolito",
     "gastroenterologo",
@@ -259,8 +235,6 @@ cirujanoC5= Cirujano(
     "Hospital Uruguay",
     ["corazon"]
 )
-
-#cirujanos de hospital7 Hospital San Juan
 cirujanoG3 = Cirujano(
     "Gabriela",                     
     "general",             
@@ -274,8 +248,6 @@ cirujanoG3 = Cirujano(
     "Hospital San Juan",           
     ["intestino", "riñon", "higado", "pancreas"]  
 )
-
-#cirujanos hospital8 Hospital el Cruce
 cirujanoG7 = Cirujano(
     "Gabriel",                     
     "gastroenterologo",             
@@ -289,39 +261,35 @@ cirujanoG7 = Cirujano(
     "Hospital el Cruce",           
     ["intestino", "riñon", "higado", "pancreas"]  
 )
-
-#cirujanos hospital9 Hospital Ramon Carillo
 cirujanoPU2 = Cirujano(
-    "Federico",             # nombre
-    "pulmonar",                     # especialidad
-    True,                           # disponible
-    0,                              # operaciones realizadas hoy
-    "40332211",                     # DNI
-    "1977-04-05",                   # fecha de nacimiento
-    "M",                            # sexo
-    "1165437890",                   # teléfono
-    "B-",                           # tipo de sangre
-    "Hospital Ramón Carrillo",      # centro de salud
-    ["pulmon"]                      # órganos compatibles
+    "Federico",             
+    "pulmonar",                     
+    True,                           
+    0,                              
+    "40332211",                     
+    "1977-04-05",                   
+    "M",                            
+    "1165437890",                   
+    "B-",                           
+    "Hospital Ramón Carrillo",      
+    ["pulmon"]                      
 )
-
-#cirujanos hospital10 Hospital de clinicas
 cirujanoPL4 = Cirujano(
-    "Francisco",             # nombre
-    "plastico",                     # especialidad
-    True,                           # disponible
-    0,                              # operaciones realizadas hoy
-    "40332011",                     # DNI
-    "1978-04-05",                   # fecha de nacimiento
-    "M",                            # sexo
-    "1165477890",                   # teléfono
-    "B+",                           # tipo de sangre
-    "Hospital de Clinicas",      # centro de salud
-    ["corneas","piel"]                      # órganos compatibles
+    "Francisco",             
+    "plastico",                     
+    True,                           
+    0,                             
+    "40332011",                    
+    "1978-04-05",                   
+    "M",                           
+    "1165477890",                  
+    "B+",                          
+    "Hospital de Clinicas",    
+    ["corneas","piel"]                     
 )
 
 
-#Organos
+#crear Organos
 organocorazon = Organo("corazon")
 organoPulmon = Organo("pulmon")
 organoPiel = Organo("piel")
@@ -345,8 +313,8 @@ organoHigado.fecha_ablacion(datetime.now())
 organoPancreas.fecha_ablacion(datetime.now()) 
  
 
-#Personas/ donantes
 
+#Donantes
 donante1 = Donante("Adriana", "23060432", "02-06-1978", "F", "2494534523", "A+", hospital2,
                    datetime.strptime("02-06-2010", "%d-%m-%Y"),
                    datetime.strptime("02-06-2010 12:00", "%d-%m-%Y %H:%M"))
@@ -359,12 +327,12 @@ donante2 = Donante("Juan", "25678456", "12-01-1990", "M", "15252523", "B+", hosp
                    datetime.strptime("12-01-2025 13:00", "%d-%m-%Y %H:%M"))
 donante2.cargarOrgano(organoPulmon)  
 
+
 donante1A = Donante("Andrea", "23060432", "02-06-1578", "F", "2494564523", "A+", hospital2,
                    datetime.strptime("02-06-2010", "%d-%m-%Y"),
                    datetime.strptime("02-06-2010 12:00", "%d-%m-%Y %H:%M"))
 
 donante1A.cargarOrgano(organocorazon)
-
 
 
 donante3 = Donante("Marta", "23069832", "02-06-1979", "F", "24921234523", "AB+", hospital4,
@@ -417,80 +385,66 @@ donante10=Donante("Estela","234678123","09-12-2001","F","123457843","AB-",hospit
 donante10.cargarOrgano(organoPulmon)
 
 
-
 #Receptores 
 receptor1 = Receptor(
     "Lucía", "2345763388", "04-11-1975", "F", "1122334455", "A+", hospital1,
     organocorazon,  
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Paro cardíaco"
 )
-
 receptor2 = Receptor(
     "Claudio", "335555966", "09-06-1999", "M", "1155566685", "B+", hospital2,
     organoPulmon,  
     "Estable", datetime.strptime("2025-01-05", "%Y-%m-%d"), 2, "Neumonía"
 )
-
-
 receptor3 = Receptor(
     "Susana", "3145768988", "04-11-1980", "F", "1122334455", "AB+", hospital3,
     organoHuesos,  
     "Estable", datetime.strptime("2025-02-05", "%Y-%m-%d"), 2, "Osteosarcoma"
 )
-
 receptor4 = Receptor(
     "Julieta", "33543366", "09-06-1990", "F", "1155566685", "B-",hospital4 ,
     organoIntestinos,  
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Insuficiencia renal crónica termina"
 )
-
-
 receptor5 = Receptor(
     "Martina", "33543466", "09-12-2002", "F", "1155566635", "B+",hospital5 ,
     organoIntestinos,  
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Sidrome de Intestino corto"
 )
-
 receptor6 = Receptor(
     "Roberto","40123456","1992-06-15","M","1167891234","O+",hospital4,
     organoPiel,
     "Estable", datetime.strptime("2025-05-20", "%Y-%m-%d" ), 3, "Quemaduras de tercer grado"
 )
-
 receptor7=Receptor(
     "Lucas","40156987","1992-12-08","M","1167891234","O+",hospital3,
     organoPiel,
     "Estable",datetime.strptime("2025-04-20","%Y-%m-%d" ),3,"Quemaduras de tercer grado"
 )
-
 receptor8 = Receptor(
     "Luciana", "2345789388", "2000-12-04", "F",  "1122309455", "A+",  hospital1,
     organoCorneas,  
     "Estable", 
     datetime.strptime("2025-05-05", "%Y-%m-%d"), 3, "Ceguera por queratopatía bullosa"
 )
-
 receptor9 = Receptor(
     "Rosario", "2788899911", "1995-03-12", "F", "1133445566", "A+", hospital10,
     organoCorneas,  
     "Estable", 
     datetime.strptime("2025-05-12", "%Y-%m-%d"),1, "Queratomalacia por deficiencia de vitamina A"
 )
-
 receptor10=Receptor(
     "Guido","34567264","2004-07-12","M","1123433215","AB+",hospital6,
     organocorazon,
     "Estable",
     datetime.strptime("2025-05-12", "%Y-%m-%d"),2, "Insuficiencia Cardiaca"
 )
-
 receptor11=Receptor(
     "Manuel","45678765","2001-09-21","M","1133445566","AB+",hospital7,
     organoPancreas,
     "Estable",
     datetime.strptime("2025-06-01", "%Y-%m-%d"),2, "Pancreatitis autoinmune avanzada"
 )
-
 receptor12=Receptor(
     "Valentino","45678765","1997-09-21","M","1133445566","O-",hospital2,
     organoPulmon,
@@ -501,46 +455,50 @@ receptor12=Receptor(
 
 
 
-#vehiculos
+#vehiculos hopital1
 ambulancia1=Auto(120)
 helicoptero1=Helicoptero(550)
-avion1 = Avion(600)
-
+avion5=Avion(500)
+helicoptero4=Helicoptero(450)
+#veliculos hospital2
+avion2= Avion(600)
+helicoptero3=Helicoptero(400)
+ambulancia6=Auto(390)
+ambulancia4=Auto(600)
+#vehiculos hospital3
 ambulancia2=Auto(200)
 helicoptero2=Helicoptero(500)
-avion2= Avion(600)
-
-ambulancia3=Auto(400)
-helicoptero3=Helicoptero(400)
-avion3=Avion(500)
-
-ambulancia4=Auto(600)
-helicoptero4=Helicoptero(450)
 avion4=Avion(550)
-
-ambulancia5=Auto(300)
-ambulancia6=Auto(390)
-avion5=Avion(500)
-
-ambulancia7=Auto(300)
-ambulancia8=Auto(390)
+#vehiculos hospital4
+ambulancia3=Auto(400)
+avion3=Avion(500)
+#vehiculos hospital5
 avion6=Avion(500)
+ambulancia7=Auto(300)
+ambulancia5=Auto(300)
+#vehiculos hospital6
 avion7=Avion(500)
-avion8=Avion(500)
-avion9=Avion(500)
-ambulancia9=Auto(390)
-ambulancia10=Auto(390)
-ambulancia11=Auto(390)
+ambulancia8=Auto(390)
 helicoptero5=Helicoptero(450)
+#velichulos hospital7
+avion8=Avion(500)
+ambulancia9=Auto(390)
 helicoptero6=Helicoptero(450)
+#vehiculos hospital8
+avion9=Avion(500)
+ambulancia10=Auto(390)
 helicoptero7=Helicoptero(450)
+#vehiculos hospital9
 avion10=Avion(1100)
+ambulancia11=Auto(390)
 helicoptero8=Helicoptero(451)
+#vehiculos hospital10
 helicoptero9=Helicoptero(450)
 ambulancia12=Auto(400)
 avion11=Avion(500)
 
 
+#agregar receptores a hospitales
 hospital1.agregar_receptor(receptor1)
 hospital1.agregar_receptor(receptor8)
 
@@ -561,7 +519,8 @@ hospital7.agregar_receptor(receptor11)
 
 hospital10.agregar_receptor(receptor9)
 
-#caso que donantes estan en distintos hospitales o mismo hospital que receptor
+
+#agregar donantes a hospitales
 hospital1.agregar_donantes(donante4)
 
 hospital2.agregar_donantes(donante1)
@@ -582,19 +541,16 @@ hospital9.agregar_donantes(donante10)
 hospital10.agregar_donantes(donante7)
 
 
-
 #agrego vehiculos a los hospitales
 hospital1.agregar_vehiculos(ambulancia1)
 hospital1.agregar_vehiculos(helicoptero1)
 hospital1.agregar_vehiculos(helicoptero4)
 hospital1.agregar_vehiculos(avion5)
 
-
 hospital2.agregar_vehiculos(avion2)
 hospital2.agregar_vehiculos(helicoptero3)
-hospital2.agregar_vehiculos(ambulancia5)#hospital que uso en el primer caso debe utilizar la ambulancia 4 que es la de mayor velocidad
 hospital2.agregar_vehiculos(ambulancia6)
-hospital2.agregar_vehiculos(ambulancia4)
+hospital2.agregar_vehiculos(ambulancia4)#max velocidad
 
 hospital3.agregar_vehiculos(helicoptero2)
 hospital3.agregar_vehiculos(ambulancia2)
@@ -643,7 +599,6 @@ hospital3.agregar_cirujano(cirujanoPL1)
 hospital3.agregar_cirujano(cirujanoG4)
 hospital3.agregar_cirujano(cirujanoC1)
 
-
 hospital4.agregar_cirujano(cirujanoT1)
 
 hospital5.agregar_cirujano(cirujanoG1)
@@ -652,9 +607,7 @@ hospital5.agregar_cirujano(cirujanoG6)
 hospital6.agregar_cirujano(cirujanoC5)
 hospital6.agregar_cirujano(cirujanoG2)
 
-
 hospital7.agregar_cirujano(cirujanoG3)
-
 
 hospital8.agregar_cirujano(cirujanoG7)
 
@@ -677,8 +630,6 @@ hospitales.append(hospital9)
 hospitales.append(hospital10)
 
 
-#me imprime todos 
-
 for hospital in hospitales:
     print("Institucion:"+hospital.nombre)
     print("________")
@@ -695,11 +646,12 @@ for hospital in hospitales:
 
 
 
-#registra donantes y pacientes
+#registracion de todos los casos
 incucai = INCUCAI()
 print("~~~~~~~~~~~~~~~~~~~~~~~~~")
 print("Comienzo de busqueda:")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
 print("Caso numero 1 : misma provincia y partido:")
 print(" ")
 #caso coincidencia receptor 1 y donante 2 con corazon mismo tipo de sangre misma provincia, utiliza el auto con mayor velocidad

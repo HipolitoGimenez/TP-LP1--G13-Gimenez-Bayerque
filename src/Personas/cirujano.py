@@ -2,6 +2,8 @@
 import random 
 from src.Modelos.organo import Organo
 
+
+
 ESPECIALIDADES = {
             "cardiovascular": ["corazon"],
             "pulmonar": ["pulmon"],
@@ -11,6 +13,8 @@ ESPECIALIDADES = {
             }
 
 class Cirujano:
+
+
     def __init__(self, nombre, especialidad, disponibilidad, cantidad_operaciones, dni, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, organos):
         self.__nombre = nombre
         self.__especialidad = especialidad
@@ -21,16 +25,22 @@ class Cirujano:
 
     def get_Nombre(self):
         return self.__nombre
+    
     def get_Especialidad(self):
         return self.__especialidad
+    
     def get_Disponibilidad(self):
         return self.__disponibilidad
+    
     def get_Cantidad_Operaciones(self):
         return self.__cantidad_operaciones
+    
     def get_dni(self):
         return self.__dni
+    
     def get_Centro_de_salud(self):
         return self.__centro_de_salud
+    
     def __str__(self): 
         """
         Devuelve una representación legible del cirujano.
@@ -40,7 +50,6 @@ class Cirujano:
         """
         return f"Cirujano: {self.__nombre} - Especialidad: {self.__especialidad}"
     
-
     def ocupado(self): 
         """
         Marca al cirujano como ocupado (no disponible).
@@ -49,7 +58,6 @@ class Cirujano:
             None
         """
         self.__disponibilidad = False
-
 
     def disponible(self):
         """
@@ -89,7 +97,6 @@ class Cirujano:
     }   
         
         return self.__especialidad is not None and organo.tipo in ESPECIALIDADES.get(self.__especialidad, [])
-        
 
     def operacion(self):
         """
@@ -101,7 +108,6 @@ class Cirujano:
         if not self.__disponibilidad: 
             print (f"Cirujano {self.__nombre} ya opero hoy.")
             self.__cantidad_operaciones += 1
-
 
     def calcular_exito(self, organo_tipo):
         """

@@ -1,6 +1,9 @@
 from src.Vehiculos.vehiculo import Vehiculo
 
+
+
 class Helicoptero(Vehiculo):
+
 
     def __init__(self, velocidad:int): 
         """
@@ -15,8 +18,6 @@ class Helicoptero(Vehiculo):
         super().__init__( velocidad)
         self.tipo="helicoptero"
 
-
-
     def __str__(self):
         """
         Representa al helicóptero como texto mostrando su velocidad.
@@ -25,7 +26,6 @@ class Helicoptero(Vehiculo):
             str: Descripción legible del helicóptero.
         """
         return f"helicoptero Velocidad: {self.velocidad}km/h ocupado: {self.enUso} tipo: {self.tipo}"
-    
         
     def calcular_tiempo(self,nivelTrafico):
         """
@@ -38,7 +38,7 @@ class Helicoptero(Vehiculo):
             float|str: Tiempo estimado en horas si los datos son válidos, o "Error" si distancia o velocidad no son positivas.
         """
         tiempodetrayecto=self.velocidad/self.distancia
-
+        
         if self.distancia<=0 or self.velocidad<=0:
             print("No se puede realizar el vaje por que distancia y velocidad es menor o igual a 0")
             return 0

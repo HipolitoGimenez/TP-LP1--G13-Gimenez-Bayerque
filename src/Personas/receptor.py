@@ -3,7 +3,9 @@ from src.Modelos.organo import Organo
 from datetime import datetime
 
 
+
 class Receptor(Paciente):
+
 
     def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre,
                  centro_de_salud, organo_necesario, estado, fecha_de_ingreso, prioridad, patologia):
@@ -21,7 +23,6 @@ class Receptor(Paciente):
         self.__patologia = patologia
         self.__recibioOrgano = False
 
-
     def get_Estado(self):
         """
     Devuelve el estado actual del receptor.
@@ -30,7 +31,6 @@ class Receptor(Paciente):
         str: "Estable" o "Inestable"
     """
         return self.__estado
-
 
     def get_Fecha_de_ingreso(self):
         """
@@ -41,7 +41,6 @@ class Receptor(Paciente):
     """
         return self.__fecha_de_ingreso
 
-
     def get_Prioridad(self):
         """
     Devuelve la prioridad del receptor en la lista de espera.
@@ -50,7 +49,6 @@ class Receptor(Paciente):
         int: Valor entero de prioridad (mayor número, mayor urgencia).
     """
         return self.prioridad#lo dejamos publico por que el objeto receptor esta contenido en una lista y si no salta error
-
 
     def get_Patologia(self):
         """
@@ -61,7 +59,6 @@ class Receptor(Paciente):
     """
         return self.__patologia
 
-
     def get_RecibioOrgano(self):
         """
     Indica si el receptor ya recibió un órgano.
@@ -70,11 +67,9 @@ class Receptor(Paciente):
         bool: True si ya recibió un órgano, False si no.
     """
         return self.__recibioOrgano
-    
 
     def get_Organonecesario(self):
         return self.__organo_necesario
-
 
     def set_estado(self, nuevo_estado):
         """
@@ -112,6 +107,6 @@ class Receptor(Paciente):
         bool: True si este receptor tiene menor prioridad o fue ingresado antes,
               False en caso contrario.
     """
-        if self.__prioridad != otro.get_Prioridad():
-            return self.__prioridad < otro.get_Prioridad()
+        if self.prioridad != otro.get_Prioridad():
+            return self.prioridad < otro.get_Prioridad()
         return self.__fecha_de_ingreso < otro.get_Fecha_de_ingreso()

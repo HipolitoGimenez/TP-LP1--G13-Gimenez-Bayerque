@@ -2,6 +2,7 @@
 
 class Paciente:
 
+
         def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud):
                 from src.Modelos.CentroDeSalud import CentroDeSalud  
                 """
@@ -98,7 +99,6 @@ class Paciente:
                 str: Cadena con nombre y DNI del paciente.
                 """
                 return f"Nombre: {self.__nombre} , DNI: {self.__DNI}"
-
 
         def __eq__(self, otroPaciente): 
                 """

@@ -2,7 +2,10 @@ from src.Personas.paciente import Paciente
 from src.Modelos.organo import Organo
 from datetime import datetime
 
+
+
 class Donante(Paciente):
+
 
     def __init__(self, nombre, DNI, fecha_de_nacimiento, sexo, telefono, tipo_de_sangre, centro_de_salud, fecha_de_muerte, fecha_hora_ablacion):
    
@@ -40,7 +43,6 @@ class Donante(Paciente):
         """
         return self.__lista_organos
    
-    
     def cargarOrgano(self, organo: Organo):
         """
         Agrega un órgano a la lista de órganos del donante.

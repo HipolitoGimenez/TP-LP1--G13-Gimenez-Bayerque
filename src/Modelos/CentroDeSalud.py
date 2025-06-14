@@ -12,7 +12,10 @@ from src.Modelos.organo import Organo
 import random
 
 
+
 class CentroDeSalud:
+
+
     def __init__(self, nombre: str, direccion: str, partido: str, provincia: str, telefono: str):
         """
         Inicializa un centro de salud con sus datos principales.
@@ -30,7 +33,6 @@ class CentroDeSalud:
         self.donante=[]
         self.transplante_realizado = 0 
 
-    
     def get_Direccion(self):
         return self.direccion
     
@@ -42,7 +44,6 @@ class CentroDeSalud:
         """
         self.vehiculos.append(vehiculo)
 
-
     def agregar_cirujano(self, nuevo_cirujano: Cirujano):  
         """
         Recibe: un objeto Cirujano.
@@ -51,9 +52,6 @@ class CentroDeSalud:
         """     
         self.cirujanos.append(nuevo_cirujano)
     
-    
-    
-
     def agregar_receptor(self,nuevo_receptor:Receptor):
        """
     Agrega un receptor a la lista de receptores y también a la lista general de pacientes.
@@ -63,7 +61,6 @@ class CentroDeSalud:
     """
        self.receptor.append(nuevo_receptor)
        self.pacientes.append(nuevo_receptor)
-
 
     def agregar_donantes(self,nuevo_donante:Donante):
        """
@@ -75,7 +72,6 @@ class CentroDeSalud:
        self.donante.append(nuevo_donante)
        self.pacientes.append(nuevo_donante)
   
-
     def asignar_cirujano(self, organo_necesario):
       print("Asignando_cirujano")
       """
@@ -103,9 +99,6 @@ class CentroDeSalud:
             print(f"No se encontró cirujano especialista disponible para el {organo_necesario.tipo}")
       return False
 
-        
-
-
     def asignarVehiculo(self, otroCentroSalud, nivelTrafico:int):
         print("Comienzo asignacion Vehiculo")
         """
@@ -114,9 +107,6 @@ class CentroDeSalud:
               y lo usa para transportar el órgano.
         Devuelve: nada.
         """
-        
-        
-
         if(self._estanEnLaMismaProvinciaYPartido(otroCentroSalud)):
            
              auto=self._obtenerVehiculAuto("auto")
@@ -161,7 +151,6 @@ class CentroDeSalud:
         """
        return self.provincia == otroCentroSalud.provincia and self.partido == otroCentroSalud.partido
     
-
     def _estanEnMismaProvincia(self, otroCentroSalud):
        """
         Recibe: otro CentroDeSalud.
@@ -170,24 +159,20 @@ class CentroDeSalud:
         """
        return self.provincia == otroCentroSalud.provincia
     
-
     def transportarOrgano(self, vehiculo:Vehiculo, nivelTrafico):
        """
         Recibe: un objeto Vehiculo, una distancia y un nivel de tráfico.
         Hace: asigna esos valores al vehículo y registra el viaje con destino al centro de salud actual.
         Devuelve: nada.
         """
-       
        vehiculo.registrar_viaje(self.direccion,nivelTrafico)
 
-    
     def _obtenerVehiculAuto(self, tipo):
       """
       Recibe: un string que indica el tipo de vehículo ('Auto', 'Avion', 'Helicoptero').
       Hace: busca el primer vehículo disponible del tipo especificado, lo marca como ocupado.
       Devuelve: el vehículo encontrado o None si no hay disponible.
       """
-      
       vehiculomax=Auto(0)
       for vehiculo in self.vehiculos:
         
@@ -195,17 +180,13 @@ class CentroDeSalud:
             if vehiculo.velocidad>vehiculomax.velocidad:
                print("Vehiculo Max: "+str(vehiculomax))
                vehiculomax=vehiculo
-            
      
       print("Vehiculo asigando es: "+str(vehiculomax)) 
       vehiculomax.ocupar()#si no es un auto lo va a ocupar y lo llama como max y lo devuelve elige el primero de la lista
             
       return vehiculomax
     
-
     def _obtenerVehiculo(self,tipo):
-      
-
       for vehiculo in self.vehiculos:
          print("Analizando vehiculo: "+str(vehiculo.velocidad))
          tipovehiculo=""
@@ -215,18 +196,13 @@ class CentroDeSalud:
              tipovehiculo="helicoptero"
          elif isinstance(vehiculo,Avion):
              tipovehiculo="avion"
-         
-         if not vehiculo.ocupado() and vehiculo.tipo==tipo:
-               
+         if not vehiculo.ocupado() and vehiculo.tipo==tipo: 
                vehiculo.ocupar()
-               
                if vehiculo.distancia == 0:
                    vehiculo.distancia=random.randint(1, 200)
                print("Distancia : "+str(vehiculo.distancia))
                return vehiculo
          
-       
-
     def realizarAblacion(self, donante:Donante, organo: Organo):
         print("Se realiza Ablacion")
         """
@@ -240,9 +216,6 @@ class CentroDeSalud:
         donante.get_Lista_organos().remove(organo)
         print("Cantidad de organos del donante despues de la ablacion: "+str(len(donante.get_Lista_organos())))
         
-
-    
-
     def __eq__(self, otroCentroSalud): 
         """
         Recibe: otro objeto CentroDeSalud.

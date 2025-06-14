@@ -1,13 +1,12 @@
 
 from datetime import datetime
-
 from src.Modelos.viaje import Viaje
 from abc import ABC, abstractmethod
 
 
 
-
 class Vehiculo(ABC):
+
 
     def __init__(self, velocidad:int):
         """
@@ -26,8 +25,6 @@ class Vehiculo(ABC):
         self.enUso=False
         self.tiempoViaje=0
         self.tipo=""
-        
-
 
     def __str__(self):
         """
@@ -37,9 +34,6 @@ class Vehiculo(ABC):
             str: Descripción del vehículo.
         """
         return f"vehiculo(Velocidad:{self.velocidad}km/h)"
-    
-
-    
         
     @abstractmethod
     def calcular_tiempo(self,nivelTrafico):
@@ -60,8 +54,6 @@ class Vehiculo(ABC):
         viaje = Viaje(direccion,self.calcular_tiempo(nivelTrafico),datetime.now())
         self.registro_de_viajes.append(viaje)
         print("registrando viaje: "+viaje.direccion)
-
-        
 
     def ocupado(self):
         """

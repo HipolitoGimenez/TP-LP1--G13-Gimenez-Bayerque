@@ -1,5 +1,7 @@
 from src.Vehiculos.vehiculo import Vehiculo
 
+
+
 class Avion(Vehiculo):
      
 
@@ -16,8 +18,6 @@ class Avion(Vehiculo):
         super().__init__( velocidad)
         self.tipo="avion"
 
-    
-    
     def __str__(self):
         """
         Representación legible del avión con su velocidad.
@@ -26,8 +26,6 @@ class Avion(Vehiculo):
             str: Descripción del avión.
         """
         return f"avion Velocidad: {self.velocidad}km/h ocupado : {self.enUso} tipo: {self.tipo}"
-
-
         
     def calcular_tiempo(self,nivelTrafico):
         """

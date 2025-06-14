@@ -7,7 +7,10 @@ from src.Modelos.CentroDeSalud import CentroDeSalud
 import random
 from src.Vehiculos.auto import Auto
 
+
+
 class INCUCAI:
+
 
     def __init__(self):
             """
@@ -73,8 +76,7 @@ class INCUCAI:
         for paciente in self.lista_receptores:
             if paciente == otroPaciente:
                 return True
-        return yaFueRegistrado
-        
+        return yaFueRegistrado   
 
     def _buscarReceptores(self, donante: Donante):
         
@@ -97,9 +99,6 @@ class INCUCAI:
             print("organo del donante: "+str(organo.tipo))
             print("====================")
 
-
-
-
             for receptor in self.lista_receptores:
                 print(f"Organo del receptor: {receptor.get_Organonecesario().tipo}")
                 print(f"Receptor sangre: {receptor.getTipo_de_sangre()}")
@@ -121,10 +120,7 @@ class INCUCAI:
                     print(" ")
                 print("_________")
             print("fin organo: "+str(organo.tipo))
-
-                    
-                
-        
+     
     def procesar_lista_organos(self,listaReceptoresParaDonante,donante,organo):
         print("Longitud Receptores: "+str(len(listaReceptoresParaDonante)))
         if len(listaReceptoresParaDonante) > 0:
@@ -185,9 +181,6 @@ class INCUCAI:
         print(" ")
         return None
 
-            
-
-
     def _enviarOrganoAUbicacionReceptor(self, receptor: Receptor, donante: Donante,organo:Organo,centro: CentroDeSalud, ):
         """
         Marca que el receptor recibió un órgano.
@@ -199,7 +192,6 @@ class INCUCAI:
             Bool
         """
         print("enviar organo: asignar vehiculo")
-        #centro.asignarVehiculo(donante.centro_de_salud,4, 1)
         receptor.__recibioOrgano = True
         
         """
@@ -223,7 +215,7 @@ class INCUCAI:
             
         else:
 
-            #distancia=random.randint(1, 200)#REVISAR
+            
             nivelTrafico=random.randint(1,10)
             vehiculo_asignado=donante.getCentro_de_salud().asignarVehiculo(centro, nivelTrafico)
             if vehiculo_asignado==None:
@@ -234,8 +226,7 @@ class INCUCAI:
                 exito= centro.asignar_cirujano(organo)
                 print("Operacion exitosa: "+str(exito))
                 self.operar(exito,donante,receptor,organo,centro)
-                vehiculo_asignado.desocupar()
-                
+                vehiculo_asignado.desocupar()           
     
     def quitarDonantesSinOrganos(self):
         """
@@ -248,7 +239,6 @@ class INCUCAI:
         for donante in self.lista_donantes:
             if not donante.get_Lista_organos():
                 self.lista_donantes.remove(donante)
-
     
     def quitarReceptorConCirugiaExitosa(self):
         """
@@ -261,7 +251,6 @@ class INCUCAI:
         for receptor in self.lista_receptores:
             if receptor.recibioOrgano:
                 self.lista_receptores.remove(receptor)
-
    
     def buscarPacientesListaEsperaPorCentroSalud(self, centroDeSalud):
         """
@@ -279,10 +268,6 @@ class INCUCAI:
             if receptor.getCentro_de_salud() == centroDeSalud:
                 pacientesListaEspera.append(receptor)
      
-
-    
-    
-    
     def operar(self,exito,donante,receptor,organo,centro: CentroDeSalud):
         if exito:
                 print("realizar transplante y eliminar de la lista de receptores")

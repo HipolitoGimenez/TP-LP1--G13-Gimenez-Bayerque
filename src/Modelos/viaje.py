@@ -1,9 +1,9 @@
-
-class Viaje:
-    """
+"""
     Representa un viaje realizado por un vehículo con destino, duración y fecha.
     """
-
+class Viaje:
+    
+    
     def __init__(self, direccion, tiempo, fecha):
         """
         Inicializa un viaje con dirección, tiempo y fecha.
