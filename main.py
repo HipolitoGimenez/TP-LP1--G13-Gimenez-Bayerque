@@ -403,7 +403,7 @@ receptor3 = Receptor(
 )
 receptor4 = Receptor(
     "Julieta", "33543366", "09-06-1990", "F", "1155566685", "B-",hospital4 ,
-    organoIntestinos,  
+    organoRiñon,  
     "Estable", datetime.strptime("2025-05-05", "%Y-%m-%d"), 1, "Insuficiencia renal crónica termina"
 )
 receptor5 = Receptor(
@@ -690,7 +690,7 @@ incucai.registrarPaciente(receptor6)
 incucai.registrarPaciente(receptor7)
 incucai.registrarPaciente(donante6)
 
-print("Caso 8: caso coincidencia un donante dos receptores un cirujano se lo da al de mayor prioridad")
+print("Caso 8: caso coincidencia un donante dos receptores un cirujano se lo da al de mayor prioridad, que es Luciana")
 #caso coincidencia un donante dos receptores un cirujano se lo da al de mayor prioridad
 incucai.registrarPaciente(receptor8)
 incucai.registrarPaciente(receptor9)

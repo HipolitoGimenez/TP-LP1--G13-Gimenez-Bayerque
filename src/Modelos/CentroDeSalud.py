@@ -19,7 +19,7 @@ class CentroDeSalud:
     def __init__(self, nombre: str, direccion: str, partido: str, provincia: str, telefono: str):
         """
         Inicializa un centro de salud con sus datos principales.
-        Crea listas vacías para cirujanos y vehículos, e inicializa el contador de trasplantes realizados.
+        Crea listas vacías para cirujanos, vehiculos, pacientes, receptores y donantes e inicializa el contador de trasplantes realizados.
         """
         self.nombre = nombre
         self.direccion = direccion
